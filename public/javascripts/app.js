@@ -1,0 +1,184 @@
+/*
+|------------------------------------------------------------------------------
+| Main Application Object                                                app.js
+|------------------------------------------------------------------------------
+/*
+They bascially all use messaging, and their difference is mainly semantic:
+- event aggregator: send a message when something happens. Code somewhere else might be listening for that message, but maybe not
+- request/response: have code send a request, and it will expect a response (e.g. send me refreshed data)
+- commands: code in one place commands code somewhere else to carry out an action. There usually isn't a return value.
+
+*/
+/* Global Backbone */
+// 'use strict';
+define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'views/HeaderView', 'views/NavPanelView', 'jquery.mobile-config', 'jquery.mobile' ],
+    function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView) {
+
+    /**
+     * Create a composite application instance
+     */
+    var App = new Marionette.Application();
+
+
+    /**
+     * Containing Incoming and Outgoing jQuery Mobile pages
+     */
+    App.views = {};
+
+
+    /**
+     * Startup Modules
+     */
+    App.addInitializer(function () {
+
+        this.initExtensions();
+        this.initEvents();
+
+        // start WineApp router
+        MsgBus.commands.execute('wines:route');
+    });
+
+
+    App.initExtensions = function() {
+
+        /**
+         * Override Marionette onRender and onShow events so JQM 'create' event is
+         * triggered on view's element.
+         * This ensures dynamically created is given the jQuery Mobile treatment
+         */
+        // Marionette.View.prototype.onRender = Marionette.View.prototype.onShow = function () {
+
+        //     console.log('onShow, onRender');
+        //     console.log(this.el);
+
+        //     this.$el.trigger('create');
+        //     return this;
+        // };
+    };
+
+    App.initEvents = function () {
+
+        /**
+         * Close Marionette.View when it's been replaced by JQM changePage.
+         * Marionette handles removal of associated DOM structure and unbinding of events.
+         */
+        $(window.document).on('pagecontainerhide', function (event, ui) {
+
+            if (App.views.outgoing) {
+
+                App.views.outgoing.close();
+            }
+        });
+
+
+        /**
+         * Trigger window resize event after 100ms
+         */
+        $(window).resize(function () {
+
+            clearTimeout(this.id);
+            this.id = setTimeout(function () {
+
+                App.triggerResizeEvent();
+            }, 100);
+        });
+
+
+        /**
+         * Trigger resize event to open/close panels on page has change
+         */
+        $(window.document).on('pagechange', function (event) {
+
+            App.triggerResizeEvent();
+        });
+    };
+
+
+    /**
+     *
+     */
+    MsgBus.commands.setHandler('change:page', function (regions) {
+
+        // todo: use extend to override default regions
+        if (!regions.header) {
+
+            regions.header = new HeaderView.default();
+        }
+        if (!regions.navPanel) {
+
+            regions.navPanel = new NavPanelView.default();
+        }
+        var pageLayout = new PageLayout(regions);
+        App.changePage(pageLayout);
+    });
+
+
+    /**
+     * Based on the following example from Christophe Coenraets:
+     * @link http://coenraets.org/blog/2012/03/using-backbone-js-with-jquery-mobile/
+     */
+    App.changePage = function (view, transition) {
+
+        App.views.outgoing = App.views.incoming;
+        App.views.incoming = view;
+
+        view.render();
+        $('body').append(view.$el);
+
+        $.mobile.pageContainer.pagecontainer('change', view.$el, {
+            changeHash: false,
+            transition: transition || $.mobile.defaultPageTransition
+        });
+    };
+
+
+    /**
+     * Publish window resize event with dimensions of active page
+     */
+    App.triggerResizeEvent = function () {
+
+        var width = $.mobile.activePage.outerWidth(true);
+        MsgBus.events.trigger('window:resize', {width: width});
+    };
+
+
+    /**
+     * Application Lifecycle Events
+     */
+    App.on('initialize:before', function () {
+        // Fired before the initializers kick off
+    });
+    App.on('initialize:after', function () {
+        // Start listening for hash changes after all initializers have finished
+        if (Backbone.history) {
+            console.log('Backbone.history.start();');
+            Backbone.history.start();
+        }
+    });
+    App.on('start', function () {
+        // Fires after all initializers and after the initializer events
+    });
+
+
+    /**
+     * Start/Stop Sub Application
+     */
+    App.startSubApp = function (appName, args) {
+
+        var currentApp = App.module(appName);
+        if (App.currentApp === currentApp) {
+
+            return;
+        } else if (App.currentApp) {
+
+            App.currentApp.stop();
+        }
+
+        App.currentApp = currentApp;
+        currentApp.start(args);
+    };
+
+
+    return App;
+
+});

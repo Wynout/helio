@@ -1,0 +1,46 @@
+/*
+|------------------------------------------------------------------------------
+| Create Certificate              /test/create-a-self-certified certificate.txt
+|------------------------------------------------------------------------------
+*/
+For development purposes you can create a self-certified certificate. Here's how to do it on a linux-based system:
+
+First, generate a private key
+
+openssl genrsa 1024 > key.pem
+This will store a 1024 bit RSA key in the file key.pem
+
+Then, generate an SSL certificate with that key:
+
+openssl req -x509 -new -key key.pem > key-cert.pem
+Now, you can use key.pem and key-cert.pem in the options you pass to createServer.
+
+/**
+ * Example:
+ * @link http://stackoverflow.com/questions/11744975/enabling-https-on-express-js
+ */
+
+If you have newest version of express (3.x) you should use that syntax:
+
+
+var fs = require('fs');
+var http = require('http');
+var https = require('https');
+var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
+var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
+
+var credentials = {key: privateKey, cert: certificate};
+var express = require('express');
+var app = express();
+
+// your express configuration here
+
+var httpServer = http.createServer(app);
+var httpsServer = https.createServer(credentials, app);
+
+httpServer.listen(80);
+httpsServer.listen(443);
+
+
+
+In that way you provide express middleware to native http/https server.

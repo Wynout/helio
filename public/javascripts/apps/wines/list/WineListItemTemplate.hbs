@@ -1,0 +1,9 @@
+<a href="#wines/{{_id}}">
+	{{#if picture}}
+		<img src="pics/{{picture}}" alt="" />
+	{{else}}
+		<img src="pics/generic.jpg" alt="" />
+    {{/if}}
+    <h2>{{name}}</h2>
+    <p>{{year}} {{grapes}}, {{region}}, {{country}}</p>
+</a>

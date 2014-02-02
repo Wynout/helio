@@ -1,0 +1,35 @@
+<form action="#wines/{{_id}}">
+	<label for="wine-id">Name:</label>
+	<input type="text" name="id" id="wine-id" value="{{_id}}" placeholder="id" disabled="disabled">
+
+	<label for="wine-name">Name:</label>
+	<input type="text" name="name" id="wine-name" value="{{name}}" placeholder="Name of wine" data-clear-btn="true">
+
+	<label for="wine-grapes">Grapes:</label>
+	<input type="text" name="grapes" id="wine-grapes" value="{{grapes}}" placeholder="Grape variety" data-clear-btn="true">
+
+	<label for="wine-country">Country:</label>
+	<input type="text" name="country" id="wine-country" value="{{country}}" placeholder="Country of production" data-clear-btn="true">
+
+	<label for="wine-region">Region:</label>
+	<input type="text" name="region" id="wine-region" value="{{region}}" placeholder="Region of production" data-clear-btn="true">
+
+	<label for="wine-year">Year:</label>
+	<input type="text" name="year" id="wine-year" value="{{year}}" placeholder="Year of production" data-clear-btn="true">
+
+	<label for="wine-description">Description:</label>
+	<textarea name="description" id="wine-description" placeholder="Wine description">{{description}}</textarea>
+</form>
+
+<div class="ui-grid-a ui-responsive">
+    <div class="ui-block-a"><a href="#" class="save ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Save</a></div>
+    <div class="ui-block-b"><a href="#" class="delete-confirm ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete">Delete</a></div>
+</div>
+
+<div class="row-fluid status-bar">
+	<div class="span12">
+		<div class="alert alert-success" style="display: none">
+			<b>Success!</b> Wine saved successfully
+		</div>
+	</div>
+</div>

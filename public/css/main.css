@@ -1,0 +1,47 @@
+@import url("/javascripts/components/jquery-mobile/css/themes/default/jquery.mobile.css");
+
+
+/* form required input */
+html body form div.ui-input-text.ui-input-required {
+	-webkit-box-shadow: 0 0 10px 	#e40c0c;
+	-moz-box-shadow: 0 0 10px 		#e40c0c;
+	box-shadow: 0 0 10px 			#e40c0c;
+}
+/* form validation error message */
+.ui-mobile label .validation-error-message {
+	color: #e40c0c;
+	font-size: 14px;
+	font-style: italic;
+	padding-left: 10px;
+}
+
+textarea.ui-input-text {
+	/*height: inherit;*/
+	overflow: hidden;
+}
+
+
+/* should target desktop only */
+html {
+	overflow-y: -moz-scrollbars-vertical;
+	overflow-y: scroll;
+}
+
+
+/* http://stackoverflow.com/questions/14960044/jquery-mobile-forcing-panel-open-on-wider-screens */
+/*
+.ui-panel-closed {  width: 17em; }
+
+.ui-panel-content-wrap.ui-body-b.ui-panel-animate.ui-panel-content-wrap-closed {
+	margin-left:17em;
+}
+.ui-panel-content-wrap-closed {
+	margin-left:17em;
+}*/
+
+/* #header #title h1 span.title-text-hidden */
+.title-text-hidden {
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
+	opacity: 0;
+}

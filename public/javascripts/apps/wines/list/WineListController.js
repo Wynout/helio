@@ -1,0 +1,36 @@
+/*
+|------------------------------------------------------------------------------
+| Wine List Controller                                    WineListController.js
+|------------------------------------------------------------------------------
+*/
+define([
+    'msgbus',
+    'apps/wines/list/WineListView',
+    'views/NavPanelView'
+],
+function (MsgBus, WineListView, NavPanelView) {
+
+    var controller = {
+        showWines: function () {
+
+            var self          = this,
+                fetchingWines = MsgBus.reqres.request('wine:entities');
+            fetchingWines.done(function (wines) {
+
+                self._showWines(wines);
+            });
+        },
+
+        _showWines: function (wines) {
+
+            var regions = {
+                // header  : new App.HeaderView.default(),
+                content : new WineListView({collection: wines}),
+                navPanel: new NavPanelView.wine()
+            };
+            MsgBus.commands.execute('change:page', regions);
+        }
+    };
+
+    return controller;
+});

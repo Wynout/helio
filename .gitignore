@@ -1,0 +1,7 @@
+**/*.DS_store
+node_modules
+public/javascripts/components
+public/build
+*.log
+ssl/key-cert.pem
+ssl/key.pem
