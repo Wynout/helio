@@ -1,20 +1,19 @@
 # Nodecellar jQuery-mobile
 
-
 ## Contents
-
 * [Description](#description)
 * [Application example](#example)
 * [Installation](#installation)
     * [Create self-certified certificate](#create-self-certified certificate)
+* [Start Server](start-server)
 * [Express.js](#expressjs)
     * [Serving master page](#serving-master-page)
 	* [API end-points](#api-endpoints)
 	* [Authorization and CORS](#authorization-cors)
 * [Backbone.js](#backbonejs)
+    * [Backbone.Marionette](#backbone-marionette)
 	* [RequireJS and CommonJS](#requirejs-and-commonjs)
 	* [Routing](#routing)
-	* [View Manager](#view-manager)
 	* [Applications](#applications)
 	* [Main view and subviews](#main-view-and-subviews)
 	* [Transitions](#transitions)
@@ -79,25 +78,26 @@ $ openssl req -x509 -new -key key.pem > key-cert.pem
 ```
 Now, you can use key.pem and key-cert.pem in the options you pass to createServer.
 
-
-
-
-Run app (development mode),
-
+<a name="start-server"/>
+## Start Server
+Development mode
 ```
-$ node app.js
+$ grunt development
+```
+Production mode
+```
+$ grunt production
 ```
 
 <a name="expressjs"/>
 ## Express.js
 
-[Express.js](http://expressjs.com/) is used as back-end development framework. It's simple and easy to configure for SPA.
+[Express.js](http://expressjs.com/) is used as back-end development framework.
 
 In API-oriented architecture back-end is responsible for 2 main purposes:
 
-* Serving master page html or pages???????
+* Serving master page html or pages
 * Providing API end-points for web client
-
 
 
 ### Master page
@@ -115,27 +115,7 @@ To serve master pages application includes middleware component [serveMaster.js]
 
 API is HTTP, JSON based end-points. Sources are located at ``source/api``. Each API module returns a function that takes ``app`` instance and setup HTTP verb handler for a route.
 
-```js
-module.exports = function (app) {
-	app.get('/api/emails', function (req, res) {
-		res.json({status: 'GET /api/users'});
-	});
-
-	app.post('/api/emails', function (req, res) {
-		res.json({status: 'POST /api/users'});
-	});
-
-	app.put('/api/emails/:id', function (req, res) {
-		res.json({status: 'PUT /api/users/' + req.params.id});
-	});
-
-	app.del('/api/emails/:id', function (req, res) {
-		res.json({status: 'DELETE /api/users/' + req.params.id});
-	});
-};
-```
-
-To enable API end-point, you should modify ``app.js`` file, like
+To enable API end-points, you should modify ``app.js`` file
 
 ```js
 // api endpoints
@@ -293,6 +273,14 @@ It have be added during application initialization, like:
 
 Front-end architecture is build on modular structure and relying on [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) to allow build scalable applications.
 
+<a name="backbone-marionette"/>
+### Backbone Marionette
+[Backbone.Marionette](http://marionettejs.com/) is a composite application library for Backbone.js that aims to simplify the construction of large scale JavaScript applications.
+
+It is a collection of common design and implementation patterns found in the applications that we have been building with Backbone, and includes pieces inspired by composite application architectures, event-driven architectures, messaging architectures, and more.
+
+
+
 <a name="requirejs-and-commonjs"/>
 ### RequireJS and CommonJS
 
@@ -329,15 +317,6 @@ define(function (require) {
 All routing logic is placed in [/core/router.js](public/js/core/router.js). There are 3 routes defined in boilerplate.
 
 Each route handler is responsible for *starting up* new application. Application `run` function takes ``ViewManager`` instance.
-
-<a name="view-manager"/>
-### View manager
-
-SPA application typical threat is *memory leaks*. Memory leaks might appear for a few reasons, one of the most famous reason for Backbone applications are, so called, [zombie views](http://lostechies.com/derickbailey/2011/09/15/zombies-run-managing-page-transitions-in-backbone-apps/).
-
-[/core/viewManager.js](public/js/core/viewManager.js) is responsible for disposing views during switch from one router to another.
-
-Besides of that, it handles *transitions* during application switch.
 
 <a name="applications"/>
 ### Applications
