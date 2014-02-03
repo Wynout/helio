@@ -6,8 +6,9 @@
 * [Description](#description)
 * [Application example](#example)
 * [Installation](#installation)
+    * [Create self-certified certificate](#create-self-certified certificate)
 * [Express.js](#expressjs)
-	* [Serving master page](#serving-master-page)
+    * [Serving master page](#serving-master-page)
 	* [API end-points](#api-endpoints)
 	* [Authorization and CORS](#authorization-cors)
 * [Backbone.js](#backbonejs)
@@ -27,7 +28,6 @@
 	* [Gzip content](#gzip-content)
 	* [Development and production](#gzip-content)
 	* [Cache busting](#cache-busting)
-	* [Optimization results](#optimization-results)
 * [Deployment](#deployment)
 
 <a name="description"/>
@@ -44,7 +44,7 @@ content here
 Clone github repository,
 
 ```
-$ git clone git clone git@bitbucket.org:Wynout/nodecellar.git
+$ git clone git clone [repo]
 ```
 
 Install npm dependencies,
@@ -59,6 +59,7 @@ Install bower dependencies,
 $ bower install
 ```
 
+<a name="create-self-certified certificate"/>
 ### Create self-certified certificate
 
 For development purposes you can create a self-certified certificate. Here's how to do it on a linux-based system:
@@ -97,17 +98,10 @@ In API-oriented architecture back-end is responsible for 2 main purposes:
 * Serving master page html or pages???????
 * Providing API end-points for web client
 
+
+
 ### Master page
-
-?????????
 [Master page](views/master.ejs) is main (and typically one) html page returned from server. It includes all styles and javascript, provides very basic layout and placeholder for application.
-
-```html
-?????????????????????
-<div class="container">
-	<div id="app" class="container"></div>
-</div>
-```
 
 After master page is served back to client the rest of UI and logic is build by ``Backbone.js``.
 
@@ -417,23 +411,13 @@ var HeaderView = Backbone.View.extend({
 
 <a name="transitions"/>
 ## Transitions
-
-Transitions is a very nice feature for single pages applications. It adds the visual effects of switching from one application to another.
-
-Boilerplate is relying on wonderful [animate.css](https://github.com/daneden/animate.css) library. [core/transition.js](public/js/core/transition.js) is responsible for applying transition style. It's being called from [/core/viewManager.js](public/js/core/viewManager.js).
-
-Once you decide to have transitions in your app, simply modify [master.ejs](views/master.ejs) and add ``data-transition`` attribute to application ``div``.
-
-```html
-<div class="container">
-	<div id="app" class="container" data-transition="fadeOutLeft"></div>
-</div>
-```
-
+[animate.css](https://github.com/daneden/animate.css)
 Checkout the list of available transitions on [animate.css](https://github.com/daneden/animate.css) page. You can apply anything you want, please note "Out" transition type is suited the best.
+
 
 <a name="testing"/>
 ## Testing
+
 
 Testing is key of quality product. Both sides (front and back) have to covered with tests to tackle the complexity.
 
@@ -531,48 +515,8 @@ It also produces [/source/client/index.js](/source/client/index.js) file [serveM
 
 Now, everything that either `.js` or `.css` content is changed, build would produce new files and they are guaranteed to be loaded by browser again.
 
-<a name="optimization-results"/>
-### Optimization results
-
-On a left side you see application running in development mode, on a right side in  production mode.
-
-![optimization results](/public/img/optimizations.png?raw=true)
-
-Even for such small application as 'TheMailer', the benefits are obvious:
-
-* Requests: 55 / 4 ~ 14 times fewer.
-* Payload: 756Kb / 43.4Kb ~ 17 times smaller.
-* Load time: 898ms / 153ms ~ 6 times faster.
-
 <a name="deployment"/>
 ## Deployment
 
 TODO.
 
-
-<a name="generator"/>
-## Yeoman generator
-
-TODO.
-
-# Legal Info (MIT License)
-
-Copyright (c) 2013 Alexander Beletsky
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
