@@ -157,10 +157,10 @@ Let's take a look how to issue new authorization token. We typically want to red
 After we add same info in open text and encrypt result by `base64`.
 
 ```js
-var timespamp = moment();
-var message = username + ';' + timespamp.valueOf();
-var hmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
-var token = username + ';' + timespamp.valueOf() + ';' + hmac;
+var timestamp   = moment();
+var message     = username + ';' + timestamp.valueOf();
+var hmac        = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
+var token       = username + ';' + timestamp.valueOf() + ';' + hmac;
 var tokenBase64 = new Buffer(token).toString('base64');
 ```
 
