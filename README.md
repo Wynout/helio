@@ -5,14 +5,16 @@
 * [Application example](#example)
 * [Installation](#installation)
     * [Create self-certified certificate](#create-self-certified certificate)
-* [Start Server](start-server)
-* [Express.js](#expressjs)
+* [Start Server](#start-server)
+* [Backend](#backend)
+    * [Express.js](#expressjs)
     * [Serving master page](#serving-master-page)
-	* [API end-points](#api-endpoints)
+    * [API end-points](#api-endpoints)
 	* [Authorization and CORS](#authorization-cors)
-* [Backbone.js](#backbonejs)
+* [Frontend](#frontend)
+    * [Backbone.js](#backbonejs)
     * [Backbone.Marionette](#backbone-marionette)
-	* [RequireJS and CommonJS](#requirejs-and-commonjs)
+	* [RequireJS](#requirejs)
 	* [Routing](#routing)
 	* [Applications](#applications)
 	* [Main view and subviews](#main-view-and-subviews)
@@ -88,9 +90,11 @@ Production mode
 ```
 $ grunt production
 ```
+<a name="#backend"/>
+## Backend
 
 <a name="expressjs"/>
-## Express.js
+### Express.js
 
 [Express.js](http://expressjs.com/) is used as back-end development framework.
 
@@ -266,49 +270,34 @@ It have be added during application initialization, like:
 	app.use(middleware.cors());
 ```
 
-<a name="backbonejs"/>
-## Backbone.js
+<a name="frontend"/>
+## Frontend
 
-[Backbone.js](http://backbonejs.org/) is the one of most popular front-end development framework (library). It provides abstractions for models, views, collections and able to handle client-side routing.
+<a name="backbonejs"/>
+### Backbone.js
+
+> [Backbone.js](http://backbonejs.org/) is the one of most popular front-end development framework (library). It provides abstractions for models, views, collections and able to handle client-side routing.
 
 Front-end architecture is build on modular structure and relying on [AMD](https://github.com/amdjs/amdjs-api/wiki/AMD) to allow build scalable applications.
 
 <a name="backbone-marionette"/>
 ### Backbone Marionette
-[Backbone.Marionette](http://marionettejs.com/) is a composite application library for Backbone.js that aims to simplify the construction of large scale JavaScript applications.
+> [Backbone.Marionette](http://marionettejs.com/) is a composite application library for Backbone.js that aims to simplify the construction of large scale JavaScript applications. It is a collection of common design and implementation patterns found in the applications that we have been building with Backbone, and includes pieces inspired by composite application architectures, event-driven architectures, messaging architectures, and more.
 
-It is a collection of common design and implementation patterns found in the applications that we have been building with Backbone, and includes pieces inspired by composite application architectures, event-driven architectures, messaging architectures, and more.
+* [Brian Mann, the tools and patterns for building large-scale backbone applications](http://www.youtube.com/watch?v=qWr7x9wk6_c)
+* [Backbonerails screencasts](http://www.backbonerails.com/series)
+* [Amy Palamountain on unsucking your Backbone](http://www.youtube.com/watch?v=0o2whtCJw8I)
 
-
-
-<a name="requirejs-and-commonjs"/>
-### RequireJS and CommonJS
+<a name="requirejs"/>
+### RequireJS
 
 [RequireJS](http://requirejs.org/) picked up as asynchronous javascript module loading. ``RequireJS`` uses it's own style for defining modules, specifying the dependency as array of strings.
 
 ```js
-define([
-	'/some/dep',
-	'another/dep',
-	'yet/another/dep',
-	'text!./templates/template.html,
-	jQuery,
-	Backbone'], function(SomeDep, AnotherDep, YetAnotherDep, template, $, Backbone) {
+define(['/some/dep', 'hbs!./templates/template.html', 'jquery', 'Backbone'],
+function(SomeDep, template, $, Backbone) {
 		// module implementation...
 	});
-```
-
-With some time spent on Node.js programming, CommonJS style becomes more convenient to use. Fortunately ``RequireJS`` has [CommonJS](http://requirejs.org/docs/commonjs.html) style implementation.
-
-```js
-define(function (require) {
-	// dependencies
-	var SomeDep = require('/some/dep');
-	var AnotherDep = require('another/dep');
-
-	// export
-	return {};
-});
 ```
 
 <a name="routing"/>
