@@ -90,18 +90,45 @@ module.exports = function(grunt) {
 
 		concurrent: {
 			dev: {
-				// tasks: ['nodemon', 'node-inspector', 'watch'],
-				tasks: ['nodemon', 'watch'],
+				tasks: ['nodemon', 'watch', 'node-inspector'],
 				options: {
 					logConcurrentOutput: true
 				}
 			}
 		},
 
+		/**
+		 * Run nodemon as a grunt task for easy configuration and integration with the rest of your workflow
+		 * @link https://github.com/ChrisWren/grunt-nodemon
+		 */
 		nodemon: {
 			dev: {
 				script: 'app.js',
 				options: {
+					nodeArgs: ['--debug'], // starts a debugging server
+					callback: function (nodemon) {
+
+						nodemon.on('log', function (event) {
+							console.log(event.colour);
+						});
+
+						// opens browser on initial server start
+						nodemon.on('config:update', function () {
+
+							// Delay before server listens on port
+							setTimeout(function () {
+								require('open')('http://localhost:1337/debug?port=5858');
+							}, 1000);
+						});
+
+						// refreshes browser when server reboots
+						nodemon.on('restart', function () {
+							// Delay before server listens on port
+							setTimeout(function () {
+								require('fs').writeFileSync('.grunt/rebooted', 'rebooted');
+							}, 1000);
+						});
+					},
 					ignore: [
 						'node_modules/**'
 					],
@@ -116,6 +143,24 @@ module.exports = function(grunt) {
 				tasks: [],
 				options: {
 					livereload: true
+				}
+			},
+			// live reload not working yet
+			server: {
+				files: ['.grunt/rebooted'],
+				options: {
+					livereload: true
+				}
+			}
+		},
+
+		'node-inspector': {
+			dev: {
+				options: {
+					'web-port': 1337,
+					'web-host': 'localhost',
+					'debug-port': 5858,
+					'save-live-edit': true
 				}
 			}
 		},
@@ -142,6 +187,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-env');
 	grunt.loadNpmTasks('grunt-hashres');
+	grunt.loadNpmTasks('grunt-node-inspector');
 	grunt.loadNpmTasks('grunt-nodemon');
 
 
