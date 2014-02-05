@@ -4,13 +4,12 @@
 * [Description](#description)
 * [Application example](#example)
 * [Installation](#installation)
-    * [Create self-certified certificate](#create-self-certified certificate)
 * [Start Server](#start-server)
 * [Backend](#backend)
     * [Express.js](#expressjs)
     * [Serving master page](#serving-master-page)
     * [API end-points](#api-endpoints)
-	* [Authorization and CORS](#authorization-cors)
+    * [Authorization and CORS](#authorization-cors)
 * [Frontend](#frontend)
     * [Backbone.js](#backbonejs)
     * [Backbone.Marionette](#backbone-marionette)
@@ -42,7 +41,31 @@ content here
 <a name="installation"/>
 ## Installation
 
-Clone github repository,
+#### Install nodejs
+```
+$ sudo apt-get install nodejs
+```
+
+#### Install Node Packaged Modules
+```
+$ sudo apt-get install npm
+```
+
+#### Install MongoDB
+[Install MongoDB on linux](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/)
+
+
+#### Install forever
+A simple CLI tool for ensuring that a given script runs continuously (i.e. forever).
+```
+$ [sudo] npm install forever -g
+```
+```
+$ forever start app.js
+```
+
+
+####Clone github repository,
 
 ```
 $ git clone git clone [repo]
@@ -61,7 +84,7 @@ $ bower install
 ```
 
 <a name="create-self-certified certificate"/>
-### Create self-certified certificate
+#### Create self-certified certificate
 
 For development purposes you can create a self-certified certificate. Here's how to do it on a linux-based system:
 
@@ -80,8 +103,9 @@ $ openssl req -x509 -new -key key.pem > key-cert.pem
 ```
 Now, you can use key.pem and key-cert.pem in the options you pass to createServer.
 
+
 <a name="start-server"/>
-## Start Server
+### Start Server
 Development mode
 ```
 $ grunt development
@@ -284,9 +308,27 @@ Front-end architecture is build on modular structure and relying on [AMD](https:
 ### Backbone Marionette
 > [Backbone.Marionette](http://marionettejs.com/) is a composite application library for Backbone.js that aims to simplify the construction of large scale JavaScript applications. It is a collection of common design and implementation patterns found in the applications that we have been building with Backbone, and includes pieces inspired by composite application architectures, event-driven architectures, messaging architectures, and more.
 
+Marionette Toys
+* Application
+* App Router
+* Controllers
+* Specialized Views
+    * Layouts & Regions
+    * ItemView
+    * Collection View
+    * Composite View
+* Modules
+* Messaging Bus
+    * Request
+    * Command
+    * Pub/Sub
+
+Recommended reading:
 * [Brian Mann, the tools and patterns for building large-scale backbone applications](http://www.youtube.com/watch?v=qWr7x9wk6_c)
 * [Backbonerails screencasts](http://www.backbonerails.com/series)
 * [Amy Palamountain on unsucking your Backbone](http://www.youtube.com/watch?v=0o2whtCJw8I)
+
+> add info about entities module with msgbus
 
 <a name="requirejs"/>
 ### RequireJS
