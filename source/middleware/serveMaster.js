@@ -32,6 +32,7 @@ function reqHandler(title, mainJs, mainCss) {
 
         if (ignoreUrl(req)) {
 
+            // Pass request to next layer in middleware stack
             return next();
         }
         res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss});
