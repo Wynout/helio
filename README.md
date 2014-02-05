@@ -17,6 +17,7 @@
 	* [Routing](#routing)
 	* [Applications](#applications)
 	* [Main view and subviews](#main-view-and-subviews)
+	* [Backbone.validation](#backbone-validation)
 	* [Transitions](#transitions)
 * [Testing](#testing)
 	* [Backbone.js (front-end) tests](#front-end-tests)
@@ -418,6 +419,11 @@ var HeaderView = Backbone.View.extend({
 	}
 });
 ```
+
+<a name="backbone-validation"/>
+## Backbone.validation
+> A [validation plugin](https://github.com/thedersen/backbone.validation) for Backbone.js that validates both your model as well as form input.
+
 
 <a name="transitions"/>
 ## Transitions
