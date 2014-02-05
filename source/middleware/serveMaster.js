@@ -1,40 +1,55 @@
-var _ = require('underscore');
-var client = require('./../client');
+var _      = require('underscore'),
+    client = require('./../client');
 
-function skipMaster (req) {
+/**
+ * Only respond to index page
+ */
+function ignoreUrl(req) {
 
-	return _.any([
-		'/api',
-		'/css',
-		'/pics',
-		'/javascripts',
-		'/build'
-		], function (url) {
+    return _.any([
+        '/api',
+        '/css',
+        '/pics',
+        '/javascripts',
+        '/build'
+    ], function (url) {
 
-		return req.url.substr(0, url.length) === url;
-	});
+        return req.url.substr(0, url.length) === url;
+    });
 }
 
-function hander(title, mainJs, mainCss) {
 
-	return function (req, res, next) {
+/**
+ * Serves development/production index page
+ *
+ * @param String title   Html page title
+ * @param String mainJs  absolute path to Js file
+ * @param String mainCss absolute path to Css file
+ */
+function reqHandler(title, mainJs, mainCss) {
 
-		if (skipMaster(req)) {
+    return function (req, res, next) {
 
-			return next();
-		}
-		res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss});
-	};
+        if (ignoreUrl(req)) {
+
+            return next();
+        }
+        res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss});
+    };
 }
 
+
+/**
+ * Expose middleware request handlers
+ */
 module.exports = {
-	development: function () {
+    development: function () {
 
-		return hander('Development', '/javascripts/main.js', '/css/main.css');
-	},
+        return reqHandler('Development', '/javascripts/main.js', '/css/main.css');
+    },
 
-	production: function () {
+    production: function () {
 
-		return hander('Production', client.js, client.css);
-	}
+        return reqHandler('Production', client.js, client.css);
+    }
 };
