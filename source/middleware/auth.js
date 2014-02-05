@@ -1,9 +1,12 @@
-var AUTH_SIGN_KEY     = '95810db3f765480999a8d5089b0815bd4b55e831',
-	crypto            = require('crypto'),
+var crypto            = require('crypto'),
 	express           = require('express'),
 	moment            = require('moment'),
+	AUTH_SIGN_KEY     = '95810db3f765480999a8d5089b0815bd4b55e831',
 	TOKEN_TTL_MINUTES = 60;
 
+/**
+ *
+ */
 function createToken(req, res, next) {
 
 	var username    = req.user.username,
@@ -17,6 +20,9 @@ function createToken(req, res, next) {
 	next();
 }
 
+/**
+ *
+ */
 function validateToken(req, res, next) {
 
 	var basic = express.basicAuth(hmacAuthentication);
@@ -27,7 +33,8 @@ function validateToken(req, res, next) {
 		var token  = new Buffer(password, 'base64').toString(),
 			parsed = token.split(';');
 
-		if (parsed.length !== 3) {
+		if (parsed.length!==3) {
+
 			return false;
 		}
 
@@ -38,10 +45,11 @@ function validateToken(req, res, next) {
 			computedHmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
 
 		if (receivedHmac!==computedHmac) {
+
 			return false;
 		}
 
-		var currentTimestamp = moment(),
+		var currentTimestamp  = moment(),
 			receivedTimespamp = moment(+timestamp);
 
 		if (receivedTimespamp.diff(currentTimestamp, 'minutes') > TOKEN_TTL_MINUTES) {
@@ -51,6 +59,7 @@ function validateToken(req, res, next) {
 		return true;
 	}
 }
+
 
 module.exports = {
 	createToken: createToken,
