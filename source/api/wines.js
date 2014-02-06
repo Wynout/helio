@@ -3,7 +3,8 @@
 | Wines Routing Scheme                                          /routes/wine.js
 |------------------------------------------------------------------------------
 */
-var WineModel = require('../models/wine');
+var middleware = require('./../middleware'),
+    WineModel  = require('../models/wine');
 
 
 // http://pixelhandler.com/blog/2012/02/09/develop-a-restful-api-using-node-js-with-express-and-mongoose/
@@ -39,10 +40,35 @@ var WineModel = require('../models/wine');
 
 module.exports = function (app) {
 
+    // Create
+    app.post('/api/wines',
+        // middleware.auth.validateToken,
+        create
+    );
+    // Read
+    app.get('/api/wines',
+        // middleware.auth.validateToken,
+        findAll
+    );
+    app.get('/api/wines/:id',
+        // middleware.auth.validateToken,
+        find
+    );
+    // Update
+    app.put('/api/wines/:id',
+        // middleware.auth.validateToken,
+        update
+    );
+    // Delete
+    app.del('/api/wines/:id',
+        // middleware.auth.validateToken,
+        del
+    );
+
     /**
      * Create a single wine
      */
-    app.post('/api/wines', function (req, res, next) {
+    function create(req, res, next) {
 
         // TODO create mongoose plugin to handle multiple fields
         var wine = new WineModel({
@@ -60,28 +86,27 @@ module.exports = function (app) {
             if (err) { return next(err); }
             res.send(wine);
         });
-    });
-
+    }
 
 
     /**
      * Reads a list of wines
      * curl -i http://localhost:3000/api/wines
      */
-    app.get('/api/wines', function (req, res, next) {
+    function findAll(req, res, next) {
 
         WineModel.find({}, function (err, wines) {
 
             if (err) { return next(err); }
             res.send(wines);
         });
-    });
+    }
 
 
     /**
      * Read a single wine by Id
      */
-    app.get('/api/wines/:id', function (req, res, next) {
+    function find(req, res, next) {
 
         WineModel.findById(req.params.id, function (err, wine) {
 
@@ -94,14 +119,14 @@ module.exports = function (app) {
                 res.send(404);
             }
         });
-    });
+    }
 
 
     /**
      * Update a single wine by Id
      * curl -i -X PUT -d 'name=' http://localhost:3000/api/wines/52cec549ab84230d31000009
      */
-    app.put('/api/wines/:id', function (req, res, next) {
+    function update(req, res, next) {
 
         WineModel.findById(req.params.id, function (err, wine) {
 
@@ -128,14 +153,13 @@ module.exports = function (app) {
                 res.send(404);
             }
         });
-
-    });
+    }
 
 
     /**
      * Delete a single wine by id
      */
-    app.delete('/api/wines/:id', function (req, res, next) {
+    function del(req, res, next) {
 
         WineModel.findById(req.params.id, function (err, wine) {
 
@@ -152,8 +176,6 @@ module.exports = function (app) {
                 res.send(404);
             }
         });
-
-    });
-
+    }
 
 };
