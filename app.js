@@ -1,17 +1,17 @@
 require('newrelic');
 
 var express     = require('express'),
-	fs          = require('fs'),
-	http        = require('http'),
-	https       = require('https'),
-	path        = require('path'),
-	middleware  = require('./source/middleware'),
+    fs          = require('fs'),
+    http        = require('http'),
+    https       = require('https'),
+    path        = require('path'),
+    middleware  = require('./source/middleware'),
 
-	privateKey  = fs.readFileSync('ssl/key.pem', 'utf8'),
-	certificate = fs.readFileSync('ssl/key-cert.pem', 'utf8'),
-	credentials = {key: privateKey, cert: certificate},
+    privateKey  = fs.readFileSync('ssl/key.pem', 'utf8'),
+    certificate = fs.readFileSync('ssl/key-cert.pem', 'utf8'),
+    credentials = {key: privateKey, cert: certificate},
 
-	mongoose    = require('mongoose');
+    mongoose    = require('mongoose');
 
 var app = express();
 
@@ -19,59 +19,62 @@ var oneMonth = 2678400000;
 
 app.configure(function () {
 
-	app.set('http port', process.env.PORT || 3000);
-	app.set('https port', process.env.PORT || 3443);
-	app.set('views', __dirname + '/views');
-	app.set('view engine', 'ejs');
-	app.use(middleware.cors());
-	app.use(express.favicon());
-	app.use(express.logger('dev'));
-	app.use(express.bodyParser());
-	app.use(express.methodOverride());
+    app.set('http port', process.env.PORT || 3000);
+    app.set('https port', process.env.PORT || 3443);
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'ejs');
+    app.use(middleware.cors());
+    app.use(express.favicon());
+    app.use(express.logger('dev'));
 
-	app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
+    // For security sake, it's better to disable file upload if your application doesn't need it
+    // app.use(express.bodyParser()); // is equivalent to: .json(), .urlencode(), .multipart()
+    app.use(express.json());
+    app.use(express.urlencoded());
+    app.use(express.methodOverride());
+    app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
 });
 
 app.configure('development', function () {
 
-	app.use(express.errorHandler());
-	app.use(express.static(path.join(__dirname, 'public')));
-	app.use(middleware.serveMaster.development());
+    app.use(express.errorHandler());
+    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(middleware.serveMaster.development());
 });
 
 app.configure('production', function () {
 
-	app.use(express.compress());
-	app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
-	app.use(middleware.serveMaster.production());
+    app.use(express.compress());
+    app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
+    app.use(middleware.serveMaster.production());
 });
 
 
 
-// refactor this
+// refactor this, move to error.js middleware
 /*
 function clientErrorHandler(err, req, res, next) {
 
-	if (!err) {
+    if (!err) {
 
-		return next();
-	}
-	console.log("\n================================");
-	console.log("Houston we've got a problem!\n");
-	console.dir(err);
-	console.log("\n================================");
+        return next();
+    }
+    console.log("\n================================");
+    console.log("Houston we've got a problem!\n");
+    console.dir(err);
+    console.log("\n================================");
 
 
-	if (err.name==='CastError') {
-	// if (ObjectId && err.name==='CastError') {
+    if (err.name==='CastError') {
+    // if (ObjectId && err.name==='CastError') {
 
-		res.send(400, {error: 'The request cannot be fulfilled due to bad syntax.'});
-	}
+        res.send(400, {error: 'The request cannot be fulfilled due to bad syntax.'});
+    }
 
-	if (err.name==='ValidationError') {
+    if (err.name==='ValidationError') {
 
-		res.send(400, err);
-	}
+        res.send(400, err);
+    }
 }
 */
 
@@ -98,21 +101,21 @@ require('./source/api/wines')(app);
  */
 var httpPort = app.get('http port');
 http.createServer(app).listen(httpPort, function () {
-	var environment = process.env.NODE_ENV || 'development';
-	console.log('http server listening on port ' + httpPort + ' (' + environment + ')');
+    var environment = process.env.NODE_ENV || 'development';
+    console.log('http server listening on port ' + httpPort + ' (' + environment + ')');
 })
 .on('error', function (e) {
 
-	console.log('Cannot start http server on port ' + httpPort);
+    console.log('Cannot start http server on port ' + httpPort);
 });
 
 // var httpsPort = app.get('https port');
 // https.createServer(credentials, app).listen(httpsPort, function () {
 
-// 	var environment = process.env.NODE_ENV || 'development';
-// 	console.log('https server listening on port ' + httpsPort + ' (' + environment + ')');
+//  var environment = process.env.NODE_ENV || 'development';
+//  console.log('https server listening on port ' + httpsPort + ' (' + environment + ')');
 // })
 // .on('error', function (e) {
 
-// 	console.log('http server listening on port ' + httpPort);
+//  console.log('http server listening on port ' + httpPort);
 // });

@@ -3,8 +3,8 @@
 | Wine model                                                     models/wine.js
 |------------------------------------------------------------------------------
 */
-var mongoose              = require('mongoose'),
-    Schema                = mongoose.Schema;
+var mongoose = require('mongoose'),
+    Schema   = mongoose.Schema;
 
 var wineSchema = new Schema({
     name: {type: String, required: true},

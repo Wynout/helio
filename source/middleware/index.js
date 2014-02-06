@@ -1,5 +1,5 @@
 module.exports = {
-	serveMaster: require('./serveMaster'),
-	auth: require('./auth'),
-	cors: require('./cors')
+    serveMaster: require('./serveMaster'),
+    auth: require('./auth'),
+    cors: require('./cors')
 };
