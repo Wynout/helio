@@ -1,10 +1,11 @@
-var request = require('request');
-var moment = require('moment');
-var crypto = require('crypto');
-var root = 'http://localhost:3000/api/auth';
+var crypto  = require('crypto'),
+	moment  = require('moment'),
+	request = require('request'),
+	root    = 'http://localhost:3000/api/auth';
 
 describe('/api/auth.js', function () {
 	var url, error, response, body, payload;
+
 
 	describe('when user signups', function () {
 		beforeEach(function () {
@@ -19,9 +20,9 @@ describe('/api/auth.js', function () {
 
 				beforeEach(function (done) {
 					request.post({url: url, body: payload, json: true}, function (err, resp) {
-						error = error;
+						error    = error;
 						response = resp;
-						body = resp.body;
+						body     = resp.body;
 						done();
 					});
 				});
@@ -38,9 +39,9 @@ describe('/api/auth.js', function () {
 
 				beforeEach(function (done) {
 					request.post({url: url, body: payload, json: true}, function (err, resp) {
-						error = error;
+						error    = error;
 						response = resp;
-						body = resp.body;
+						body     = resp.body;
 						done();
 					});
 				});
@@ -57,9 +58,9 @@ describe('/api/auth.js', function () {
 
 				beforeEach(function (done) {
 					request.post({url: url, body: payload, json: true}, function (err, resp) {
-						error = error;
+						error    = error;
 						response = resp;
-						body = resp.body;
+						body     = resp.body;
 						done();
 					});
 				});
@@ -77,9 +78,9 @@ describe('/api/auth.js', function () {
 
 			beforeEach(function (done) {
 				request.post({url: url, body: payload, json: true}, function (err, resp) {
-					error = error;
+					error    = error;
 					response = resp;
-					body = resp.body;
+					body     = resp.body;
 					done();
 				});
 			});
@@ -94,6 +95,8 @@ describe('/api/auth.js', function () {
 		});
 	});
 
+
+
 	describe('when user logins', function () {
 		beforeEach(function () {
 			url = root + '/login';
@@ -107,9 +110,9 @@ describe('/api/auth.js', function () {
 
 				beforeEach(function (done) {
 					request.post({url: url, body: payload, json: true}, function (err, resp) {
-						error = error;
+						error    = error;
 						response = resp;
-						body = resp.body;
+						body     = resp.body;
 						done();
 					});
 				});
@@ -126,9 +129,9 @@ describe('/api/auth.js', function () {
 
 				beforeEach(function (done) {
 					request.post({url: url, body: payload, json: true}, function (err, resp) {
-						error = error;
+						error    = error;
 						response = resp;
-						body = resp.body;
+						body     = resp.body;
 						done();
 					});
 				});
@@ -145,9 +148,9 @@ describe('/api/auth.js', function () {
 
 				beforeEach(function (done) {
 					request.post({url: url, body: payload, json: true}, function (err, resp) {
-						error = error;
+						error    = error;
 						response = resp;
-						body = resp.body;
+						body     = resp.body;
 						done();
 					});
 				});
@@ -172,9 +175,9 @@ describe('/api/auth.js', function () {
 			// signup
 			beforeEach(function (done) {
 				request.post({url: signup, body: payload, json: true}, function (err, resp) {
-					error = error;
+					error    = error;
 					response = resp;
-					body = resp.body;
+					body     = resp.body;
 					done();
 				});
 			});
@@ -182,9 +185,9 @@ describe('/api/auth.js', function () {
 			// login
 			beforeEach(function (done) {
 				request.post({url: url, body: payload, json: true}, function (err, resp) {
-					error = error;
+					error    = error;
 					response = resp;
-					body = resp.body;
+					body     = resp.body;
 					done();
 				});
 			});
@@ -198,6 +201,8 @@ describe('/api/auth.js', function () {
 			});
 		});
 	});
+
+
 
 	describe('when validating token', function () {
 		var token;
@@ -213,7 +218,7 @@ describe('/api/auth.js', function () {
 
 			beforeEach(function (done) {
 				request.get({url: url, auth: {user: 'username', password: token}}, function (err, resp) {
-					error = err;
+					error    = err;
 					response = resp;
 					done();
 				});
@@ -226,17 +231,17 @@ describe('/api/auth.js', function () {
 
 		describe('faked token', function () {
 			beforeEach(function () {
-				var key = 'i_dont_know_which_key_used_on_server';
-				var username = 'user', timespamp = moment().valueOf();
-				var message = username + ';' + timespamp;
-				var hmac = crypto.createHmac('sha1', key).update(message).digest('hex');
+				var key      = 'i_dont_know_which_key_used_on_server';
+				var username = 'user', timestamp = moment().valueOf();
+				var message  = username + ';' + timestamp;
+				var hmac     = crypto.createHmac('sha1', key).update(message).digest('hex');
 
-				token = new Buffer(username + ';' + timespamp + ';' + hmac).toString('base64');
+				token = new Buffer(username + ';' + timestamp + ';' + hmac).toString('base64');
 			});
 
 			beforeEach(function (done) {
 				request.get({url: url, auth: {user: 'username', password: token}}, function (err, resp) {
-					error = err;
+					error    = err;
 					response = resp;
 					done();
 				});
@@ -249,17 +254,17 @@ describe('/api/auth.js', function () {
 
 		describe('expired token', function () {
 			beforeEach(function () {
-				var key = '95810db3f765480999a8d5089b0815bd4b55e831';
-				var username = 'user', timespamp = moment().add('hours', 1).add('minutes', 2).valueOf();
-				var message = username + ';' + timespamp;
-				var hmac = crypto.createHmac('sha1', key).update(message).digest('hex');
+				var key      = '95810db3f765480999a8d5089b0815bd4b55e831';
+				var username = 'user', timestamp = moment().add('hours', 1).add('minutes', 2).valueOf();
+				var message  = username + ';' + timestamp;
+				var hmac     = crypto.createHmac('sha1', key).update(message).digest('hex');
 
-				token = new Buffer(username + ';' + timespamp + ';' + hmac).toString('base64');
+				token = new Buffer(username + ';' + timestamp + ';' + hmac).toString('base64');
 			});
 
 			beforeEach(function (done) {
 				request.get({url: url, auth: {user: 'username', password: token}}, function (err, resp) {
-					error = err;
+					error    = err;
 					response = resp;
 					done();
 				});
@@ -284,10 +289,10 @@ describe('/api/auth.js', function () {
 			// signup
 			beforeEach(function (done) {
 				request.post({url: signup, body: payload, json: true}, function (err, resp) {
-					error = error;
+					error    = error;
 					response = resp;
-					body = resp.body;
-					token = body.token;
+					body     = resp.body;
+					token    = body.token;
 
 					done();
 				});
@@ -295,7 +300,7 @@ describe('/api/auth.js', function () {
 
 			beforeEach(function (done) {
 				request.get({url: url, auth: {user: 'username', password: token}}, function (err, resp) {
-					error = err;
+					error    = err;
 					response = resp;
 					done();
 				});
