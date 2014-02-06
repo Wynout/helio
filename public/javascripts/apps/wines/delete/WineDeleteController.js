@@ -16,8 +16,7 @@ function (MsgBus, WineDeleteView) {
 
         deleteWine: function (model) {
 
-            var deleteWine = App.request('wine:entity:delete', model),
-                self       = this;
+            var deleteWine = MsgBus.reqres.request('wine:entity:delete', model);
 
             deleteWine
                 .done(function (model, response, options) {
