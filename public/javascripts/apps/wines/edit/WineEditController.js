@@ -10,7 +10,7 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
 
         addWine: function () {
 
-            var wine = MsgBus.reqres('wine:add');
+            var wine = MsgBus.reqres.request('wine:add');
             this._editWine(wine);
         },
 
