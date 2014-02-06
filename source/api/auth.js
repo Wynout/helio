@@ -26,6 +26,7 @@ var auth = function (app) {
         returnOk
     );
 
+
     function storeUser(req, res, next) {
 
         var signup = _.extend(req.body, { id: users.length });
@@ -53,6 +54,7 @@ var auth = function (app) {
         });
     }
 
+
     function checkUser(req, res, next) {
 
         var signup = req.body;
@@ -75,6 +77,7 @@ var auth = function (app) {
         });
     }
 
+
     function findUser(username, callback) {
 
         var user = _.find(users, function (u) {
@@ -88,6 +91,7 @@ var auth = function (app) {
         }
         return callback (null, user);
     }
+
 
     function validateSignup(req, res, next) {
 
@@ -105,10 +109,12 @@ var auth = function (app) {
         next();
     }
 
+
     function returnToken(req, res, next) {
 
         res.json(201, {token: req.token});
     }
+
 
     function returnOk(req, res, next) {
 
