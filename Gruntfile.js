@@ -90,7 +90,13 @@ module.exports = function(grunt) {
 
 		concurrent: {
 			dev: {
-				tasks: ['nodemon', 'watch', 'node-inspector'],
+				tasks: ['nodemon:dev', 'watch'],
+				options: {
+					logConcurrentOutput: true
+				}
+			},
+			'dev-debug': {
+				tasks: ['nodemon:dev-debug', 'watch', 'node-inspector'],
 				options: {
 					logConcurrentOutput: true
 				}
@@ -103,6 +109,13 @@ module.exports = function(grunt) {
 		 */
 		nodemon: {
 			dev: {
+				script: 'app.js',
+				options: {
+					ignore: ['node_modules/**', 'public/**'],
+					watch: ['.*', 'source']
+				}
+			},
+			'dev-debug': {
 				script: 'app.js',
 				options: {
 					nodeArgs: ['--debug'], // starts a debugging server
@@ -192,7 +205,8 @@ module.exports = function(grunt) {
 	// Default task.
 	// grunt.registerTask('default', ['jshint', 'requirejs', 'hashres']);
 	grunt.registerTask('default', ['requirejs', 'hashres']);
-	grunt.registerTask('development', ['env:dev', 'concurrent']);
+	grunt.registerTask('development', ['env:dev', 'concurrent:dev']);
+	grunt.registerTask('development:debug', ['env:dev', 'concurrent:dev-debug']);
 	grunt.registerTask('production', ['env:prod', 'concurrent']);
 
 	// grunt.registerTask('dev', ['concurrent:dev']);
