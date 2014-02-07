@@ -20,7 +20,7 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
                 self      = this;
             fetchWine
                 .done(function (wine) {
-                    console.log(wine);
+
                     self._editWine(wine);
                 }).fail(function (model, xhr, options) {
 

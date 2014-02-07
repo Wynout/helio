@@ -3,12 +3,13 @@
 | Account Entity                                                     Account.js
 |------------------------------------------------------------------------------
 */
-App.module('Entities', function (Entities, App, Backbone, Marionette, $, _) {
+define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
+
 
     /**
      * Account Model
      */
-    var AccountModel = App.Entities.Model.extend({
+    var AccountModel = Backbone.Model.extend({
 
         urlRoot: '/accounts',
         idAttribute: '_id',
@@ -34,7 +35,7 @@ App.module('Entities', function (Entities, App, Backbone, Marionette, $, _) {
     /**
      * Account Collection
      */
-    var AccountCollection = App.Entities.Collection.extend({
+    var AccountCollection = Backbone.Collection.extend({
 
         model: AccountModel,
         url: '/wines'
@@ -42,10 +43,44 @@ App.module('Entities', function (Entities, App, Backbone, Marionette, $, _) {
 
 
     /**
-     * Account API
+     * Request Response Handlers
+     */
+    MsgBus.reqres.setHandler('account:validate:credentials', function (credentials) {
+
+        return API.validateCredentials(credentials);
+    });
+
+
+    /**
+     * Expose Account API
      */
     var API = {
+        validateCredentials: function (credentials) {
 
+            var defer = $.Deferred();
+
+            $.ajax('/api/auth/login', {
+                    type: 'POST',
+                    headers: { // maybe use $.ajaxSetup?, although its use is not recommended
+                        Accept        : 'application/json, text/javascript, */*; q=0.01',
+                        'Content-Type': 'application/json; charset=utf-8'
+                    }
+                })
+                .done(function (data, textStatus, jqXHR) {
+
+                    console.log('success');
+                    console.log(arguments[0].responseText);
+                    return defer.resolve();
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+
+                    console.log('fail');
+                    console.log(arguments);
+                    return defer.reject();
+                });
+
+            return defer.promise();
+        }
     };
-
+    return API;
 });

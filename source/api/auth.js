@@ -62,14 +62,14 @@ var auth = function (app) {
 
             if (err) {
 
-                return next({message: 'user not found', status: 404});
+                return next({type: 'authentication', status: 404, message: 'user not found'});
             }
 
             bcrypt.compare(signup.password, user.password, function (err, matched) {
 
                 if (!matched) {
 
-                    return next({message: 'password is wrong', status: 401});
+                    return next({type: 'authentication', status: 401, message: 'invalid password'});
                 }
                 req.user = user;
                 next();
@@ -99,12 +99,12 @@ var auth = function (app) {
 
         if (!signup.username) {
 
-            return next({message: 'username is missing', body: signup, status: 412});
+            return next({type: 'authentication', status: 412, message: 'username is required'});
         }
 
         if (!signup.password) {
 
-            return next({message: 'password is missing', body: signup, status: 412});
+            return next({type: 'authentication', status: 412, message: 'password is required'});
         }
         next();
     }

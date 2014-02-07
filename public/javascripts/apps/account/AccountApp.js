@@ -1,9 +1,43 @@
 /*
  |------------------------------------------------------------------------------
- | Account App                                                     AccountApp.js
+ | Account App Module                                              AccountApp.js
  |------------------------------------------------------------------------------
  */
-App.module('AccountApp', function (AccountApp, App, Backbone, Marionette, $, _) {
+define([
+    'marionette',
+    'msgbus',
+    'apps/account/login/AccountLoginController',
+    'entities/Account'
+    ],
+function (Marionette, MsgBus, AccountLoginController) {
+
+    /**
+     * Setup Account Router
+     */
+    var AccountRouter = Marionette.AppRouter.extend({
+        appRoutes: {
+            'accounts/create': 'createAccount'
+        }
+    });
+
+
+    /**
+     * Starts Account Routes
+     */
+    MsgBus.commands.setHandler('account:routes', function () {
+
+        console.log('starting account routes');
+        return new AccountRouter({
+            controller: API
+        });
+    });
+
+
+    MsgBus.events.on('account:login', function () {
+
+        AccountLoginController.login();
+    });
+
 
     /**
      * Expose AccountApp API
@@ -11,17 +45,13 @@ App.module('AccountApp', function (AccountApp, App, Backbone, Marionette, $, _) 
     var API = {
         createAccount: function () {
 
-            AccountApp.Create.Controller.createAccount();
+        },
+
+        loginAccount: function () {
+
+            AccountLoginController.login();
         }
     };
 
-
-    /**
-     * Publish event when AccountApp starts
-     */
-    AccountApp.addInitializer(function () {
-
-        App.vent.trigger('app:started', 'account');
-    });
-
+    return API;
 });

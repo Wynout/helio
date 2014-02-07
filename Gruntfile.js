@@ -129,10 +129,8 @@ module.exports = function(grunt) {
 							}, 1000);
 						});
 					},
-					ignore: [
-						'node_modules/**'
-					],
-					watch: ['source']
+					ignore: ['node_modules/**', 'public/**'],
+					watch: ['.*', 'source']
 				}
 			}
 		},

@@ -1,6 +1,6 @@
 /*
 |------------------------------------------------------------------------------
-| Module Description                                          modules/Module.js
+| Enables Cross Origin Resource Sharing                                 cors.js
 |------------------------------------------------------------------------------
 */
 function cors() {

@@ -34,8 +34,9 @@ define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'vie
         this.initExtensions();
         this.initEvents();
 
-        // start WineApp router
-        MsgBus.commands.execute('wines:route');
+        // Start App Routers
+        MsgBus.commands.execute('wine:routes');
+        MsgBus.commands.execute('account:routes');
     });
 
 
@@ -90,6 +91,14 @@ define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'vie
         $(window.document).on('pagechange', function (event) {
 
             App.triggerResizeEvent();
+        });
+
+
+        // test login popup
+        $(window.document).on('click', '.login-popup', function (event, ui) {
+
+            MsgBus.events.trigger('account:login');
+            return false;
         });
     };
 

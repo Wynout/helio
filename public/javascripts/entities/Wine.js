@@ -92,7 +92,6 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
      * Expose Wine API
      */
     var API = {
-
         // http://davidsulc.com/blog/2013/04/01/using-jquery-promises-to-render-backbone-views-after-fetching-data/
         getWineEntities: function () {
 

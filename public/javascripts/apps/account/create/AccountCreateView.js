@@ -3,10 +3,22 @@
 | Account Create View                                      AccountCreateView.js
 |------------------------------------------------------------------------------
 */
-App.module('AccountApp.Create', function (Create, App, Backbone, Marionette, $, _) {
+define([
+    'marionette',
+    'msgbus',
+    'hbs!apps/account/create/AccountCreateTemplate'
+],
+function (
+    Marionette,
+    MsgBus,
+    AccountCreateTemplate) {
 
-	Create.Account = Marionette.ItemView.extend({
+	/**
+	 * Create Account Form
+	 */
+	var accountCreateView = Marionette.ItemView.extend({
 		template: 'apps/account/create/AccountCreateTemplate',
 	});
 
+	return accountCreateView;
 });

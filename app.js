@@ -50,35 +50,6 @@ app.configure('production', function () {
 });
 
 
-
-// refactor this, move to error.js middleware
-/*
-function clientErrorHandler(err, req, res, next) {
-
-    if (!err) {
-
-        return next();
-    }
-    console.log("\n================================");
-    console.log("Houston we've got a problem!\n");
-    console.dir(err);
-    console.log("\n================================");
-
-
-    if (err.name==='CastError') {
-    // if (ObjectId && err.name==='CastError') {
-
-        res.send(400, {error: 'The request cannot be fulfilled due to bad syntax.'});
-    }
-
-    if (err.name==='ValidationError') {
-
-        res.send(400, err);
-    }
-}
-*/
-
-
 /**
  * Connect to MongoDB
  * TODO: add authentication
@@ -87,7 +58,7 @@ function clientErrorHandler(err, req, res, next) {
 mongoose.connect('mongodb://localhost/winedb');
 
 
-// api endpoinds
+// API endpoinds
 require('./source/api/auth')(app);
 require('./source/api/emails')(app);
 require('./source/api/contacts')(app);
@@ -95,6 +66,10 @@ require('./source/api/tasks')(app);
 require('./source/api/wines')(app);
 
 
+// Error handling middlewares
+app.use(middleware.errorHandlers.logErrors);
+app.use(middleware.errorHandlers.clientErrorHandler);
+app.use(middleware.errorHandlers.errorHandler);
 
 /**
  * Launch http and https Server

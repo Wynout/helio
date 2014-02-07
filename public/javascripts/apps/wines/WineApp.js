@@ -30,12 +30,12 @@ function (Marionette, MsgBus, WineDeleteController, WineEditController, WineList
 
 
     /**
-     * Start Wines Route
+     * Starts Wines Routes
      */
-    MsgBus.commands.setHandler('wines:route', function () {
+    MsgBus.commands.setHandler('wine:routes', function () {
 
-        console.log('starting wines route');
-        new WineRouter({
+        console.log('starting wine routes');
+        return new WineRouter({
             controller: API
         });
     });

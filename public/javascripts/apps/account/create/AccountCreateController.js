@@ -3,14 +3,15 @@
  | Account Create Controller                          AccountCreateController.js
  |------------------------------------------------------------------------------
  */
-App.module('AccountApp.Create', function (Create, App, Backbone, Marionette, $, _) {
+define(['msgbus', 'apps/account/create/AccountCreateView'],
+function (MsgBus, AccountCreateView) {
 
-	Create.Controller = {
+	var controller = {
 
 		createAccount: function () {
 
-			var createAccountView = new Create.Account();
 		}
 	};
 
+	return controller;
 });
