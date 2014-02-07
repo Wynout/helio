@@ -68,15 +68,11 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
                 })
                 .done(function (data, textStatus, jqXHR) {
 
-                    console.log('success');
-                    console.log(arguments[0].responseText);
-                    return defer.resolve();
+                    return defer.resolve(data, textStatus, jqXHR);
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
 
-                    console.log('fail');
-                    console.log(arguments);
-                    return defer.reject();
+                    return defer.reject(jqXHR, textStatus, errorThrown);
                 });
 
             return defer.promise();

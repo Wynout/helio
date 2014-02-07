@@ -32,11 +32,13 @@ function (
 
             var validate = MsgBus.reqres.request('account:validate:credentials', credentials);
             validate
-                .done(function () {
+                .done(function (data, textStatus, jqXHR) {
                     console.log('W00t, credentials validated');
                 })
-                .fail(function (model, xhr, options) {
-                    // are these args being passed?
+                .fail(function (jqXHR, textStatus, errorThrown) {
+
+                    console.log('fail!');
+                    console.log(jqXHR, textStatus, errorThrown);
 
                 });
             return false;
