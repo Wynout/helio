@@ -6,24 +6,62 @@
 define([
     'marionette',
     'msgbus',
-    'hbs!apps/account/login/AccountLoginTemplate'
+    'hbs!apps/account/login/AccountLoginTemplate',
+    'hbs!apps/account/login/AccountLoginMessageTemplate',
+    'hbs!apps/account/login/AccountLoginErrorTemplate'
 ],
 function (
     Marionette,
     MsgBus,
-    accountLoginTemplate) {
+    accountLoginTemplate,
+    accountLoginMessageTemplate,
+    accountLoginErrorTemplate) {
+
+
+    /**
+     * MessageView shows initial login message
+     */
+    var MessageView = Marionette.ItemView.extend({
+        template: accountLoginMessageTemplate
+    });
+
+
+    /**
+     * Error view shows error feedback
+     */
+    var ErrorView = Marionette.ItemView.extend({
+        template: accountLoginErrorTemplate,
+
+        serializeData: function () {
+
+            return {
+                error: this.options.error
+            };
+        },
+    });
 
 
     /**
      * Account login dialog
      */
-    var accountLoginView = Marionette.ItemView.extend({
+    var AccountLoginLayout = Marionette.Layout.extend({
         template: accountLoginTemplate,
-        events: {
-            'click .submit-login-credentials' : 'login'
+
+        regions: {
+            loginMessage: '#login-message'
         },
 
-        login: function () {
+        events: {
+            'click .submit-login-credentials' : 'validateCredentials'
+        },
+
+        onRender: function () {
+
+            var messageView = new MessageView();
+            this.loginMessage.show(messageView);
+        },
+
+        validateCredentials: function () {
 
             var self = this;
             var credentials = {
@@ -39,11 +77,12 @@ function (
                 })
                 .fail(function (error) {
 
-                    self.$el.find('p').text(error.message);
+                    var errorView = new ErrorView({error: error});
+                    self.loginMessage.show(errorView);
                 });
             return false;
         }
     });
 
-    return accountLoginView;
+    return AccountLoginLayout;
 });
