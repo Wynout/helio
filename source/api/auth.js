@@ -5,18 +5,17 @@ var _          = require('underscore'),
 var auth = function (app) {
 
     // fake user storage.. some DB use in real app
-    var users = [{username:'wynout', password: 'wynout-password'}];
+    var users = [{username:'wynout', password: '$2a$10$UTI8a0fhk4JOsPQX8ct4qeCy8qMKaaVoSYEJXNgt1iwr8yl.O3mza'}]; // wynout-password
 
     app.post('/api/auth/signup',
-        validateSignup,
-        storeUser,
+        checkRequiredFields,
         middleware.auth.createToken,
         returnToken
     );
 
     app.post('/api/auth/login',
-        validateSignup,
-        checkUser,
+        checkRequiredFields,
+        validateCredentials,
         middleware.auth.createToken,
         returnToken
     );
@@ -27,7 +26,7 @@ var auth = function (app) {
     );
 
 
-    function storeUser(req, res, next) {
+    function createAccount(req, res, next) {
 
         var signup = _.extend(req.body, { id: users.length });
 
@@ -55,7 +54,7 @@ var auth = function (app) {
     }
 
 
-    function checkUser(req, res, next) {
+    function validateCredentials(req, res, next) {
 
         var signup = req.body;
         findUser(signup.username, function (err, user) {
@@ -93,7 +92,7 @@ var auth = function (app) {
     }
 
 
-    function validateSignup(req, res, next) {
+    function checkRequiredFields(req, res, next) {
 
         var signup = req.body;
 

@@ -31,20 +31,15 @@ function (
                 password: this.$el.find('#password').val()
             };
 
-            var validate = MsgBus.reqres.request('account:validate:credentials', credentials);
-            validate
-                .done(function (data, textStatus, jqXHR) {
+            var login = MsgBus.reqres.request('account:login', credentials);
+            login
+                .done(function (token) {
 
-                    // close popup?
-                    console.log('W00t, credentials validated');
+                    MsgBus.commands.execute('popup:close');
                 })
-                .fail(function (jqXHR, textStatus, errorThrown) {
+                .fail(function (error) {
 
-                    // entity response should be parsed json responseText.
-                    var response = JSON.parse(jqXHR.responseText);
-                    self.$el.find('p').text(response.error.message);
-                    console.log('fail!', jqXHR, textStatus, errorThrown);
-                    // show error message
+                    self.$el.find('p').text(error.message);
                 });
             return false;
         }

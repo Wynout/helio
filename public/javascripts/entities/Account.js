@@ -45,9 +45,9 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
     /**
      * Request Response Handlers
      */
-    MsgBus.reqres.setHandler('account:validate:credentials', function (credentials) {
+    MsgBus.reqres.setHandler('account:login', function (credentials) {
 
-        return API.validateCredentials(credentials);
+        return API.login(credentials);
     });
 
 
@@ -55,7 +55,11 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
      * Expose Account API
      */
     var API = {
-        validateCredentials: function (credentials) {
+        /**
+         * Perform login using credentials
+         * When authenticated, Hmac token is stored in localStorage
+         */
+        login: function (credentials) {
 
             var defer = $.Deferred();
 
@@ -69,11 +73,14 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
                 })
                 .done(function (data, textStatus, jqXHR) {
 
-                    return defer.resolve(data, textStatus, jqXHR);
+                    var token = data.token || '';
+                    localStorage.setItem('token', token);
+                    return defer.resolve(token);
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
 
-                    return defer.reject(jqXHR, textStatus, errorThrown);
+                    var response = JSON.parse(jqXHR.responseText);
+                    return defer.reject(response.error);
                 });
 
             return defer.promise();
