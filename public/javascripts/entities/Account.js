@@ -62,19 +62,20 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
         login: function (credentials) {
 
             var defer = $.Deferred();
+            var settings = {
+                type: 'POST',
+                headers: { // maybe use $.ajaxSetup?, although its use is not recommended
+                    Accept        : 'application/json, text/javascript, */*; q=0.01',
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                data: JSON.stringify(credentials)
+            };
 
-            $.ajax('/api/auth/login', {
-                    type: 'POST',
-                    headers: { // maybe use $.ajaxSetup?, although its use is not recommended
-                        Accept        : 'application/json, text/javascript, */*; q=0.01',
-                        'Content-Type': 'application/json; charset=utf-8'
-                    },
-                    data: JSON.stringify(credentials)
-                })
+            $.ajax('/api/auth/login', settings)
                 .done(function (data, textStatus, jqXHR) {
 
                     var token = data.token || '';
-                    localStorage.setItem('token', token);
+                    window.localStorage.setItem('token', token);
                     return defer.resolve(token);
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
