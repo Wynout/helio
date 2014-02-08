@@ -6,7 +6,7 @@
 define(['marionette', 'hbs!apps/wines/list/WineListItemTemplate'],
 	function (Marionette, WineListItemTemplate) {
 
-	var wineListItemView = Marionette.ItemView.extend({
+	var WineListItemView = Marionette.ItemView.extend({
 		template: WineListItemTemplate,
 		tagName: 'li'/*,
 		triggers: {
@@ -15,7 +15,7 @@ define(['marionette', 'hbs!apps/wines/list/WineListItemTemplate'],
 	});
 
 	return Marionette.CollectionView.extend({
-		itemView: wineListItemView,
+		itemView: WineListItemView,
 		tagName: 'ul',
 		id: 'wine-list',
 		attributes: {

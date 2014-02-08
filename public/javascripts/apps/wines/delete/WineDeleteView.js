@@ -21,7 +21,7 @@ function (
     /**
      * Delete Confirm popup dialog
      */
-    var deleteConfirmView = Marionette.ItemView.extend({
+    var DeleteConfirmView = Marionette.ItemView.extend({
         template: wineDeleteConfirmTemplate,
         events: {
             'click .delete-confirmed' : 'deleteWine'
@@ -38,7 +38,7 @@ function (
     /**
      * Delete Success popup dialog
      */
-    var deleteSuccessView = Marionette.ItemView.extend({
+    var DeleteSuccessView = Marionette.ItemView.extend({
         template: wineDeleteSuccessTemplate,
         events: {
             'click .okay': 'okay'
@@ -53,7 +53,7 @@ function (
     /**
      * Delete Error popup dialog
      */
-    var deleteErrorView = Marionette.ItemView.extend({
+    var DeleteErrorView = Marionette.ItemView.extend({
         template: wineDeleteErrorTemplate,
         events: {
             'click .retry': 'retry'
@@ -75,9 +75,9 @@ function (
     });
 
     return {
-        confirm: deleteConfirmView,
-        success: deleteSuccessView,
-        error  : deleteErrorView
+        confirm: DeleteConfirmView,
+        success: DeleteSuccessView,
+        error  : DeleteErrorView
     };
 
 });

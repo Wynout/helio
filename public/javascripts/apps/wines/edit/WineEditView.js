@@ -19,7 +19,7 @@ function (
         Utils) {
 
 
-    var editWineView = Marionette.ItemView.extend({
+    var EditWineView = Marionette.ItemView.extend({
         tagName: 'div',
         className: 'ui-content',
         // id                   : 'navigation',
@@ -99,6 +99,6 @@ function (
         }
 
     });
-    return editWineView;
+    return EditWineView;
 
 });

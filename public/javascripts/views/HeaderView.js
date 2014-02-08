@@ -14,7 +14,7 @@ function (Marionette, MsgBus, $, headerViewTemplate) {
             /**
              * Trigger resize event to open/close panels on page has change
              */
-            $(document).on('pagechange', function (event) {
+            $(window.document).on('pagechange', function (event) {
 
                 clearTimeout(this.id);
                 this.id = setTimeout(function () {
@@ -23,7 +23,7 @@ function (Marionette, MsgBus, $, headerViewTemplate) {
                 }, 100);
             });
 
-            $(document).on('click', 'a.toggle-navigation', function () {
+            $(window.document).on('click', 'a.toggle-navigation', function () {
 
                 MsgBus.events.trigger('nav-panel:open');
                 return false;
@@ -46,12 +46,12 @@ function (Marionette, MsgBus, $, headerViewTemplate) {
         }
     });
 
-    var defaultView = BaseView.extend({
+    var DefaultView = BaseView.extend({
         template: headerViewTemplate,
     });
 
     return {
-        default: defaultView
+        default: DefaultView
     };
 
 });

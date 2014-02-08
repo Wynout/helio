@@ -16,9 +16,9 @@ function (
 	/**
 	 * Create Account Form
 	 */
-	var accountCreateView = Marionette.ItemView.extend({
+	var AccountCreateView = Marionette.ItemView.extend({
 		template: 'apps/account/create/AccountCreateTemplate',
 	});
 
-	return accountCreateView;
+	return AccountCreateView;
 });

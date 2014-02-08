@@ -55,17 +55,17 @@ function (Marionette, MsgBus, $, NavPanelViewTemplate, NavPanelWineViewTemplate)
 
     });
 
-    var defaultView = BaseView.extend({
+    var DefaultView = BaseView.extend({
         template: NavPanelViewTemplate
     });
 
-    var wineView = BaseView.extend({
+    var WineView = BaseView.extend({
         template: NavPanelWineViewTemplate,
     });
 
     return {
-        default: defaultView,
-        wine: wineView
+        default: DefaultView,
+        wine: WineView
     };
 
 });

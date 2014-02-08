@@ -10,16 +10,16 @@ define([
 	],
 function (Marionette, WineHomeTemplate, WineAboutTemplate) {
 
-	var homeView = Marionette.ItemView.extend({
+	var HomeView = Marionette.ItemView.extend({
 		template: WineHomeTemplate,
 	});
 
-	var aboutView = Marionette.ItemView.extend({
+	var AboutView = Marionette.ItemView.extend({
 		template: WineAboutTemplate,
 	});
 
 	return {
-		home : homeView,
-		about: aboutView
+		home : HomeView,
+		about: AboutView
 	};
 });
