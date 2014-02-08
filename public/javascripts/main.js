@@ -31,7 +31,7 @@ require.config({
         partialsUrl: ''           // default: ''
     }
 
-}, require(['app', 'apps/wines/WineApp', 'apps/account/AccountApp'], function (App) {
+}, require(['app', 'auth', 'apps/wines/WineApp', 'apps/account/AccountApp'], function (App) {
 
     App.start();
 }));
