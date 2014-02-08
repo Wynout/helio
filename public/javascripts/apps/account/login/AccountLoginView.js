@@ -25,6 +25,7 @@ function (
 
         login: function () {
 
+            var self = this;
             var credentials = {
                 username: this.$el.find('#username').val(),
                 password: this.$el.find('#password').val()
@@ -33,13 +34,17 @@ function (
             var validate = MsgBus.reqres.request('account:validate:credentials', credentials);
             validate
                 .done(function (data, textStatus, jqXHR) {
+
+                    // close popup?
                     console.log('W00t, credentials validated');
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
 
-                    console.log('fail!');
-                    console.log(jqXHR, textStatus, errorThrown);
-
+                    // entity response should be parsed json responseText.
+                    var response = JSON.parse(jqXHR.responseText);
+                    self.$el.find('p').text(response.error.message);
+                    console.log('fail!', jqXHR, textStatus, errorThrown);
+                    // show error message
                 });
             return false;
         }

@@ -64,7 +64,8 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
                     headers: { // maybe use $.ajaxSetup?, although its use is not recommended
                         Accept        : 'application/json, text/javascript, */*; q=0.01',
                         'Content-Type': 'application/json; charset=utf-8'
-                    }
+                    },
+                    data: JSON.stringify(credentials)
                 })
                 .done(function (data, textStatus, jqXHR) {
 

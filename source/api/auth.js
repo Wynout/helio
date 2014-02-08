@@ -5,7 +5,7 @@ var _          = require('underscore'),
 var auth = function (app) {
 
     // fake user storage.. some DB use in real app
-    var users = [{username:'w', password: 'p'}];
+    var users = [{username:'wynout', password: 'wynout-password'}];
 
     app.post('/api/auth/signup',
         validateSignup,
