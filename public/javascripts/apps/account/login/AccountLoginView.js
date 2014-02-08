@@ -19,7 +19,7 @@ function (
 
 
     /**
-     * MessageView shows initial login message
+     * Message view shows initial login message
      */
     var MessageView = Marionette.ItemView.extend({
         template: accountLoginMessageTemplate
