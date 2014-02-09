@@ -41,14 +41,14 @@ app.configure('development', function () {
 
     app.use(express.errorHandler());
     app.use(express.static(path.join(__dirname, 'public')));
-    app.use(middleware.serveMaster.development());
+    app.use(middleware.renderIndex.development());
 });
 
 app.configure('production', function () {
 
     app.use(express.compress());
     app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
-    app.use(middleware.serveMaster.production());
+    app.use(middleware.renderIndex.production());
 });
 
 
