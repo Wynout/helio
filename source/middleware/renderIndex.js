@@ -6,23 +6,6 @@
 var _      = require('underscore'),
     client = require('./../client');
 
-/**
- * Only respond to index page
- */
-function ignoreUrl(req) {
-
-    return _.any([
-        '/api',
-        '/css',
-        '/pics',
-        '/javascripts',
-        '/build'
-    ], function (url) {
-
-        return req.url.substr(0, url.length) === url;
-    });
-}
-
 
 /**
  * Serves development/production index page
@@ -35,7 +18,7 @@ function reqHandler(title, mainJs, mainCss) {
 
     return function (req, res, next) {
 
-        if (ignoreUrl(req)) {
+        if (req.url!=='/') {
 
             // Pass request to next layer in middleware stack
             return next();

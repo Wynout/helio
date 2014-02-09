@@ -66,9 +66,13 @@ require('./source/api/wines')(app);
 
 
 // Error handling middlewares
+
+
 app.use(middleware.errorHandlers.logErrors);
 app.use(middleware.errorHandlers.clientErrorHandler);
 app.use(middleware.errorHandlers.errorHandler);
+
+
 
 /**
  * Launch http and https Server

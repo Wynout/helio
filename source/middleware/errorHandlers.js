@@ -10,7 +10,6 @@ function logErrors(err, req, res, next) {
 
     // console.log(err);
     // console.error(err.stack);
-    // next(err);
     next(err);
 }
 
