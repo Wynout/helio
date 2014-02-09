@@ -40,7 +40,7 @@ function reqHandler(title, mainJs, mainCss) {
             // Pass request to next layer in middleware stack
             return next();
         }
-        res.render('master', { title: title, mainJs: mainJs, mainCss: mainCss});
+        res.render('index', { title: title, mainJs: mainJs, mainCss: mainCss});
     };
 }
 
