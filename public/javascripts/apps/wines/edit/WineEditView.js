@@ -48,23 +48,16 @@ function (
      * Wine Edit Form
      */
     var EditWineView = Marionette.Layout.extend({
+        className: 'ui-content',
+        template: wineEditTemplate,
         regions: {
             saveResult: '#save-result'
         },
-        tagName: 'div',
-        className: 'ui-content',
-        // id                   : 'navigation',
-        attributes: {
-            'data-role'          : 'main',
-            'data-position-fixed': 'true'
-        },
-        template: wineEditTemplate,
         events: {
             'change'                : 'change',
             'click .save'           : 'saveWine',
             'click .delete-confirm' : 'deleteWineConfirm'
         },
-
 
         initialize: function () {
 
@@ -78,19 +71,11 @@ function (
             });
         },
 
-        // Called when view has been rendered and displayed.
-        onShow: function () {
-
-            this.$el.closest('.ui-page').trigger('create');
-        },
-
-
         // Called when the view has been closed.
         onClose: function () {
 
             Backbone.Validation.unbind(this);
         },
-
 
         // Called when edit form has changed
         change: function (event) {
@@ -129,6 +114,6 @@ function (
         }
 
     });
-    return EditWineView;
 
+    return EditWineView;
 });
