@@ -62,9 +62,6 @@ mongoose.connect('mongodb://localhost/winedb');
 
 // API endpoinds
 require('./source/api/auth')(app);
-require('./source/api/emails')(app);
-require('./source/api/contacts')(app);
-require('./source/api/tasks')(app);
 require('./source/api/wines')(app);
 
 
