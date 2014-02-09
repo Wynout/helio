@@ -1,63 +1,70 @@
-var crypto            = require('crypto'),
-    express           = require('express'),
-    moment            = require('moment'),
-    AUTH_SIGN_KEY     = '95810db3f765480999a8d5089b0815bd4b55e831',
-    TOKEN_TTL_MINUTES = 60;
+var crypto  = require('crypto'),
+    express = require('express'),
+    moment  = require('moment');
+
 
 /**
  *
  */
 function createToken(req, res, next) {
 
-    var username    = req.user.username,
-        timestamp   = moment(),
-        message     = username + ';' + timestamp.valueOf(),
-        hmac        = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex'),
-        token       = username + ';' + timestamp.valueOf() + ';' + hmac,
-        tokenBase64 = new Buffer(token).toString('base64');
+    var authSignKey = req.app.get('token auth sign key');
+    if (authSignKey===undefined || authSignKey.length===0) {
 
-    req.token = tokenBase64;
+        return next({type: 'authorization', status: 500, message: 'Authorization sign key missing'});
+    }
+
+    var username  = req.user.username,
+        timestamp = moment(),
+        message   = username + ';' + timestamp.valueOf(),
+        hmac      = crypto.createHmac('sha1', authSignKey).update(message).digest('hex'),
+        token     = message + ';' + hmac;
+
+    req.token = token;
     next();
 }
+
 
 /**
  *
  */
 function validateToken(req, res, next) {
 
-    var basic = express.basicAuth(hmacAuthentication);
-    return basic(req, res, next);
+    var token = req.headers.authorization || '',
+        parts = token.split(';');
 
-    function hmacAuthentication(user, password) {
+    if (parts.length!==3) {
 
-        var token  = new Buffer(password, 'base64').toString(),
-            parsed = token.split(';');
-
-        if (parsed.length!==3) {
-
-            return false;
-        }
-
-        var username     = parsed[0],
-            timestamp    = parsed[1],
-            receivedHmac = parsed[2],
-            message      = username + ';' + timestamp,
-            computedHmac = crypto.createHmac('sha1', AUTH_SIGN_KEY).update(message).digest('hex');
-
-        if (receivedHmac!==computedHmac) {
-
-            return false;
-        }
-
-        var currentTimestamp  = moment(),
-            receivedTimespamp = moment(+timestamp);
-
-        if (receivedTimespamp.diff(currentTimestamp, 'minutes') > TOKEN_TTL_MINUTES) {
-
-            return false;
-        }
-        return true;
+        return next({type: 'authorization', status: 400, message: 'Bad syntax'});
     }
+
+    var authSignKey     = req.app.get('token auth sign key');
+    var tokenTtlMinutes = req.app.get('token ttl minutes');
+    if (authSignKey===undefined || authSignKey.length===0) {
+
+        return next({type: 'authorization', status: 500, message: 'Authorization sign key missing'});
+    }
+
+
+    var username     = parts[0],
+        timestamp    = parts[1],
+        receivedHmac = parts[2],
+        message      = username + ';' + timestamp,
+        computedHmac = crypto.createHmac('sha1', authSignKey).update(message).digest('hex');
+
+    if (receivedHmac!==computedHmac) {
+
+        return next({type: 'authorization', status: 401, message: 'Unauthorized access'});
+    }
+
+    var currentTimestamp  = moment(),
+        receivedTimespamp = moment(+timestamp);
+    if (receivedTimespamp.diff(currentTimestamp, 'minutes') > tokenTtlMinutes) {
+
+        return next({type: 'authorization', status: 401, message: 'Authorization expired'});
+    }
+
+    next();
 }
 
 

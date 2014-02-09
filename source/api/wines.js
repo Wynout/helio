@@ -42,26 +42,26 @@ module.exports = function (app) {
 
     // Create
     app.post('/api/wines',
-        // middleware.auth.validateToken,
+        middleware.auth.validateToken,
         create
     );
     // Read
     app.get('/api/wines',
-        // middleware.auth.validateToken,
+        middleware.auth.validateToken,
         findAll
     );
     app.get('/api/wines/:id',
-        // middleware.auth.validateToken,
+        middleware.auth.validateToken,
         find
     );
     // Update
     app.put('/api/wines/:id',
-        // middleware.auth.validateToken,
+        middleware.auth.validateToken,
         update
     );
     // Delete
     app.del('/api/wines/:id',
-        // middleware.auth.validateToken,
+        middleware.auth.validateToken,
         del
     );
 

@@ -8,8 +8,9 @@
  */
 function logErrors(err, req, res, next) {
 
-    console.log(err);
-    console.error(err.stack);
+    // console.log(err);
+    // console.error(err.stack);
+    // next(err);
     next(err);
 }
 
@@ -21,9 +22,9 @@ function clientErrorHandler(err, req, res, next) {
 
     if (!err) { return next(); }
 
-    var accept     = req.headers.accept || '',
-        acceptJson = ~accept.indexOf('json') ? true : false;
-    if (!acceptJson) { next(); }
+    // var accept     = req.headers.accept || '',
+    //     acceptJson = ~accept.indexOf('json') ? true : false;
+    // if (!acceptJson) { next(); }
 
     res.json(err.status, {error: {type: err.type, message: err.message}});
 }

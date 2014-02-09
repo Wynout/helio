@@ -1,4 +1,4 @@
-require('newrelic');
+// require('newrelic');
 
 var express     = require('express'),
     fs          = require('fs'),
@@ -7,11 +7,11 @@ var express     = require('express'),
     path        = require('path'),
     middleware  = require('./source/middleware'),
 
-    privateKey  = fs.readFileSync('ssl/key.pem', 'utf8'),
-    certificate = fs.readFileSync('ssl/key-cert.pem', 'utf8'),
-    credentials = {key: privateKey, cert: certificate},
+    sslPrivateKey  = fs.readFileSync('ssl/key.pem', 'utf8'),
+    sslCertificate = fs.readFileSync('ssl/key-cert.pem', 'utf8'),
+    credentials    = {key: sslPrivateKey, cert: sslCertificate},
 
-    mongoose    = require('mongoose');
+    mongoose = require('mongoose');
 
 var app = express();
 
@@ -19,6 +19,8 @@ var oneMonth = 2678400000;
 
 app.configure(function () {
 
+    app.set('token auth sign key', sslPrivateKey);
+    app.set('token ttl minutes', 60);
     app.set('http port', process.env.PORT || 3000);
     app.set('https port', process.env.PORT || 3443);
     app.set('views', __dirname + '/views');
