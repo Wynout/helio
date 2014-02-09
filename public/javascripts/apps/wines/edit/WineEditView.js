@@ -8,18 +8,48 @@ define([
     'marionette',
     'msgbus',
     'hbs!apps/wines/edit/WineEditTemplate',
-    'utils',
+    'hbs!apps/wines/edit/WineEditSuccessTemplate',
+    'hbs!apps/wines/edit/WineEditErrorTemplate',
     'backbone.validation'
     ],
 function (
         Backbone,
         Marionette,
         MsgBus,
-        WineEditTemplate,
-        Utils) {
+        wineEditTemplate,
+        wineEditSuccessTemplate,
+        wineEditErrorTemplate) {
+
+    /**
+     * Message shown when wine successfully saved
+     */
+    var SuccessView = Marionette.ItemView.extend({
+        template: wineEditSuccessTemplate
+    });
 
 
-    var EditWineView = Marionette.ItemView.extend({
+    /**
+     * Message shown when wine could not be saved
+     */
+    var ErrorView = Marionette.ItemView.extend({
+        template: wineEditErrorTemplate,
+
+        serializeData: function () {
+
+            return {
+                error: this.options.error
+            };
+        },
+    });
+
+
+    /**
+     * Wine Edit Form
+     */
+    var EditWineView = Marionette.Layout.extend({
+        regions: {
+            saveResult: '#save-result'
+        },
         tagName: 'div',
         className: 'ui-content',
         // id                   : 'navigation',
@@ -27,7 +57,7 @@ function (
             'data-role'          : 'main',
             'data-position-fixed': 'true'
         },
-        template: WineEditTemplate,
+        template: wineEditTemplate,
         events: {
             'change'                : 'change',
             'click .save'           : 'saveWine',
@@ -42,7 +72,8 @@ function (
             Backbone.Validation.bind(this);
             this.model.on('validated:invalid', function (model, errors) {
 
-                Utils.showAlert('Warning!', 'Fix validation errors and try again', 'alert-warning');
+                var errorView = new ErrorView({error: {message: 'Fix validation errors and try again'}});
+                self.saveResult.show(errorView);
             });
         },
 
@@ -79,14 +110,12 @@ function (
             this.model.save(null, {
                 success: function (model) {
 
-                    console.log('success, wine saved');
-                    console.log(Utils);
-                    Utils.showAlert('Success!', 'Wine was saved successfully', 'alert-success');
+                    var successView = new SuccessView();
+                    self.saveResult.show(successView);
                 },
                 error: function () {
-
-                    console.log('error, wine not saved');
-                    Utils.showAlert('Error!', 'Wine cannot be saved', 'alert-error');
+                    var errorView = new ErrorView({error: {message: 'Wine could not be saved'}});
+                    self.saveResult.show(errorView);
                 }
             });
             return false;
