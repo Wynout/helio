@@ -5,6 +5,12 @@ require.config({
     shim: {
         // 'jquery.mobile-config': ['jquery'],
         // 'jquery.mobile': ['jquery', 'jquery.mobile-config']
+        // 'backbone.validation': {
+        //     deps: ['./views/backboneValidation']
+        // }
+        'backbone.validation': [
+            './components/backbone-validation/dist/backbone-validation'
+        ]
     },
     paths: {
         jquery: "./components/jquery/jquery",
@@ -12,7 +18,7 @@ require.config({
         backbone: "./components/backbone-amd/backbone",
         "backbone.wreqr": "./components/backbone.wreqr/lib/amd/backbone.wreqr",
         "backbone.babysitter": "./components/backbone.babysitter/lib/amd/backbone.babysitter",
-        'backbone.validation': './components/backbone-validation/dist/backbone-validation-amd',
+        'backbone.validation': './views/backboneValidation',
         marionette: "./components/marionette/lib/core/amd/backbone.marionette",
         hbs           : './components/require-handlebars-plugin/hbs',
         // underscore    : './components/require-handlebars-plugin/hbs/underscore',

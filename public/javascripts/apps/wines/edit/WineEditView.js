@@ -10,9 +10,7 @@ define([
     'hbs!apps/wines/edit/WineEditTemplate',
     'hbs!apps/wines/edit/WineEditSuccessTemplate',
     'hbs!apps/wines/edit/WineEditErrorTemplate',
-    'backbone.validation',
-    'views/backboneValidation'
-    ],
+    'backbone.validation'],
 function (
         Backbone,
         Marionette,
@@ -92,18 +90,20 @@ function (
         // use entitiy reqres
         saveWine: function () {
 
-            var self = this;
-            this.model.save(null, {
-                success: function (model) {
+            var self     = this,
+                saveWine = MsgBus.reqres.request('wine:entity:save', this.model);
+            saveWine
+                .done(function () {
 
                     var successView = new SuccessView();
                     self.saveResult.show(successView);
-                },
-                error: function () {
+                })
+                .fail(function () {
+
                     var errorView = new ErrorView({error: {message: 'Wine could not be saved'}});
                     self.saveResult.show(errorView);
-                }
-            });
+                });
+
             return false;
         },
 

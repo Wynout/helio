@@ -11,7 +11,7 @@ They bascially all use messaging, and their difference is mainly semantic:
 */
 /* Global Backbone */
 // 'use strict';
-define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'views/HeaderView', 'views/NavPanelView', 'jquery.mobile-config', 'jquery.mobile' ],
+define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'views/HeaderView', 'views/NavPanelView', 'jquery.mobile-config', 'jquery.mobile'],
     function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView) {
 
     /**

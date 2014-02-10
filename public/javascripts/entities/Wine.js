@@ -82,6 +82,10 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
 
         return API.addWine();
     });
+    MsgBus.reqres.setHandler('wine:entity:save', function (model) {
+
+        return API.saveWine(model);
+    });
     MsgBus.reqres.setHandler('wine:entity:delete', function (model) {
 
         return API.deleteWine(model);
@@ -104,10 +108,10 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
                     $.mobile.loading('hide');
                     return defer.resolve(collection, response, options);
                 },
-                error: function (collection, xhr, options) {
+                error: function (collection, jqXHR, options) {
 
                     $.mobile.loading('hide');
-                    return defer.reject(collection, xhr, options);
+                    return defer.reject(collection, jqXHR, options);
                 }
             });
             return defer.promise();
@@ -124,10 +128,10 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
                     $.mobile.loading('hide');
                     return defer.resolve(model, response, options);
                 },
-                error: function (model, xhr, options) {
+                error: function (model, jqXHR, options) {
 
                     $.mobile.loading('hide');
-                    return defer.reject(model, xhr, options);
+                    return defer.reject(model, jqXHR, options);
                 }
             });
             return defer.promise();
@@ -136,6 +140,22 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
         addWine: function () {
 
             return new WineModel();
+        },
+
+        saveWine: function (wineModel) {
+
+            var defer = $.Deferred();
+            wineModel.save(null, {
+                success: function (model, response, jqXHR) {
+
+                    return defer.resolve(model, response, jqXHR);
+                },
+                error: function (model, response, jqXHR) {
+
+                    return defer.reject(model, response, jqXHR);
+                }
+            });
+            return defer.promise();
         },
 
         deleteWine: function (wineModel) {
@@ -149,10 +169,10 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
                     $.mobile.loading('hide');
                     return defer.resolve(model, response, options);
                 },
-                error: function (model, xhr, options) {
+                error: function (model, jqXHR, options) {
 
                     $.mobile.loading('hide');
-                    return defer.reject(model, xhr, options);
+                    return defer.reject(model, jqXHR, options);
                 }
             });
             return defer.promise();
