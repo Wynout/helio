@@ -22,7 +22,16 @@ function (
      * Message view shows initial login message
      */
     var MessageView = Marionette.ItemView.extend({
-        template: accountLoginMessageTemplate
+        template: accountLoginMessageTemplate,
+
+        serializeData: function () {
+
+            // when token expired, error message is shown..
+            // or create new view ExpiredView?
+            return {
+                error: this.options.error
+            };
+        },
     });
 
 
@@ -42,7 +51,7 @@ function (
 
 
     /**
-     * Account login dialog
+     * Account login view
      */
     var AccountLoginLayout = Marionette.Layout.extend({
         template: accountLoginTemplate,

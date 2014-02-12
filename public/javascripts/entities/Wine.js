@@ -3,7 +3,7 @@
 | Wine Entity                                                           Wine.js
 |------------------------------------------------------------------------------
 */
-define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
+define(['jquery', 'underscore', 'backbone', 'msgbus', 'xhr'], function ($, _, Backbone, MsgBus, Xhr) {
 
     /**
      * Wine Model
@@ -74,11 +74,11 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
 
         return API.getWineEntities();
     });
-    MsgBus.reqres.setHandler('wine:entity', function (wineId) {
+    MsgBus.reqres.setHandler('wine:entity', function (id) {
 
-        return API.getWineEntity(wineId);
+        return API.getWineEntity(id);
     });
-    MsgBus.reqres.setHandler('wine:add', function () { // rename wine:entity:add
+    MsgBus.reqres.setHandler('wine:entity:add', function () {
 
         return API.addWine();
     });
@@ -105,33 +105,39 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
             wines.fetch({
                 success: function (collection, response, options) {
 
-                    $.mobile.loading('hide');
                     return defer.resolve(collection, response, options);
                 },
                 error: function (collection, jqXHR, options) {
 
+                    var error = Xhr.errorHandler(jqXHR);
+                    return defer.reject(error, collection, jqXHR, options);
+                },
+                complete: function () {
+
                     $.mobile.loading('hide');
-                    return defer.reject(collection, jqXHR, options);
                 }
             });
             return defer.promise();
         },
 
-        getWineEntity: function (wineId) {
+        getWineEntity: function (id) {
 
             var defer = $.Deferred(),
-                wine  = new WineModel({_id: wineId});
+                wine  = new WineModel({_id: id});
             $.mobile.loading('show');
             wine.fetch({
                 success: function (model, response, options) {
 
-                    $.mobile.loading('hide');
                     return defer.resolve(model, response, options);
                 },
                 error: function (model, jqXHR, options) {
 
+                    var error = Xhr.errorHandler(jqXHR);
+                    return defer.reject(error, model, jqXHR, options);
+                },
+                complete: function () {
+
                     $.mobile.loading('hide');
-                    return defer.reject(model, jqXHR, options);
                 }
             });
             return defer.promise();
@@ -142,37 +148,46 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
             return new WineModel();
         },
 
-        saveWine: function (wineModel) {
+        saveWine: function (model) {
 
             var defer = $.Deferred();
-            wineModel.save(null, {
+            $.mobile.loading('show');
+            model.save(null, {
                 success: function (model, response, jqXHR) {
 
                     return defer.resolve(model, response, jqXHR);
                 },
-                error: function (model, response, jqXHR) {
+                error: function (model, jqXHR, options) {
 
-                    return defer.reject(model, response, jqXHR);
+                    var error = Xhr.errorHandler(jqXHR);
+                    return defer.reject(error, model, jqXHR, options);
+                },
+                complete: function () {
+
+                    $.mobile.loading('hide');
                 }
             });
             return defer.promise();
         },
 
-        deleteWine: function (wineModel) {
+        deleteWine: function (model) {
 
             var defer = $.Deferred();
             $.mobile.loading('show');
-            wineModel.destroy({
+            model.destroy({
                 wait: true, // Wait for the server to respond before removing the model from the collection.
                 success: function (model, response, options) {
 
-                    $.mobile.loading('hide');
                     return defer.resolve(model, response, options);
                 },
                 error: function (model, jqXHR, options) {
 
+                    var error = Xhr.errorHandler(jqXHR);
+                    return defer.reject(error, model, jqXHR, options);
+                },
+                complete: function () {
+
                     $.mobile.loading('hide');
-                    return defer.reject(model, jqXHR, options);
                 }
             });
             return defer.promise();

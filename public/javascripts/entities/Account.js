@@ -3,7 +3,7 @@
 | Account Entity                                                     Account.js
 |------------------------------------------------------------------------------
 */
-define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
+define(['jquery', 'backbone', 'msgbus', 'xhr'], function ($, Backbone, MsgBus, Xhr) {
 
 
     /**
@@ -80,8 +80,8 @@ define(['jquery', 'backbone', 'msgbus'], function ($, Backbone, MsgBus) {
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
 
-                    var response = JSON.parse(jqXHR.responseText);
-                    return defer.reject(response.error);
+                    var error = Xhr.errorHandler(jqXHR);
+                    return defer.reject(error);
                 });
 
             return defer.promise();

@@ -58,8 +58,17 @@ function validateToken(req, res, next) {
     }
 
     var currentTimestamp  = moment(),
-        receivedTimespamp = moment(+timestamp);
-    if (receivedTimespamp.diff(currentTimestamp, 'minutes') > tokenTtlMinutes) {
+        receivedTimestamp = moment(+timestamp),
+        diffInMinutes     = currentTimestamp.diff(receivedTimestamp, 'minutes'),
+        diffInSeconds     = currentTimestamp.diff(receivedTimestamp, 'seconds');
+
+    console.log('\n\n');
+    console.log('tokenTtlSeconds = ', tokenTtlMinutes);
+    console.log('diffInMinutes in seconds = ', diffInMinutes);
+    console.log('\n\n');
+
+    if ( diffInSeconds > 20) {
+    // if ( diffInMinutes > tokenTtlMinutes) {
 
         return next({type: 'authorization', status: 401, message: 'Authorization expired'});
     }

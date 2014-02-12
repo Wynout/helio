@@ -32,6 +32,12 @@
 
 [error msg i18n](http://stackoverflow.com/questions/15012250/handling-mongoose-validation-errors-where-and-how)
 
+### MsgBus
+They bascially all use messaging, and their difference is mainly semantic:
+* event aggregator: send a message when something happens. Code somewhere else might be listening for that message, but maybe not
+* request/response: have code send a request, and it will expect a response (e.g. send me refreshed data)
+* commands: code in one place commands code somewhere else to carry out an action. There usually isn't a return value.
+
 ## Contents
 * [Description](#description)
 * [Application example](#example)

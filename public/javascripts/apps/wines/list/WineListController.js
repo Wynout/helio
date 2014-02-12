@@ -15,10 +15,17 @@ function (MsgBus, WineListView, NavPanelView) {
 
             var self          = this,
                 fetchingWines = MsgBus.reqres.request('wine:entities');
-            fetchingWines.done(function (wines) {
+            fetchingWines
+                .done(function (wines) {
 
-                self._showWines(wines);
-            });
+                    self._showWines(wines);
+                })
+                .fail(function (collection, jqXHR, options) {
+
+                    self._showWines();
+                    MsgBus.events.trigger('account:login');
+                    // MsgBus.events.trigger('authorization:expired');
+                });
         },
 
         _showWines: function (wines) {

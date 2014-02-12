@@ -2,15 +2,7 @@
 |------------------------------------------------------------------------------
 | Main Application Object                                                app.js
 |------------------------------------------------------------------------------
-/*
-They bascially all use messaging, and their difference is mainly semantic:
-- event aggregator: send a message when something happens. Code somewhere else might be listening for that message, but maybe not
-- request/response: have code send a request, and it will expect a response (e.g. send me refreshed data)
-- commands: code in one place commands code somewhere else to carry out an action. There usually isn't a return value.
-
 */
-/* Global Backbone */
-// 'use strict';
 define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'views/HeaderView', 'views/NavPanelView', 'jquery.mobile-config', 'jquery.mobile'],
     function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView) {
 
@@ -48,10 +40,6 @@ define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'vie
          * This ensures dynamically created is given the jQuery Mobile treatment
          */
         // Marionette.View.prototype.onRender = Marionette.View.prototype.onShow = function () {
-
-        //     console.log('onShow, onRender');
-        //     console.log(this.el);
-
         //     this.$el.trigger('create');
         //     return this;
         // };

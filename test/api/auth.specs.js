@@ -276,7 +276,7 @@ describe('/api/auth.js', function () {
 
             beforeEach(function () {
                 var authSignKey  = fs.readFileSync('ssl/key.pem', 'utf8');
-                var username = 'user', timestamp = moment().add('hours', 1).add('minutes', 2).valueOf();
+                var username = 'user', timestamp = moment().subtract('hours', 1).subtract('minutes', 1).valueOf();
                 var message  = username + ';' + timestamp;
                 var hmac     = crypto.createHmac('sha1', authSignKey).update(message).digest('hex');
                 token        = message + ';' + hmac;

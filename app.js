@@ -20,7 +20,7 @@ var oneMonth = 2678400000;
 app.configure(function () {
 
     app.set('token auth sign key', sslPrivateKey);
-    app.set('token ttl minutes', 60);
+    app.set('token ttl minutes', 1);
     app.set('http port', process.env.PORT || 3000);
     app.set('https port', process.env.PORT || 3443);
     app.set('views', __dirname + '/views');

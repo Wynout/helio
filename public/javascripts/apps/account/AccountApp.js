@@ -16,7 +16,8 @@ function (Marionette, MsgBus, AccountLoginController) {
      */
     var AccountRouter = Marionette.AppRouter.extend({
         appRoutes: {
-            'accounts/create': 'createAccount'
+            'accounts/create': 'createAccount',
+            'accounts/login': 'loginAccount'
         }
     });
 
@@ -31,7 +32,6 @@ function (Marionette, MsgBus, AccountLoginController) {
             controller: API
         });
     });
-
 
     MsgBus.events.on('account:login', function () {
 

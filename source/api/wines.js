@@ -85,7 +85,7 @@ module.exports = function (app) {
                 res.send(wine);
             } else {
 
-                res.send(404);
+                return next({type: 'retrieval', status: 404, message: 'not found'});
             }
         });
     }
@@ -118,7 +118,7 @@ module.exports = function (app) {
 
             } else {
 
-                res.send(404);
+                return next({type: 'retrieval', status: 404, message: 'not found'});
             }
         });
     }
@@ -141,7 +141,7 @@ module.exports = function (app) {
                 });
             } else {
 
-                res.send(404);
+                return next({type: 'retrieval', status: 404, message: 'not found'});
             }
         });
     }

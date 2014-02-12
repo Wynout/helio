@@ -10,7 +10,7 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
 
         addWine: function () {
 
-            var wine = MsgBus.reqres.request('wine:add');
+            var wine = MsgBus.reqres.request('wine:entity:add');
             this._editWine(wine);
         },
 
@@ -22,8 +22,10 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
                 .done(function (wine) {
 
                     self._editWine(wine);
-                }).fail(function (model, xhr, options) {
+                }).fail(function (error, model, xhr, options) {
 
+                    console.log('edit wine, error = ', error);
+                    if (error.message==='Authorization expired') {}
                     // Most of the time this is bad practice. I think we can get away with it.
                     Backbone.history.navigate('wines', {trigger: true}); // Updates URL and run router handler
                 });
