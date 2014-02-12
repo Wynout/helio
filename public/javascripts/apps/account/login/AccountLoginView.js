@@ -26,8 +26,6 @@ function (
 
         serializeData: function () {
 
-            // when token expired, error message is shown..
-            // or create new view ExpiredView?
             return {
                 error: this.options.error
             };
@@ -65,6 +63,14 @@ function (
         },
 
         onRender: function () {
+
+            /*
+            var token, parts, username;
+            token    = window.localStorage.getItem('token');
+            token    = token ? token : '';
+            parts    = token.split(';');
+            username = parts.length===3 ? parts[0] : '';
+            */
 
             var messageView = new MessageView();
             this.loginMessage.show(messageView);
