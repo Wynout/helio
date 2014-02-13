@@ -24,7 +24,6 @@ function (MsgBus, WineListView, NavPanelView) {
 
                     self._showWines();
                     MsgBus.events.trigger('account:login');
-                    // MsgBus.events.trigger('authorization:expired');
                 });
         },
 

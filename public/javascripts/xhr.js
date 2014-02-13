@@ -16,11 +16,13 @@ define(['underscore'], function (_) {
 
             var defaults = {
                     error: {
-                        type: jqXHR.status,
+                        status: jqXHR.status,
+                        type: 'unknown',
                         message: jqXHR.statusText
                     }
                 };
             var response = _.extend(defaults, jqXHR.responseJSON);
+            console.log(jqXHR);
             return response.error;
         }
     };

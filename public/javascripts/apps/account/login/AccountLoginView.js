@@ -41,7 +41,7 @@ function (
         template: accountLoginErrorTemplate,
 
         serializeData: function () {
-console.log('this.options = ', this.options);
+
             return {
                 error: this.options.error,
                 account: MsgBus.reqres.request('account:info')
@@ -101,6 +101,7 @@ console.log('this.options = ', this.options);
                 .done(function (token) {
 
                     MsgBus.commands.execute('popup:close');
+                    window.location.reload();
                 })
                 .fail(function (error) {
 
