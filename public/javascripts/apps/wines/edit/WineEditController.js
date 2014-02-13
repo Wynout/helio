@@ -30,7 +30,7 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
                         Backbone.history.navigate('wines', {trigger: true}); // Updates URL and run router handler
                     } else {
 
-                        self._editWine(model);
+                        self._editWine();
                         MsgBus.events.trigger('account:login');
                     }
                 });

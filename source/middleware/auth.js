@@ -67,7 +67,7 @@ function validateToken(req, res, next) {
     console.log('diffInMinutes in seconds = ', diffInMinutes);
     console.log('\n\n');
 
-    if ( diffInSeconds > 20) {
+    if ( diffInSeconds > 6) {
     // if ( diffInMinutes > tokenTtlMinutes) {
 
         return next({type: 'authorization', status: 401, message: 'Authorization expired'});

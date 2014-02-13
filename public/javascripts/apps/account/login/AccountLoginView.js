@@ -4,6 +4,7 @@
 |------------------------------------------------------------------------------
 */
 define([
+    'backbone',
     'marionette',
     'msgbus',
     'hbs!apps/account/login/AccountLoginTemplate',
@@ -11,6 +12,7 @@ define([
     'hbs!apps/account/login/AccountLoginErrorTemplate'
 ],
 function (
+    Backbone,
     Marionette,
     MsgBus,
     accountLoginTemplate,
@@ -101,7 +103,14 @@ function (
                 .done(function (token) {
 
                     MsgBus.commands.execute('popup:close');
-                    window.location.reload();
+                    console.log(Backbone.history.fragment);
+                    if (Backbone.history.fragment==='accounts/switch') {
+
+                        Backbone.history.navigate('/', {trigger: true});
+                    } else {
+
+                        window.location.reload();
+                    }
                 })
                 .fail(function (error) {
 
@@ -114,6 +123,7 @@ function (
         close: function () {
 
             MsgBus.commands.execute('popup:close');
+            return false;
         }
     });
 

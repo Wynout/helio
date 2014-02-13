@@ -61,12 +61,15 @@ function (
 
             var self = this;
 
-            Backbone.Validation.bind(this);
-            this.model.on('validated:invalid', function (model, errors) {
+            if (this.model) {
 
-                var errorView = new ErrorView({error: {message: 'Fix validation errors and try again'}});
-                self.saveResult.show(errorView);
-            });
+                Backbone.Validation.bind(this);
+                this.model.on('validated:invalid', function (model, errors) {
+
+                    var errorView = new ErrorView({error: {message: 'Fix validation errors and try again'}});
+                    self.saveResult.show(errorView);
+                });
+            }
         },
 
         // Called when the view has been closed.

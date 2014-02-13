@@ -3,7 +3,7 @@
 | Xhr Module                                                             xhr.js
 |------------------------------------------------------------------------------
 */
-define(['underscore'], function (_) {
+define(['underscore', 'msgbus', 'views/xhrErrorView'], function (_, MsgBus, XhrErrorView) {
 
     var xhr = {
         /**
@@ -22,7 +22,18 @@ define(['underscore'], function (_) {
                     }
                 };
             var response = _.extend(defaults, jqXHR.responseJSON);
-            console.log(jqXHR);
+
+
+            // if (response.error.type==='authorization') {
+            //     console.log("MsgBus.events.trigger('account:login');");
+            //     MsgBus.events.trigger('account:login');
+            // } else {
+
+            //     var xhrErrorView = new XhrErrorView({error: response.error});
+            //     MsgBus.commands.execute('popup:show', xhrErrorView);
+            // }
+
+            console.log(jqXHR.status, jqXHR.statusText, jqXHR.responseJSON);
             return response.error;
         }
     };
