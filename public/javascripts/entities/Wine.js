@@ -68,7 +68,7 @@ define(['jquery', 'underscore', 'backbone', 'msgbus', 'xhr'], function ($, _, Ba
 
 
     /**
-     * Request Response Handlers
+     * Register Request Response Handlers
      */
     MsgBus.reqres.setHandler('wine:entities', function () {
 

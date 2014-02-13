@@ -3,26 +3,31 @@
  | Account Login Controller                            AccountLoginController.js
  |------------------------------------------------------------------------------
  */
-define(['msgbus', 'apps/account/login/AccountLoginView'],
-function (MsgBus, AccountLoginView) {
+define(['msgbus', 'apps/account/login/AccountLoginView', 'apps/account/login/AccountSwitchView'],
+function (MsgBus, AccountLoginView, AccountSwitchView) {
 
     var controller = {
 
         /**
-         * @param {Object} error containing type, message
+         *
          */
-        login: function (error) {
+        login: function () {
 
             var View = new AccountLoginView();
             MsgBus.commands.execute('popup:show', View);
+        },
 
-            // var regions = {
-            //     // header : new App.HeaderView.default(),
-            //     content : new AccountLoginView()
-            //     // navPanel: new NavPanelView.wine()
-            // };
-            // MsgBus.commands.execute('change:page', regions);
+        /**
+         *
+         */
+        switchAccount: function () {
 
+            MsgBus.commands.execute('account:logoff');
+            var regions = {
+                content: new AccountSwitchView()
+            };
+            MsgBus.commands.execute('change:page', regions);
+            this.login();
         }
     };
 

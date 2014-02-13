@@ -20,7 +20,8 @@ define(['underscore'], function (_) {
                         message: jqXHR.statusText
                     }
                 };
-            return _.extend(defaults, jqXHR.responseJSON);
+            var response = _.extend(defaults, jqXHR.responseJSON);
+            return response.error;
         }
     };
 

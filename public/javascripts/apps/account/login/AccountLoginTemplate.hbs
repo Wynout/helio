@@ -2,17 +2,26 @@
     <h1>Login</h1>
 </div>
 <form>
-    <div style="padding:10px 20px;">
+    <div style="padding:10px 20px;min-width:300px;">
 
         <div id="login-message"></div>
 
         <label for="username" class="ui-hidden-accessible">Username:</label>
-        <input type="text" name="user" id="username" value="wynout" placeholder="username" data-theme="a">
+
+        {{#if account.username}}
+        <input type="text" name="user" id="username" value="{{account.username}}" disabled="disabled" placeholder="username" data-theme="a">
+        {{else}}
+        <input type="text" name="user" id="username" value="" placeholder="username" data-theme="a">
+        {{/if}}
 
         <label for="password" class="ui-hidden-accessible">Password:</label>
         <input type="password" name="pass" id="password" value="wynout-password" placeholder="password" data-theme="a">
 
-        <a href="#" class="cancel ui-btn ui-corner-all ui-shadow ui-btn-inline" data-rel="back">Cancel</a>
         <a href="#" class="submit-login-credentials ui-btn ui-corner-all ui-shadow ui-btn-inline">Login</a>
+        {{#if account.username}}
+        <a href="#accounts/switch" class="switch-user ui-btn ui-corner-all ui-shadow ui-btn-inline">Switch user</a>
+        {{else}}
+        <a href="#" class="close ui-btn ui-corner-all ui-shadow ui-btn-inline">Close</a>
+        {{/if}}
     </div>
 </form>

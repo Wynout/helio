@@ -27,7 +27,8 @@ function (
         serializeData: function () {
 
             return {
-                error: this.options.error
+                error: this.options.error,
+                account: MsgBus.reqres.request('account:info')
             };
         },
     });
@@ -40,9 +41,10 @@ function (
         template: accountLoginErrorTemplate,
 
         serializeData: function () {
-
+console.log('this.options = ', this.options);
             return {
-                error: this.options.error
+                error: this.options.error,
+                account: MsgBus.reqres.request('account:info')
             };
         },
     });
@@ -59,18 +61,28 @@ function (
         },
 
         events: {
-            'click .submit-login-credentials' : 'validateCredentials'
+            'click .submit-login-credentials': 'validateCredentials',
+            'keypress input': 'keypress',
+            'click .close': 'close'
+        },
+
+        keypress: function (event) {
+
+            if (event.keyCode!==13) {
+
+                return;
+            }
+            this.validateCredentials();
+        },
+
+        serializeData: function () {
+
+            return {
+                account: MsgBus.reqres.request('account:info')
+            };
         },
 
         onRender: function () {
-
-            /*
-            var token, parts, username;
-            token    = window.localStorage.getItem('token');
-            token    = token ? token : '';
-            parts    = token.split(';');
-            username = parts.length===3 ? parts[0] : '';
-            */
 
             var messageView = new MessageView();
             this.loginMessage.show(messageView);
@@ -96,6 +108,11 @@ function (
                     self.loginMessage.show(errorView);
                 });
             return false;
+        },
+
+        close: function () {
+
+            MsgBus.commands.execute('popup:close');
         }
     });
 

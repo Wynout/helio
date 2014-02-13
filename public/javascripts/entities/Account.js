@@ -43,11 +43,22 @@ define(['jquery', 'backbone', 'msgbus', 'xhr'], function ($, Backbone, MsgBus, X
 
 
     /**
-     * Request Response Handlers
+     * Register Request Response Handlers
      */
     MsgBus.reqres.setHandler('account:login', function (credentials) {
 
         return API.login(credentials);
+    });
+    MsgBus.reqres.setHandler('account:info', function () {
+
+        return API.getAccountInfo();
+    });
+    /**
+     * Register Commands
+     */
+    MsgBus.commands.setHandler('account:logoff', function () {
+
+        return API.logoff();
     });
 
 
@@ -85,6 +96,28 @@ define(['jquery', 'backbone', 'msgbus', 'xhr'], function ($, Backbone, MsgBus, X
                 });
 
             return defer.promise();
+        },
+
+        logoff: function () {
+
+            window.localStorage.removeItem('token');
+        },
+
+        getAccountInfo: function () {
+
+            var token,
+                parts,
+                username,
+                info = {username: ''};
+
+            token = window.localStorage.getItem('token');
+            token = token ? token : '';
+            parts = token.split(';');
+            if (parts.length!==3) { return info; }
+
+            return {
+                username: parts[0]
+            };
         }
     };
     return API;
