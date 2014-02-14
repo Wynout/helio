@@ -3,8 +3,18 @@
 | Main Application Object                                                app.js
 |------------------------------------------------------------------------------
 */
-define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'views/HeaderView', 'views/NavPanelView', 'jquery.mobile-config', 'jquery.mobile'],
-    function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView) {
+define([
+    'jquery',
+    'backbone',
+    'marionette',
+    'msgbus',
+    'layouts/PageLayout',
+    'views/HeaderView',
+    'views/NavPanelView',
+    'views/xhrErrorView',
+    'jquery.mobile-config',
+    'jquery.mobile'
+], function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView, XhrErrorView) {
 
     /**
      * Create a composite application instance
@@ -92,7 +102,26 @@ define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'vie
 
 
     /**
-     *
+     * Register command 'xhr:error:show'
+     * This command displays an error view to the user
+     */
+    MsgBus.commands.setHandler('xhr:error:show', function (error) {
+
+        if (error.type==='authorization') {
+
+            MsgBus.events.trigger('account:login');
+        } else {
+
+            // catch all xhr errors view
+            var xhrErrorView = new XhrErrorView({error: error});
+            MsgBus.commands.execute('popup:show', xhrErrorView);
+        }
+    });
+
+
+    /**
+     * Register command 'change:page'
+     * This command creates a new page and handles the JQM page transition
      */
     MsgBus.commands.setHandler('change:page', function (regions) {
 
@@ -111,8 +140,9 @@ define(['jquery', 'backbone', 'marionette', 'msgbus', 'layouts/PageLayout', 'vie
 
 
     /**
-     * Based on the following example from Christophe Coenraets:
+     * Based on the following example from Christophe Coenraets
      * @link http://coenraets.org/blog/2012/03/using-backbone-js-with-jquery-mobile/
+     * The outgoing page is closed on JQM 'pagecontainerhide' event
      */
     App.changePage = function (view, transition) {
 

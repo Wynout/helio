@@ -94,9 +94,10 @@ define(['jquery', 'underscore', 'backbone', 'msgbus', 'xhr'], function ($, _, Ba
 
     /**
      * Expose Wine API
+     * Using jQuery promises to render Backbone views after fetching data
+     * @link http://davidsulc.com/blog/2013/04/01/using-jquery-promises-to-render-backbone-views-after-fetching-data/
      */
     var API = {
-        // http://davidsulc.com/blog/2013/04/01/using-jquery-promises-to-render-backbone-views-after-fetching-data/
         getWineEntities: function () {
 
             var defer = $.Deferred(),

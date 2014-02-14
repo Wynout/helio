@@ -64,8 +64,8 @@ function (
 
         events: {
             'click .submit-login-credentials': 'validateCredentials',
-            'keypress input': 'keypress',
-            'click .close': 'close'
+            'keypress input'                 : 'keypress',
+            'click .cancel-login'            : 'cancelLogin'
         },
 
         keypress: function (event) {
@@ -103,7 +103,6 @@ function (
                 .done(function (token) {
 
                     MsgBus.commands.execute('popup:close');
-                    console.log(Backbone.history.fragment);
                     if (Backbone.history.fragment==='accounts/switch') {
 
                         Backbone.history.navigate('/', {trigger: true});
@@ -120,10 +119,11 @@ function (
             return false;
         },
 
-        close: function () {
+        cancelLogin: function () {
 
+            MsgBus.commands.execute('account:logoff');
             MsgBus.commands.execute('popup:close');
-            return false;
+            Backbone.history.navigate('/', {trigger: true});
         }
     });
 

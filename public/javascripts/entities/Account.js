@@ -67,8 +67,8 @@ define(['jquery', 'backbone', 'msgbus', 'xhr'], function ($, Backbone, MsgBus, X
      */
     var API = {
         /**
-         * Perform login using credentials
-         * When authenticated, Hmac token is stored in localStorage
+         * Perform login using credentials.
+         * When authenticated, authentication token is stored in localStorage
          */
         login: function (credentials) {
 
@@ -98,11 +98,18 @@ define(['jquery', 'backbone', 'msgbus', 'xhr'], function ($, Backbone, MsgBus, X
             return defer.promise();
         },
 
+        /**
+         * Removes authentication token
+         */
         logoff: function () {
 
             window.localStorage.removeItem('token');
         },
 
+        /**
+         * Returns account from token in localstorage
+         * @return {Object} {username: 'name'}
+         */
         getAccountInfo: function () {
 
             var token,
@@ -113,12 +120,15 @@ define(['jquery', 'backbone', 'msgbus', 'xhr'], function ($, Backbone, MsgBus, X
             token = window.localStorage.getItem('token');
             token = token ? token : '';
             parts = token.split(';');
-            if (parts.length!==3) { return info; }
+            if (parts.length!==3) {
 
+                return info;
+            }
             return {
                 username: parts[0]
             };
         }
     };
+
     return API;
 });

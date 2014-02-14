@@ -31,7 +31,7 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
                     } else {
 
                         self._editWine();
-                        MsgBus.events.trigger('account:login');
+                        MsgBus.commands.execute('xhr:error:show', error);
                     }
                 });
         },

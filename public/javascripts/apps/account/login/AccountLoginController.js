@@ -9,7 +9,7 @@ function (MsgBus, AccountLoginView, AccountSwitchView) {
     var controller = {
 
         /**
-         *
+         * Displays popup modal login form
          */
         login: function () {
 
@@ -18,7 +18,7 @@ function (MsgBus, AccountLoginView, AccountSwitchView) {
         },
 
         /**
-         *
+         * Displays switch account view
          */
         switchAccount: function () {
 

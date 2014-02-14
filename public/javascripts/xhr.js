@@ -15,25 +15,15 @@ define(['underscore', 'msgbus', 'views/xhrErrorView'], function (_, MsgBus, XhrE
         errorHandler: function (jqXHR) {
 
             var defaults = {
-                    error: {
-                        status: jqXHR.status,
-                        type: 'unknown',
-                        message: jqXHR.statusText
-                    }
-                };
+                error: {
+                    status: jqXHR.status,
+                    type: 'unknown',
+                    message: jqXHR.statusText
+                }
+            };
             var response = _.extend(defaults, jqXHR.responseJSON);
 
-
-            // if (response.error.type==='authorization') {
-            //     console.log("MsgBus.events.trigger('account:login');");
-            //     MsgBus.events.trigger('account:login');
-            // } else {
-
-            //     var xhrErrorView = new XhrErrorView({error: response.error});
-            //     MsgBus.commands.execute('popup:show', xhrErrorView);
-            // }
-
-            console.log(jqXHR.status, jqXHR.statusText, jqXHR.responseJSON);
+            console.log('xhr errorHandler: ', jqXHR.status, jqXHR.statusText, jqXHR.responseJSON);
             return response.error;
         }
     };

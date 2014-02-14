@@ -43,7 +43,7 @@ function (
 
 
     /**
-     * Wine Edit Form
+     * Wine Edit View
      */
     var EditWineView = Marionette.Layout.extend({
         className: 'ui-content',
@@ -89,8 +89,6 @@ function (
             console.log(change);
         },
 
-        // todo:
-        // use entitiy reqres
         saveWine: function () {
 
             var self     = this,
@@ -101,10 +99,11 @@ function (
                     var successView = new SuccessView();
                     self.saveResult.show(successView);
                 })
-                .fail(function () {
+                .fail(function (error, model, jqXHR, options) {
 
                     var errorView = new ErrorView({error: {message: 'Wine could not be saved'}});
                     self.saveResult.show(errorView);
+                    MsgBus.commands.execute('xhr:error:show', error);
                 });
 
             return false;
@@ -115,7 +114,6 @@ function (
             MsgBus.events.trigger('wine:delete:confirm', this.model);
             return false;
         }
-
     });
 
     return EditWineView;

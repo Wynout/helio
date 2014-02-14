@@ -20,10 +20,10 @@ function (MsgBus, WineListView, NavPanelView) {
 
                     self._showWines(wines);
                 })
-                .fail(function (collection, jqXHR, options) {
+                .fail(function (error, collection, jqXHR, options) {
 
                     self._showWines();
-                    MsgBus.events.trigger('account:login');
+                    MsgBus.commands.execute('xhr:error:show', error);
                 });
         },
 
