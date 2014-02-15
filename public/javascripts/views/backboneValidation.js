@@ -4,7 +4,7 @@
 |------------------------------------------------------------------------------
 */
 // @link https://gist.github.com/driehle/2909552
-define(['underscore', 'jquery', 'backbone'], function (_, $, Backbone) {
+define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_, $, Backbone) {
 
     _.extend(Backbone.Validation.callbacks, {
 

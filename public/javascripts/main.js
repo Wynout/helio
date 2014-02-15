@@ -8,9 +8,10 @@ require.config({
         // 'backbone.validation': {
         //     deps: ['./views/backboneValidation']
         // }
-        'backbone.validation': [
-            './components/backbone-validation/dist/backbone-validation'
-        ]
+
+        // 'backbone.validation': {
+        //     deps: ['./components/backbone-validation/dist/backbone-validation']
+        // }
     },
     paths: {
         jquery: "./components/jquery/jquery",
@@ -18,7 +19,12 @@ require.config({
         backbone: "./components/backbone-amd/backbone",
         "backbone.wreqr": "./components/backbone.wreqr/lib/amd/backbone.wreqr",
         "backbone.babysitter": "./components/backbone.babysitter/lib/amd/backbone.babysitter",
-        'backbone.validation': './views/backboneValidation',
+        'backbone.validation.callbacks': './views/backboneValidation',
+
+
+        // test
+        'backbone.validation': './components/backbone-validation/dist/backbone-validation-amd',
+
         marionette: "./components/marionette/lib/core/amd/backbone.marionette",
         hbs           : './components/require-handlebars-plugin/hbs',
         // underscore    : './components/require-handlebars-plugin/hbs/underscore',
