@@ -1,3 +1,8 @@
+/*
+|------------------------------------------------------------------------------
+| Requirejs Config and Start App                                        main.js
+|------------------------------------------------------------------------------
+*/
 require.config({
 
     baseURL: 'public/javascripts/components',
@@ -18,14 +23,14 @@ require.config({
         json2                 : './components/require-handlebars-plugin/hbs/json2',
 
         'jquery.mobile-config': 'config/jquery.mobile-config',
-        'jquery.mobile'       : './components/jquery-mobile/dist/jquery.mobile' // build by grunt
+        'jquery.mobile'       : './components/jquery-mobile/dist/jquery.mobile' // built by grunt
 
     },
     hbs: {
-        helpers: true,            // default: true
-        i18n: false,              // default: false
+        helpers          : true,  // default: true
+        i18n             : false, // default: false
         templateExtension: 'hbs', // default: 'hbs'
-        partialsUrl: ''           // default: ''
+        partialsUrl      : ''     // default: ''
     }
 
 }, require(['app', 'auth', 'apps/wines/WineApp', 'apps/account/AccountApp'], function (App) {
