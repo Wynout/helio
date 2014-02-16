@@ -1,5 +1,13 @@
 @import url("/javascripts/components/jquery-mobile/css/themes/default/jquery.mobile.css");
 
+/* should target desktop only */
+html {
+	overflow-y: -moz-scrollbars-vertical;
+	overflow-y: scroll;
+}
+body {
+	background-color: #252525;
+}
 
 /* form required input */
 html body form div.ui-input-text.ui-input-required {
@@ -18,13 +26,6 @@ html body form div.ui-input-text.ui-input-required {
 textarea.ui-input-text {
 	/*height: inherit;*/
 	overflow: hidden;
-}
-
-
-/* should target desktop only */
-html {
-	overflow-y: -moz-scrollbars-vertical;
-	overflow-y: scroll;
 }
 
 
