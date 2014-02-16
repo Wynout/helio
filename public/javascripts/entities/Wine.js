@@ -3,7 +3,7 @@
 | Wine Entity                                                           Wine.js
 |------------------------------------------------------------------------------
 */
-define(['jquery', 'underscore', 'backbone', 'msgbus', 'xhr'], function ($, _, Backbone, MsgBus, Xhr) {
+define(['jquery', 'underscore', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, _, Backbone, MsgBus, Xhr) {
 
     /**
      * Wine Model

@@ -3,7 +3,7 @@
 | Xhr Module                                                             xhr.js
 |------------------------------------------------------------------------------
 */
-define(['underscore', 'msgbus', 'views/xhrErrorView'], function (_, MsgBus, XhrErrorView) {
+define(['underscore'], function (_) {
 
     var xhr = {
         /**

@@ -3,7 +3,7 @@
 | Account Entity                                                     Account.js
 |------------------------------------------------------------------------------
 */
-define(['jquery', 'backbone', 'msgbus', 'xhr'], function ($, Backbone, MsgBus, Xhr) {
+define(['jquery', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, Backbone, MsgBus, Xhr) {
 
 
     /**
