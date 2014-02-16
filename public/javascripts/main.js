@@ -13,7 +13,6 @@ require.config({
         backbone             : './components/backbone-amd/backbone',
         'backbone.wreqr'     : './components/backbone.wreqr/lib/amd/backbone.wreqr',
         'backbone.babysitter': './components/backbone.babysitter/lib/amd/backbone.babysitter',
-        'backbone.validation.callbacks': './views/backboneValidation',
         'backbone.validation': './components/backbone-validation/dist/backbone-validation-amd',
 
         marionette            : './components/marionette/lib/core/amd/backbone.marionette',

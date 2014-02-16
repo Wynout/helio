@@ -10,7 +10,7 @@ define([
     'hbs!apps/wines/edit/WineEditTemplate',
     'hbs!apps/wines/edit/WineEditSuccessTemplate',
     'hbs!apps/wines/edit/WineEditErrorTemplate',
-    'backbone.validation.callbacks'],
+    'mixins/validationCallbacks'],
 function (
         Backbone,
         Marionette,
