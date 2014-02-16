@@ -1,6 +1,6 @@
 **/*.DS_store
 node_modules
-public/javascripts/components
+public/javascripts/bower_components
 public/build
 *.log
 ssl/key-cert.pem

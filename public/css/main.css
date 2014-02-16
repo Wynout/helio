@@ -1,4 +1,4 @@
-@import url("/javascripts/components/jquery-mobile/css/themes/default/jquery.mobile.css");
+@import url("/javascripts/bower_components/jquery-mobile/css/themes/default/jquery.mobile.css");
 
 /* should target desktop only */
 html {
