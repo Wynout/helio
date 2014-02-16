@@ -10,6 +10,12 @@ function (MsgBus, AccountCreateView) {
 
 		createAccount: function () {
 
+			var regions = {
+                // header : new App.HeaderView.default(),
+                content : new AccountCreateView(),
+                // navPanel: new NavPanelView.default()
+            };
+            MsgBus.commands.execute('change:page', regions);
 		}
 	};
 

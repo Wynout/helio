@@ -6,10 +6,11 @@
 define([
     'marionette',
     'msgbus',
+    'apps/account/create/AccountCreateController',
     'apps/account/login/AccountLoginController',
     'entities/Account'
     ],
-function (Marionette, MsgBus, AccountLoginController) {
+function (Marionette, MsgBus, AccountCreateController, AccountLoginController) {
 
     /**
      * Setup Account Router
@@ -46,6 +47,7 @@ function (Marionette, MsgBus, AccountLoginController) {
     var API = {
         createAccount: function () {
 
+            AccountCreateController.createAccount();
         },
 
         loginAccount: function () {
