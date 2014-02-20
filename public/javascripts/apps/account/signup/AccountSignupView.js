@@ -7,7 +7,7 @@ define([
     'backbone',
     'marionette',
     'msgbus',
-    'apps/account/login/AccountSignupTouView',
+    'apps/account/signup/AccountSignupTouView',
     'hbs!apps/account/signup/AccountSignupTemplate',
     'backbone.stickit',
     'mixins/backbone.validation'
