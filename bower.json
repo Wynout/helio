@@ -17,6 +17,6 @@
     "requirejs": "~2.1.5",
     "underscore-amd": "~1.5.2",
     "require-handlebars-plugin": "~0.7.0",
-    "backbone.validation": "~0.7.1"
+    "backbone.stickit": "~0.7.0"
   }
 }

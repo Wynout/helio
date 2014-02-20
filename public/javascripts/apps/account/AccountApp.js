@@ -6,19 +6,19 @@
 define([
     'marionette',
     'msgbus',
-    'apps/account/create/AccountCreateController',
+    'apps/account/signup/AccountSignupController',
     'apps/account/login/AccountLoginController',
     'entities/Account'
     ],
-function (Marionette, MsgBus, AccountCreateController, AccountLoginController) {
+function (Marionette, MsgBus, AccountSignupController, AccountLoginController) {
 
     /**
      * Setup Account Router
      */
     var AccountRouter = Marionette.AppRouter.extend({
         appRoutes: {
-            'accounts/create': 'createAccount',
-            'accounts/login': 'loginAccount',
+            'signup': 'signup',
+            'login': 'login',
             'accounts/switch': 'switchAccount'
         }
     });
@@ -45,12 +45,12 @@ function (Marionette, MsgBus, AccountCreateController, AccountLoginController) {
      * Expose AccountApp API
      */
     var API = {
-        createAccount: function () {
+        signup: function () {
 
-            AccountCreateController.createAccount();
+            AccountSignupController.signup();
         },
 
-        loginAccount: function () {
+        login: function () {
 
             AccountLoginController.login();
         },

@@ -15,8 +15,7 @@ define(['jquery', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, Backbo
         idAttribute: '_id',
 
         defaults: {
-            _id: null,
-            name: ''
+            _id: null
         },
 
         /**
@@ -24,9 +23,33 @@ define(['jquery', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, Backbo
          * @link http://thedersen.com/projects/backbone-validation/
          */
         validation: {
+            username: {
+                required: true,
+                msg: 'You must enter an username'
+            },
             name: {
                 required: true,
                 msg: 'You must enter a name'
+            },
+            password:{
+                required: true,
+                minLength: 8,
+                msg: 'Password must be at least 8 characters'
+            },
+            repeatPassword: {
+                equalTo: 'password',
+                minLength: 8,
+                msg: 'The passwords does not match'
+            },
+            email: [{
+                required: true,
+                msg: 'You must enter an email address'
+            }, {
+                pattern: 'email',
+                msg: 'You must enter a valid email'
+            }],
+            termsOfUse: {
+                acceptance: true
             }
         }
     });
@@ -45,6 +68,14 @@ define(['jquery', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, Backbo
     /**
      * Register Request Response Handlers
      */
+    MsgBus.reqres.setHandler('account:entity:add', function () {
+
+        return new AccountModel();
+    });
+    MsgBus.reqres.setHandler('account:signup', function (form) {
+
+        return API.signup(form);
+    });
     MsgBus.reqres.setHandler('account:login', function (credentials) {
 
         return API.login(credentials);
@@ -66,6 +97,35 @@ define(['jquery', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, Backbo
      * Expose Account API
      */
     var API = {
+        /**
+         * Signup for a new account
+         */
+        signup: function (form) {
+
+            var defer = $.Deferred();
+            var settings = {
+                type: 'POST',
+                headers: { // maybe use $.ajaxSetup?, although its use is not recommended
+                    Accept        : 'application/json, text/javascript, */*; q=0.01',
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                data: JSON.stringify(form)
+            };
+
+            $.ajax('/api/auth/signup', settings)
+                .done(function (data, textStatus, jqXHR) {
+
+                    return defer.resolve(data, textStatus, jqXHR);
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+
+                    var error = Xhr.errorHandler(jqXHR);
+                    return defer.reject(error);
+                });
+
+            return defer.promise();
+        },
+
         /**
          * Perform login using credentials.
          * When authenticated, authentication token is stored in localStorage

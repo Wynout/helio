@@ -80,7 +80,7 @@ define(['jquery', 'underscore', 'backbone', 'msgbus', 'entities/xhr/xhr'], funct
     });
     MsgBus.reqres.setHandler('wine:entity:add', function () {
 
-        return API.addWine();
+        return new WineModel();
     });
     MsgBus.reqres.setHandler('wine:entity:save', function (model) {
 
@@ -142,11 +142,6 @@ define(['jquery', 'underscore', 'backbone', 'msgbus', 'entities/xhr/xhr'], funct
                 }
             });
             return defer.promise();
-        },
-
-        addWine: function () {
-
-            return new WineModel();
         },
 
         saveWine: function (model) {

@@ -5,22 +5,18 @@
 */
 define([
     'marionette',
-    'msgbus',
     'hbs!apps/account/login/AccountSwitchTemplate'
 ],
 function (
     Marionette,
-    MsgBus,
     accountSwitchTemplate) {
 
-
     /**
-     * Account switch layout view
+     * Account switch view
      */
-    var AccountSwitchLayout = Marionette.Layout.extend({
-        template: accountSwitchTemplate,
-        regions: {}
+    var AccountSwitchView = Marionette.ItemView.extend({
+        template: accountSwitchTemplate
     });
 
-    return AccountSwitchLayout;
+    return AccountSwitchView;
 });

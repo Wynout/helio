@@ -1,18 +1,19 @@
 /*
  |------------------------------------------------------------------------------
- | Account Create Controller                          AccountCreateController.js
+ | Account Signup Controller                          AccountSignupController.js
  |------------------------------------------------------------------------------
  */
-define(['msgbus', 'apps/account/create/AccountCreateView'],
-function (MsgBus, AccountCreateView) {
+define(['msgbus', 'apps/account/signup/AccountSignupView'],
+function (MsgBus, AccountSignupView) {
 
 	var controller = {
 
-		createAccount: function () {
+		signup: function () {
 
+			var account = MsgBus.reqres.request('account:entity:add');
 			var regions = {
                 // header : new App.HeaderView.default(),
-                content : new AccountCreateView(),
+                content : new AccountSignupView({model: account}),
                 // navPanel: new NavPanelView.default()
             };
             MsgBus.commands.execute('change:page', regions);

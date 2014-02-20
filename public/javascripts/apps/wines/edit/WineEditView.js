@@ -10,7 +10,7 @@ define([
     'hbs!apps/wines/edit/WineEditTemplate',
     'hbs!apps/wines/edit/WineEditSuccessTemplate',
     'hbs!apps/wines/edit/WineEditErrorTemplate',
-    'mixins/validationCallbacks'],
+    'mixins/backbone.validation'],
 function (
         Backbone,
         Marionette,
@@ -43,14 +43,15 @@ function (
 
 
     /**
-     * Wine Edit View
+     * Wine Edit Layout View
      */
     var EditWineView = Marionette.Layout.extend({
-        className: 'ui-content',
         template: wineEditTemplate,
+
         regions: {
             saveResult: '#save-result'
         },
+
         events: {
             'change'                : 'change',
             'click .save'           : 'saveWine',

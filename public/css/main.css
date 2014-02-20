@@ -9,17 +9,23 @@ body {
 	background-color: #252525;
 }
 
-/* form required input */
-html body form div.ui-input-text.ui-input-required {
-	-webkit-box-shadow: 0 0 10px 	#e40c0c;
-	-moz-box-shadow: 0 0 10px 		#e40c0c;
-	box-shadow: 0 0 10px 			#e40c0c;
+/* backbone.validation form input invalid */
+html body form div.validation-input-invalid {
+	-webkit-box-shadow: 0 0 5px 	#e40c0c;
+	-moz-box-shadow: 0 0 5px 		#e40c0c;
+	box-shadow: 0 0 5px 			#e40c0c;
+}
+html body form div.validation-input-valid {
+	-webkit-box-shadow: 0 0 5px 	#009200;
+	-moz-box-shadow: 0 0 5px 		#009200;
+	box-shadow: 0 0 5px 			#009200;
 }
 /* form validation error message */
 .ui-mobile label .validation-error-message {
-	color: #e40c0c;
+	color: #ff3232;
 	font-size: 14px;
-	font-style: italic;
+	/*font-style: italic;*/
+	font-weight: normal;
 	padding-left: 10px;
 }
 
@@ -27,6 +33,14 @@ textarea.ui-input-text {
 	/*height: inherit;*/
 	overflow: hidden;
 }
+
+/* popup content wrapper */
+.popup-content-wrapper {
+	min-width: 300px;
+	max-width: 600px;
+	padding: 10px 20px;
+}
+
 
 
 /* http://stackoverflow.com/questions/14960044/jquery-mobile-forcing-panel-open-on-wider-screens */

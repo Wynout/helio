@@ -1,4 +1,4 @@
 module.exports = {
-	js: '/build/main-09cf5f0f342c7a7c2630492a10f48673.js',
-	css: '/build/main-6e4b0d1f40869a73ceb209f5452b029a.css'
+	js: '/build/main-aa3e463de65c1f963ecaf5cfb24953cd.js',
+	css: '/build/main-e7d3dbf701139ccd4b4e53da96719c1c.css'
 };
