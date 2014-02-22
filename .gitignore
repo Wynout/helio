@@ -5,3 +5,4 @@ public/build
 *.log
 ssl/key-cert.pem
 ssl/key.pem
+assetsVersioning.json

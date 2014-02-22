@@ -3,16 +3,15 @@
 | Index Page Request Rendering                                   serveMaster.js
 |------------------------------------------------------------------------------
 */
-var _      = require('underscore'),
-    client = require('./../client');
+var fs = require('fs');
 
 
 /**
  * Serves development/production index page
  *
- * @param String title   Html page title
- * @param String mainJs  absolute path to Js file
- * @param String mainCss absolute path to Css file
+ * @param {String} title   Html page title
+ * @param {String} mainJs  absolute path to Js file
+ * @param {String} mainCss absolute path to Css file
  */
 function reqHandler(title, mainJs, mainCss) {
 
@@ -29,6 +28,23 @@ function reqHandler(title, mainJs, mainCss) {
 
 
 /**
+ * Appends version identifier as a querystring
+ *
+ * @param  {String} path, example 'public/build/main.js'
+ * @return {String} example: '/build/main.js?bf9f3482595fad8d15c065b24f0f9148'
+ */
+function getVersionedAsset(path) {
+
+    var json       = fs.readFileSync('assetsVersioning.json', 'utf8'),
+        assets     = JSON.parse(json),
+        version    = assets[path] ? assets[path] : '',
+        publicPath = path.replace(/public/, '');
+
+    return version ? publicPath + '?' + version : publicPath;
+}
+
+
+/**
  * Expose middleware request handlers
  */
 module.exports = {
@@ -39,6 +55,6 @@ module.exports = {
 
     production: function () {
 
-        return reqHandler('Production', client.js, client.css);
+        return reqHandler('Production', getVersionedAsset('public/build/main.js'), getVersionedAsset('public/build/main.css'));
     }
 };
