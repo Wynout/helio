@@ -1,4 +1,8 @@
-// msgbus decoupled from app
+/*
+|------------------------------------------------------------------------------
+| Msgbus decoupled from App                                           msgbus.js
+|------------------------------------------------------------------------------
+*/
 define(['backbone.wreqr'], function (Wreqr) {
 
     return {
