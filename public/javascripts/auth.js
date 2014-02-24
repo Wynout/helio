@@ -1,9 +1,8 @@
-/**
- * Using AMD/RequireJS
- *
- * The `auth` module handles OAuth and stores the
- * access token that needs to be sent in a header
- */
+/*
+|------------------------------------------------------------------------------
+| Auth module sets access token in header                               auth.js
+|------------------------------------------------------------------------------
+*/
 define(['backbone'], function (Backbone) {
     'use strict';
 
