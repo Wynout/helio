@@ -45,7 +45,6 @@ function validateToken(req, res, next) {
         return next({type: 'authorization', status: 500, message: 'Authorization sign key missing'});
     }
 
-
     var username     = parts[0],
         timestamp    = parts[1],
         receivedHmac = parts[2],
@@ -59,16 +58,9 @@ function validateToken(req, res, next) {
 
     var currentTimestamp  = moment(),
         receivedTimestamp = moment(+timestamp),
-        diffInMinutes     = currentTimestamp.diff(receivedTimestamp, 'minutes'),
-        diffInSeconds     = currentTimestamp.diff(receivedTimestamp, 'seconds');
+        diffInMinutes     = currentTimestamp.diff(receivedTimestamp, 'minutes');
 
-    console.log('\n\n');
-    console.log('tokenTtlSeconds = ', tokenTtlMinutes);
-    console.log('diffInMinutes in seconds = ', diffInMinutes);
-    console.log('\n\n');
-
-    if ( diffInSeconds > 60) {
-    // if ( diffInMinutes > tokenTtlMinutes) {
+    if ( diffInMinutes > tokenTtlMinutes) {
 
         return next({type: 'authorization', status: 401, message: 'Authorization expired'});
     }
