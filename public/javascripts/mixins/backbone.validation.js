@@ -40,11 +40,19 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
         valid: function (view, attr, selector) {
 
             var $input = view.$('[' + selector + '=' + attr + ']'),
-                $label = view.$('[for=' + $input.attr('id') + ']');
+                $label = view.$('[for=' + $input.attr('id') + ']'),
+                $wrapper;
 
-            $input.closest('div')
-                .removeClass('validation-input-invalid')
-                .addClass('validation-input-valid');
+            // textarea does not have wrapper div
+            if ($input.is('textarea')) {
+
+                $wrapper = $input;
+            } else {
+
+                $wrapper = $input.closest('div');
+            }
+
+            $wrapper.removeClass('validation-input-invalid');
             $label.find('.validation-error-message').remove();
         },
 
@@ -52,11 +60,19 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
 
             var $input = view.$('[' + selector + '=' + attr + ']'),
                 $label = view.$('[for=' + $input.attr('id') + ']'),
-                $span;
+                $span,
+                $wrapper;
 
-            $input.closest('div')
-                .addClass('validation-input-invalid')
-                .removeClass('validation-input-valid');
+            // textarea does not have wrapper div
+            if ($input.is('textarea')) {
+
+                $wrapper = $input;
+            } else {
+
+                $wrapper = $input.closest('div');
+            }
+
+            $wrapper.addClass('validation-input-invalid');
 
             if ($label.find('.validation-error-message').length===0) {
 
