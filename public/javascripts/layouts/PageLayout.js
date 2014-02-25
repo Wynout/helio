@@ -21,8 +21,9 @@ function (Marionette, Backbone, MsgBus, $, pageLayoutTemplate) {
     });
 
 
-    // Layout = ItemView + Regions
-    // Backbone.Marionette.Layout or Marionette.Layout ??
+    /**
+     * jQuery Mobile Page Layout
+     */
     var pageLayout = Backbone.Marionette.Layout.extend({
         template: pageLayoutTemplate,
         className: 'ui-responsive-panel',
@@ -41,16 +42,10 @@ function (Marionette, Backbone, MsgBus, $, pageLayoutTemplate) {
 
         initialize: function () {
 
-            // Reposition popup to center of screen on resize
+            var self = this;
             MsgBus.events.on('window:resize', function (dimensions) {
 
-                var $popup          = $('#popup-dialog'),
-                    $popupContainer = $popup.closest('div.ui-popup-container');
-
-                if ($popupContainer.hasClass('ui-popup-active')) {
-
-                   $popup.popup('reposition', {positionTo: 'window'}); // or 'origin'
-                }
+                self.onResize(dimensions);
             });
         },
 
@@ -62,6 +57,23 @@ function (Marionette, Backbone, MsgBus, $, pageLayoutTemplate) {
             if (this.options.navPanel) {
 
                 this.navPanel.show(this.options.navPanel);
+            }
+        },
+
+        onResize: function (dimensions) {
+
+            this.repositionPopup();
+        },
+
+        // Reposition popup to center of window on resize
+        repositionPopup: function () {
+
+            var $popup          = $(this.regions.popup),
+                $popupContainer = $popup.closest('div.ui-popup-container');
+
+            if ($popupContainer.hasClass('ui-popup-active')) {
+
+               $popup.popup('reposition', {positionTo: 'window'}); // or 'origin'
             }
         }
     });
