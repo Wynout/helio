@@ -38,6 +38,22 @@ function (Marionette, Backbone, MsgBus, $, pageLayoutTemplate) {
             },
             popup   : '#popup-dialog'
         },
+
+        initialize: function () {
+
+            // Reposition popup to center of screen on resize
+            MsgBus.events.on('window:resize', function (dimensions) {
+
+                var $popup          = $('#popup-dialog'),
+                    $popupContainer = $popup.closest('div.ui-popup-container');
+
+                if ($popupContainer.hasClass('ui-popup-active')) {
+
+                   $popup.popup('reposition', {positionTo: 'window'}); // or 'origin'
+                }
+            });
+        },
+
         onRender: function () {
 
             // Views for the regions are passed in via the options
