@@ -1,0 +1,36 @@
+/* should target desktop only */
+html {
+	overflow-y: -moz-scrollbars-vertical;
+	overflow-y: scroll;
+}
+body {
+	background-color: #252525;
+}
+
+
+/* Loader */
+.ui-icon-loading {
+	/* when imported and minified, relative path is lost */
+	background: url(/javascripts/bower_components/jquery-mobile/css/themes/default/images/ajax-loader.gif);
+}
+
+
+/* why use this? */
+textarea.ui-input-text {
+	/*height: inherit;*/
+	overflow: hidden;
+}
+
+
+/* popup content wrapper */
+.popup-content-wrapper {
+	min-width: 300px;
+	max-width: 600px;
+	padding: 10px 20px;
+}
+
+
+/* #header #title h1 span.title-text-hidden */
+.title-text-hidden {
+	opacity: 0;
+}

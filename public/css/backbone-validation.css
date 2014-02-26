@@ -1,0 +1,36 @@
+/* backbone.validation form input invalid */
+html body form div.validation-input-invalid,
+html body form textarea.validation-input-invalid {
+	box-shadow: 0 0 5px #e40c0c;
+}
+html body form div.validation-input-valid,
+html body form textarea.validation-input-valid {
+	box-shadow: 0 0 5px #009200;
+}
+/* form validation error message */
+.ui-mobile label .validation-error-message {
+	color: #ff3232;
+	font-size: 14px;
+	/*font-style: italic;*/
+	font-weight: normal;
+	padding-left: 10px;
+}
+
+
+/* backbone.validation form input invalid */
+html body form div.validation-input-invalid,
+html body form textarea.validation-input-invalid {
+	box-shadow: 0 0 5px #e40c0c;
+}
+html body form div.validation-input-valid,
+html body form textarea.validation-input-valid {
+	box-shadow: 0 0 5px #009200;
+}
+/* form validation error message */
+.ui-mobile label .validation-error-message {
+	color: #ff3232;
+	font-size: 14px;
+	/*font-style: italic;*/
+	font-weight: normal;
+	padding-left: 10px;
+}
