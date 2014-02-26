@@ -5,6 +5,7 @@
 */
 var gulp         = require('gulp'),
     plumber      = require('gulp-plumber'), // This plugin is fixing issue with Node Streams piping
+    filesize     = require('gulp-filesize'),
     watch        = require('gulp-watch'),
     nodemon      = require('gulp-nodemon'),
     bust         = require('gulp-buster'),
@@ -43,8 +44,10 @@ var gulp         = require('gulp'),
         .pipe(cssimport())
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(gulp.dest('public/build'))
+        .pipe(filesize()) // prints concatenated filesize
         .pipe(minifycss())
         .pipe(gulp.dest('public/build'))
+        .pipe(filesize()) // prints minified filesize
         .pipe(livereload(server))
         .pipe(notify({message: 'Styles task completed'}));
  });
@@ -65,8 +68,10 @@ gulp.task('rjs', function () {
 
     return rjs(options)
         .pipe(plumber())
+        .pipe(filesize()) // prints combined main.js filesize
         .pipe(uglify({ outSourceMap : true }))
-        .pipe(gulp.dest(''))
+        .pipe(filesize()) // prints uglified main.js filesize
+        .pipe(gulp.dest('.'))
         .pipe(notify({message: 'Rjs task completed'}));
 });
 
