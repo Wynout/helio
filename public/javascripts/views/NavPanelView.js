@@ -4,14 +4,27 @@
 |------------------------------------------------------------------------------
 */
 define([
+    'jquery',
     'marionette',
     'msgbus',
-    'jquery',
     'hbs!views/NavPanelViewTemplate',
-    'hbs!views/NavPanelWineViewTemplate'
+    'hbs!views/NavPanelWineViewTemplate',
+    'i18n!nls/navPanelDefault',
+    'i18n!nls/navPanelWine'
 ],
-function (Marionette, MsgBus, $, NavPanelViewTemplate, NavPanelWineViewTemplate) {
+function (
+    $,
+    Marionette,
+    MsgBus,
+    NavPanelViewTemplate,
+    NavPanelWineViewTemplate,
+    nlsPanelDefault,
+    nlsPanelWine) {
 
+
+    /**
+     * Navigation Panel Base View
+     */
     var BaseView = Marionette.ItemView.extend({
 
         initialize: function () {
@@ -55,17 +68,35 @@ function (Marionette, MsgBus, $, NavPanelViewTemplate, NavPanelWineViewTemplate)
 
     });
 
+
+    /**
+     * Default Navigation View
+     */
     var DefaultView = BaseView.extend({
-        template: NavPanelViewTemplate
+        template: NavPanelViewTemplate,
+
+        serializeData: function () {
+
+            return nlsPanelDefault;
+        }
     });
 
+
+    /**
+     * Wine Navigation View
+     */
     var WineView = BaseView.extend({
         template: NavPanelWineViewTemplate,
+
+        serializeData: function () {
+
+            return nlsPanelWine;
+        }
     });
+
 
     return {
         default: DefaultView,
         wine: WineView
     };
-
 });

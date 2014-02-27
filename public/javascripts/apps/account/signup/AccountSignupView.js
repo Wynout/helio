@@ -21,7 +21,7 @@ function (
     MsgBus,
     AccountSignupTouView,
     AccountSignupTemplate,
-    signup) {
+    nlsSignup) {
 
 
     /**
@@ -100,7 +100,7 @@ function (
 
         serializeData: function () {
 
-            return _.extend({}, signup);
+            return _.extend({}, nlsSignup);
         },
 
         // Called by the region, after the region has added the view to the dom
