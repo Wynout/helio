@@ -3,7 +3,14 @@
 | Account Entity                                                     Account.js
 |------------------------------------------------------------------------------
 */
-define(['jquery', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, Backbone, MsgBus, Xhr) {
+define([
+    'jquery',
+    'backbone',
+    'msgbus',
+    'entities/xhr/xhr',
+    'i18n!nls/account',
+],
+function ($, Backbone, MsgBus, Xhr, account) {
 
 
     /**
@@ -25,31 +32,32 @@ define(['jquery', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, Backbo
         validation: {
             username: {
                 required: true,
-                msg: 'You must enter an username'
+                msg: account.validation.invalid.username
             },
             name: {
                 required: true,
-                msg: 'You must enter a name'
+                msg: account.validation.invalid.name
             },
             password:{
                 required: true,
                 minLength: 8,
-                msg: 'Password must be at least 8 characters'
+                msg: account.validation.invalid.password
             },
             repeatPassword: {
                 equalTo: 'password',
                 minLength: 8,
-                msg: 'The passwords does not match'
+                msg: account.validation.invalid.repeatPassword
             },
             email: [{
                 required: true,
-                msg: 'You must enter an email address'
+                msg: account.validation.invalid.emailRequired
             }, {
                 pattern: 'email',
-                msg: 'You must enter a valid email'
+                msg: account.validation.invalid.emailInvalid
             }],
             termsOfUse: {
-                acceptance: true
+                acceptance: true,
+                msg: account.validation.invalid.termsOfUse
             }
         }
     });

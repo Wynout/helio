@@ -4,20 +4,24 @@
 |------------------------------------------------------------------------------
 */
 define([
+    'underscore',
     'backbone',
     'marionette',
     'msgbus',
     'apps/account/signup/AccountSignupTouView',
     'hbs!apps/account/signup/AccountSignupTemplate',
+    'i18n!nls/signup',
     'backbone.stickit',
     'mixins/backbone.validation'
 ],
 function (
+    _,
     Backbone,
     Marionette,
     MsgBus,
     AccountSignupTouView,
-    AccountSignupTemplate) {
+    AccountSignupTemplate,
+    signup) {
 
 
     /**
@@ -92,6 +96,11 @@ function (
             // to also hold invalid values, otherwise, we might be validating
             // something else than the user has entered in the form.
             Backbone.Validation.bind(this, {forceUpdate: true});
+        },
+
+        serializeData: function () {
+
+            return _.extend({}, signup);
         },
 
         // Called by the region, after the region has added the view to the dom

@@ -1,30 +1,30 @@
-<h1>Signup</h1>
+<h1>{{headers.signup}}</h1>
 
 <form action="#signup">
 
-	<label for="username">Username:</label>
-	<input type="text" name="username" id="username" value="{{username}}" placeholder="Enter your desired username" data-clear-btn="true">
+	<label for="username">{{labels.username}}:</label>
+	<input type="text" name="username" id="username" value="{{username}}" placeholder="{{placeholders.username}}" data-clear-btn="true">
 
-	<label for="name">Name:</label>
-	<input type="text" name="name" id="name" value="{{name}}" placeholder="Enter your name" data-clear-btn="true">
+	<label for="name">{{labels.name}}:</label>
+	<input type="text" name="name" id="name" value="{{name}}" placeholder="{{placeholders.name}}" data-clear-btn="true">
 
-	<label for="email">Email:</label>
-	<input type="text" name="email" id="email" value="{{email}}" placeholder="Enter your email address" data-clear-btn="true">
+	<label for="email">{{labels.email}}:</label>
+	<input type="text" name="email" id="email" value="{{email}}" placeholder="{{placeholders.email}}" data-clear-btn="true">
 
-	<label for="password">Password:</label>
-	<input type="password" name="password" id="password" value="{{password}}" placeholder="Enter a password" data-clear-btn="true">
+	<label for="password">{{labels.password}}:</label>
+	<input type="password" name="password" id="password" value="{{password}}" placeholder="{{placeholders.password}}" data-clear-btn="true">
 
-	<label for="repeatPassword">Repeat password:</label>
-	<input type="password" name="repeatPassword" id="repeatPassword" value="{{repeatPassword}}" placeholder="Repeat password" data-clear-btn="true">
+	<label for="repeatPassword">{{labels.repeatPassword}}:</label>
+	<input type="password" name="repeatPassword" id="repeatPassword" value="{{repeatPassword}}" placeholder="{{placeholders.repeatPassword}}" data-clear-btn="true">
 
-	<label for="termsOfUse">I agree to the <a href="#" id="termsOfUsePopup">terms of use</a></label>
+	<label for="termsOfUse">{{labels.touAgree}} <a href="#" id="termsOfUsePopup">{{labels.tou}}</a></label>
 	<input type="checkbox" name="termsOfUse" id="termsOfUse" data-mini="true">
 
 </form>
 
 <div class="ui-grid-a ui-responsive">
-	<div class="ui-block-a"><a href="#" class="signup ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">Signup</a></div>
-	<div class="ui-block-b"><a href="#" class="cancel ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete" data-rel="back">Cancel</a>
+	<div class="ui-block-a"><a href="#" class="signup ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">{{buttons.signup}}</a></div>
+	<div class="ui-block-b"><a href="#" class="cancel ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete" data-rel="back">{{buttons.cancel}}</a>
 	</div>
 </div>
 
