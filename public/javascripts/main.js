@@ -24,7 +24,7 @@ require.config({
         'jquery.mobile-config': 'config/jquery.mobile-config',
         'jquery.mobile'       : './bower_components/jquery-mobile/dist/jquery.mobile' // built by grunt
     },
-    locale: window.localStorage.getItem('locale') || 'nl-nl',
+    locale: window.localStorage.getItem('locale') || 'en-gb',
     hbs: {
         helpers          : true,  // default: true
         i18n             : false, // default: false
