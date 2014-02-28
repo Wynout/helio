@@ -10,14 +10,6 @@ define({
             termsOfUse: 'De gebruiksrechtovereenkomst moet worden geaccepteerd'
         }
     },
-    xhrErrorTypes: {
-        // authentication
-        'authentication': 'Authenticatie',
-        // token
-        'authorization': 'Autorisatie',
-        // wines
-        'retrieval': 'Ophalen'
-    },
     xhrErrorMessages: {
         // authentication
         'username is required': 'Gebruikersnaam is verplicht',

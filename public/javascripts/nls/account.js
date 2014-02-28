@@ -11,14 +11,6 @@ define({
                 termsOfUse: 'Terms of use must be accepted'
             }
         },
-        xhrErrorTypes: {
-            // authentication
-            'authentication': 'Authentication',
-            // token
-            'authorization': 'Authorization',
-            // wines
-            'retrieval': 'Retrieval'
-        },
         xhrErrorMessages: {
             // authentication
             'username is required': 'Username is required',

@@ -23,11 +23,6 @@ define(['underscore', 'i18n!nls/account'], function (_, nlsAccount) {
                 },
                 response = _.extend(defaults, jqXHR.responseJSON);
 
-            // Set error.type translation
-            if (_.has(nlsAccount.xhrErrorTypes, response.error.type)) {
-
-                response.error.type = nlsAccount.xhrErrorTypes[response.error.type];
-            }
             // Set error.message translation
             if (_.has(nlsAccount.xhrErrorMessages, response.error.message)) {
 
