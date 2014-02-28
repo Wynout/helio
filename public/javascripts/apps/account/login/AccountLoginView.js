@@ -4,20 +4,24 @@
 |------------------------------------------------------------------------------
 */
 define([
+    'jquery',
     'backbone',
     'marionette',
     'msgbus',
     'hbs!apps/account/login/AccountLoginTemplate',
     'hbs!apps/account/login/AccountLoginMessageTemplate',
-    'hbs!apps/account/login/AccountLoginErrorTemplate'
+    'hbs!apps/account/login/AccountLoginErrorTemplate',
+    'i18n!nls/accountLogin'
 ],
 function (
+    $,
     Backbone,
     Marionette,
     MsgBus,
     accountLoginTemplate,
     accountLoginMessageTemplate,
-    accountLoginErrorTemplate) {
+    accountLoginErrorTemplate,
+    nlsAccountLogin) {
 
 
     /**
@@ -28,10 +32,10 @@ function (
 
         serializeData: function () {
 
-            return {
-                error: this.options.error,
-                account: MsgBus.reqres.request('account:info')
-            };
+            return $.extend(true,
+                nlsAccountLogin,
+                MsgBus.reqres.request('account:info')
+            );
         },
     });
 
@@ -44,11 +48,12 @@ function (
 
         serializeData: function () {
 
-            return {
-                error: this.options.error,
-                account: MsgBus.reqres.request('account:info')
-            };
-        },
+            return $.extend(true,
+                this.options,
+                nlsAccountLogin,
+                MsgBus.reqres.request('account:info')
+            );
+        }
     });
 
 
@@ -68,20 +73,21 @@ function (
             'click .cancel-login'            : 'cancelLogin'
         },
 
+        // Login on enter press
         keypress: function (event) {
 
-            if (event.keyCode!==13) {
+            if (event.keyCode===13) {
 
-                return;
+                this.validateCredentials();
             }
-            this.validateCredentials();
         },
 
         serializeData: function () {
 
-            return {
-                account: MsgBus.reqres.request('account:info')
-            };
+            return $.extend(true,
+                nlsAccountLogin,
+                MsgBus.reqres.request('account:info')
+            );
         },
 
         onRender: function () {

@@ -10,7 +10,7 @@ define([
     'msgbus',
     'apps/account/signup/AccountSignupTouView',
     'hbs!apps/account/signup/AccountSignupTemplate',
-    'i18n!nls/signup',
+    'i18n!nls/accountSignup',
     'backbone.stickit',
     'mixins/backbone.validation'
 ],
