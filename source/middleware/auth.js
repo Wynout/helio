@@ -11,7 +11,7 @@ function createToken(req, res, next) {
     var authSignKey = req.app.get('token auth sign key');
     if (authSignKey===undefined || authSignKey.length===0) {
 
-        return next({type: 'authorization', status: 500, message: 'Authorization sign key missing'});
+        return next({type: 'authorization', status: 500, message: 'authorization sign key missing'});
     }
 
     var username  = req.user.username,
@@ -35,14 +35,14 @@ function validateToken(req, res, next) {
 
     if (parts.length!==3) {
 
-        return next({type: 'authorization', status: 400, message: 'Bad syntax'});
+        return next({type: 'authorization', status: 400, message: 'bad syntax'});
     }
 
     var authSignKey     = req.app.get('token auth sign key');
     var tokenTtlMinutes = req.app.get('token ttl minutes');
     if (authSignKey===undefined || authSignKey.length===0) {
 
-        return next({type: 'authorization', status: 500, message: 'Authorization sign key missing'});
+        return next({type: 'authorization', status: 500, message: 'authorization sign key missing'});
     }
 
     var username     = parts[0],
@@ -53,7 +53,7 @@ function validateToken(req, res, next) {
 
     if (receivedHmac!==computedHmac) {
 
-        return next({type: 'authorization', status: 401, message: 'Unauthorized access'});
+        return next({type: 'authorization', status: 401, message: 'unauthorized access'});
     }
 
     var currentTimestamp  = moment(),
@@ -62,7 +62,7 @@ function validateToken(req, res, next) {
 
     if ( diffInMinutes > tokenTtlMinutes) {
 
-        return next({type: 'authorization', status: 401, message: 'Authorization expired'});
+        return next({type: 'authorization', status: 401, message: 'authorization expired'});
     }
 
     next();

@@ -3,7 +3,7 @@
 | Xhr Module                                                             xhr.js
 |------------------------------------------------------------------------------
 */
-define(['underscore'], function (_) {
+define(['underscore', 'i18n!nls/account'], function (_, nlsAccount) {
 
     var xhr = {
         /**
@@ -15,15 +15,25 @@ define(['underscore'], function (_) {
         errorHandler: function (jqXHR) {
 
             var defaults = {
-                error: {
-                    status: jqXHR.status,
-                    type: 'unknown',
-                    message: jqXHR.statusText
-                }
-            };
-            var response = _.extend(defaults, jqXHR.responseJSON);
+                    error: {
+                        status: jqXHR.status,
+                        type: 'unknown',
+                        message: jqXHR.statusText
+                    }
+                },
+                response = _.extend(defaults, jqXHR.responseJSON);
 
-            console.log('xhr errorHandler: ', jqXHR.status, jqXHR.statusText, jqXHR.responseJSON);
+            // Set error.type translation
+            if (_.has(nlsAccount.xhrErrorTypes, response.error.type)) {
+
+                response.error.type = nlsAccount.xhrErrorTypes[response.error.type];
+            }
+            // Set error.message translation
+            if (_.has(nlsAccount.xhrErrorMessages, response.error.message)) {
+
+                response.error.message = nlsAccount.xhrErrorMessages[response.error.message];
+            }
+
             return response.error;
         }
     };

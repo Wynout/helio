@@ -8,9 +8,9 @@ define([
     'backbone',
     'msgbus',
     'entities/xhr/xhr',
-    'i18n!nls/account',
+    'i18n!nls/account'
 ],
-function ($, Backbone, MsgBus, Xhr, account) {
+function ($, Backbone, MsgBus, Xhr, nlsAccount) {
 
 
     /**
@@ -32,32 +32,32 @@ function ($, Backbone, MsgBus, Xhr, account) {
         validation: {
             username: {
                 required: true,
-                msg: account.validation.invalid.username
+                msg: nlsAccount.validation.invalid.username
             },
             name: {
                 required: true,
-                msg: account.validation.invalid.name
+                msg: nlsAccount.validation.invalid.name
             },
             password:{
                 required: true,
                 minLength: 8,
-                msg: account.validation.invalid.password
+                msg: nlsAccount.validation.invalid.password
             },
             repeatPassword: {
                 equalTo: 'password',
                 minLength: 8,
-                msg: account.validation.invalid.repeatPassword
+                msg: nlsAccount.validation.invalid.repeatPassword
             },
             email: [{
                 required: true,
-                msg: account.validation.invalid.emailRequired
+                msg: nlsAccount.validation.invalid.emailRequired
             }, {
                 pattern: 'email',
-                msg: account.validation.invalid.emailInvalid
+                msg: nlsAccount.validation.invalid.emailInvalid
             }],
             termsOfUse: {
                 acceptance: true,
-                msg: account.validation.invalid.termsOfUse
+                msg: nlsAccount.validation.invalid.termsOfUse
             }
         }
     });
