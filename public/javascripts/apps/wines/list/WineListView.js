@@ -3,8 +3,10 @@
 | Wine List View                                                WineListView.js
 |------------------------------------------------------------------------------
 */
-define(['marionette', 'hbs!apps/wines/list/WineListItemTemplate'],
-	function (Marionette, WineListItemTemplate) {
+define([
+    'marionette',
+    'hbs!apps/wines/list/WineListItemTemplate'],
+function (Marionette, WineListItemTemplate) {
 
 	var WineListItemView = Marionette.ItemView.extend({
 		template: WineListItemTemplate,

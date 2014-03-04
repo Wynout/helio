@@ -6,8 +6,7 @@
 define([
 	'marionette',
 	'hbs!apps/wines/static/WineHomeTemplate',
-	'hbs!apps/wines/static/WineAboutTemplate'
-	],
+	'hbs!apps/wines/static/WineAboutTemplate'],
 function (Marionette, WineHomeTemplate, WineAboutTemplate) {
 
 	var HomeView = Marionette.ItemView.extend({

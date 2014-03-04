@@ -8,8 +8,7 @@ define([
     'msgbus',
     'hbs!apps/wines/delete/WineDeleteConfirmTemplate',
     'hbs!apps/wines/delete/WineDeleteSuccessTemplate',
-    'hbs!apps/wines/delete/WineDeleteErrorTemplate'
-],
+    'hbs!apps/wines/delete/WineDeleteErrorTemplate'],
 function (
     Marionette,
     MsgBus,
