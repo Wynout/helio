@@ -3,7 +3,7 @@
 | Xhr Module                                                             xhr.js
 |------------------------------------------------------------------------------
 */
-define(['underscore', 'i18n!nls/account'], function (_, nlsAccount) {
+define(['underscore', 'i18n!nls/xhr'], function (_, nlsXhr) {
 
     var xhr = {
         /**
@@ -24,9 +24,9 @@ define(['underscore', 'i18n!nls/account'], function (_, nlsAccount) {
                 response = _.extend(defaults, jqXHR.responseJSON);
 
             // Set error.message translation
-            if (_.has(nlsAccount.xhrErrorMessages, response.error.message)) {
+            if (_.has(nlsXhr.xhrErrorMessages, response.error.message)) {
 
-                response.error.message = nlsAccount.xhrErrorMessages[response.error.message];
+                response.error.message = nlsXhr.xhrErrorMessages[response.error.message];
             }
 
             return response.error;
