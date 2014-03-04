@@ -8,8 +8,7 @@ define([
     'backbone',
     'msgbus',
     'entities/xhr/xhr',
-    'i18n!nls/account'
-],
+    'i18n!nls/account'],
 function ($, Backbone, MsgBus, Xhr, nlsAccount) {
 
 

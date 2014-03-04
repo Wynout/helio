@@ -3,7 +3,14 @@
 | Wine Entity                                                           Wine.js
 |------------------------------------------------------------------------------
 */
-define(['jquery', 'underscore', 'backbone', 'msgbus', 'entities/xhr/xhr'], function ($, _, Backbone, MsgBus, Xhr) {
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'msgbus',
+    'entities/xhr/xhr',
+    'i18n!nls/wine'],
+function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
 
     /**
      * Wine Model
@@ -31,27 +38,27 @@ define(['jquery', 'underscore', 'backbone', 'msgbus', 'entities/xhr/xhr'], funct
         validation: {
             name: {
                 required: true,
-                msg: 'You must enter a name'
+                msg: nlsWine.validation.invalid.name
             },
             grapes: {
                 required: true,
-                msg: 'You must enter a grape variety'
+                msg: nlsWine.validation.invalid.grapes
             },
             country: {
                 required: true,
-                msg: 'You must enter a country'
+                msg: nlsWine.validation.invalid.country
             },
             region: {
                 required: true,
-                msg: 'You must enter a region'
+                msg: nlsWine.validation.invalid.region
             },
             year: {
                 range: [2007, 2013],
-                msg: 'You must enter a production year between 2007 and 2013'
+                msg: nlsWine.validation.invalid.year
             },
             description: {
                 required: true,
-                msg: 'You must enter a description'
+                msg: nlsWine.validation.invalid.description
             }
         }
     });
