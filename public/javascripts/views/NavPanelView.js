@@ -9,17 +9,14 @@ define([
     'msgbus',
     'hbs!views/NavPanelViewTemplate',
     'hbs!views/NavPanelWineViewTemplate',
-    'i18n!nls/navPanelDefault',
-    'i18n!nls/navPanelWine'
-],
+    'i18n!nls/navPanel'],
 function (
     $,
     Marionette,
     MsgBus,
     NavPanelViewTemplate,
     NavPanelWineViewTemplate,
-    nlsPanelDefault,
-    nlsPanelWine) {
+    nlsPanel) {
 
 
     /**
@@ -77,7 +74,7 @@ function (
 
         serializeData: function () {
 
-            return nlsPanelDefault;
+            return nlsPanel.default;
         }
     });
 
@@ -90,7 +87,7 @@ function (
 
         serializeData: function () {
 
-            return nlsPanelWine;
+            return nlsPanel.wine;
         }
     });
 
