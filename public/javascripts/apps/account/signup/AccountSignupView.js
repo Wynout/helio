@@ -10,10 +10,9 @@ define([
     'msgbus',
     'apps/account/signup/AccountSignupTouView',
     'hbs!apps/account/signup/AccountSignupTemplate',
-    'i18n!nls/accountSignup',
+    'i18n!nls/account',
     'backbone.stickit',
-    'mixins/backbone.validation'
-],
+    'mixins/backbone.validation'],
 function (
     _,
     Backbone,
@@ -21,7 +20,7 @@ function (
     MsgBus,
     AccountSignupTouView,
     AccountSignupTemplate,
-    nlsSignup) {
+    nlsAccount) {
 
 
     /**
@@ -100,7 +99,7 @@ function (
 
         serializeData: function () {
 
-            return _.extend({}, nlsSignup);
+            return _.extend({}, nlsAccount.signup);
         },
 
         // Called by the region, after the region has added the view to the dom

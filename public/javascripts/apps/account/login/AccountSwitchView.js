@@ -5,8 +5,7 @@
 */
 define([
     'marionette',
-    'hbs!apps/account/login/AccountSwitchTemplate'
-],
+    'hbs!apps/account/login/AccountSwitchTemplate'],
 function (
     Marionette,
     accountSwitchTemplate) {

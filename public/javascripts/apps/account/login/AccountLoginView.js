@@ -11,8 +11,7 @@ define([
     'hbs!apps/account/login/AccountLoginTemplate',
     'hbs!apps/account/login/AccountLoginMessageTemplate',
     'hbs!apps/account/login/AccountLoginErrorTemplate',
-    'i18n!nls/accountLogin'
-],
+    'i18n!nls/account'],
 function (
     $,
     Backbone,
@@ -21,7 +20,7 @@ function (
     accountLoginTemplate,
     accountLoginMessageTemplate,
     accountLoginErrorTemplate,
-    nlsAccountLogin) {
+    nlsAccount) {
 
 
     /**
@@ -33,7 +32,7 @@ function (
         serializeData: function () {
 
             return $.extend(true,
-                nlsAccountLogin,
+                nlsAccount.login,
                 MsgBus.reqres.request('account:info')
             );
         },
@@ -50,7 +49,7 @@ function (
 
             return $.extend(true,
                 this.options,
-                nlsAccountLogin,
+                nlsAccount.login,
                 MsgBus.reqres.request('account:info')
             );
         }
@@ -85,7 +84,7 @@ function (
         serializeData: function () {
 
             return $.extend(true,
-                nlsAccountLogin,
+                nlsAccount.login,
                 MsgBus.reqres.request('account:info')
             );
         },

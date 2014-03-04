@@ -5,8 +5,7 @@
 */
 define([
     'marionette',
-    'hbs!apps/account/signup/AccountSignupTouTemplate'
-],
+    'hbs!apps/account/signup/AccountSignupTouTemplate'],
 function (
     Marionette,
     accountSignupTouTemplate) {
