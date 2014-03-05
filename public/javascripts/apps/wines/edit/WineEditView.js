@@ -4,20 +4,24 @@
 |------------------------------------------------------------------------------
 */
 define([
+    'jquery',
     'backbone',
     'marionette',
     'msgbus',
     'hbs!apps/wines/edit/WineEditTemplate',
     'hbs!apps/wines/edit/WineEditSuccessTemplate',
     'hbs!apps/wines/edit/WineEditErrorTemplate',
+    'i18n!nls/wine',
     'mixins/backbone.validation'],
 function (
-        Backbone,
-        Marionette,
-        MsgBus,
-        wineEditTemplate,
-        wineEditSuccessTemplate,
-        wineEditErrorTemplate) {
+    $,
+    Backbone,
+    Marionette,
+    MsgBus,
+    wineEditTemplate,
+    wineEditSuccessTemplate,
+    wineEditErrorTemplate,
+    nlsAccount) {
 
     /**
      * Message shown when wine successfully saved
@@ -71,6 +75,14 @@ function (
                     self.saveResult.show(errorView);
                 });
             }
+        },
+
+        serializeData: function () {
+
+            return $.extend(
+                this.model.toJSON(),
+                nlsAccount.edit
+            );
         },
 
         // Called when the view has been closed.

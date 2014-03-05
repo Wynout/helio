@@ -9,6 +9,30 @@ define({
                 year: 'You must enter a production year between 2007 and 2013',
                 description: 'You must enter a description'
             }
+        },
+        edit: {
+            labels: {
+                id: 'Id',
+                name: 'Name',
+                grapes: 'Grapes',
+                country: 'Country',
+                region: 'Region',
+                year: 'Year',
+                description: 'Description'
+            },
+            placeholders: {
+                id: 'id',
+                name: 'Name of wine',
+                grapes: 'Grape variety',
+                country: 'Country of production',
+                region: 'Region of production',
+                year: 'Year of production',
+                description: 'Wine description'
+            },
+            buttons: {
+                save: 'Save',
+                delete: 'Delete'
+            }
         }
     },
     'nl-nl': true

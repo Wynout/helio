@@ -13,8 +13,8 @@ define([
     'views/NavPanelView',
     'views/xhrErrorView',
     'jquery.mobile-config',
-    'jquery.mobile'
-], function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView, XhrErrorView) {
+    'jquery.mobile'],
+function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView, XhrErrorView) {
 
     /**
      * Create a composite application instance
