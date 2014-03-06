@@ -116,6 +116,11 @@ Install npm dependencies,
 $ npm install
 ```
 
+Install Bower package manager
+```
+$ npm install -g bower
+```
+
 Install bower dependencies,
 
 ```
