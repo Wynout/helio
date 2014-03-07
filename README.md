@@ -82,7 +82,8 @@ content here
 
 #### Install nodejs
 ```
-$ sudo apt-get install nodejs
+$ npm install -g n
+$ n 0.8.22
 ```
 
 #### Install Node Packaged Modules
@@ -146,6 +147,20 @@ $ openssl req -x509 -new -key key.pem > key-cert.pem
 
 ```
 Now, you can use key.pem and key-cert.pem in the options you pass to createServer.
+
+
+### Install Grunt ??
+```
+$ npm install -g grunt-cli
+```
+
+
+### Build jQuery Mobile
+```
+$ cd public/javascripts/bower_components/jquery-mobile
+$ grunt
+```
+
 
 
 <a name="start-server"/>
