@@ -1,11 +1,7 @@
 define(['jquery'], function ($) {
 
-    console.log('jquery.mobile-config.js');
-
+    /*jslint browser:true */
     $(document).on('mobileinit', function () {
-
-
-        console.log('jquery.mobile-config.js mobileinit');
 
         $.mobile.ajaxEnabled           = false;
         $.mobile.linkBindingEnabled    = false;

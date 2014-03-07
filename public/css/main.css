@@ -7,36 +7,7 @@
 /**
  * jQuery Mobile
  */
-@import url(../javascripts/bower_components/jquery-mobile/css/themes/default/jquery.mobile.icons.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/themes/default/jquery.mobile.theme.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.core.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.transition.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.transition.visuals.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.fieldcontain.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.grid.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.fixedToolbar.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.navbar.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.button.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.collapsible.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.controlgroup.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.dialog.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.popup.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.popup.arrow.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.checkboxradio.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.select.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.listview.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.filterable.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.slider.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.slider.tooltip.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.rangeslider.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.textinput.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.textinput.autogrow.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.forms.flipswitch.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.table.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.table.columntoggle.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.table.reflow.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.panel.css);
-@import url(../javascripts/bower_components/jquery-mobile/css/structure/jquery.mobile.tabs.css);
+@import url(../build/jquery-mobile/jquery.mobile-1.4.2.css);
 
 
 /**

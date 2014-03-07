@@ -82,8 +82,17 @@ content here
 
 #### Install nodejs
 ```
-$ npm install -g n
-$ n 0.8.22
+$ sudo apt-get install nodejs
+```
+
+Obtaining a recent version of Node or installing on older Ubuntu and other apt-based distributions may require a few extra steps. Example install:
+
+```sh
+$ sudo apt-get update
+$ sudo apt-get install -y python-software-properties python g++ make
+$ sudo add-apt-repository ppa:chris-lea/node.js
+$ sudo apt-get update
+$ sudo apt-get install nodejs
 ```
 
 #### Install Node Packaged Modules

@@ -8,13 +8,6 @@ body {
 }
 
 
-/* Loader */
-.ui-icon-loading {
-	/* when imported and minified, relative path is lost */
-	background: url(/javascripts/bower_components/jquery-mobile/css/themes/default/images/ajax-loader.gif);
-}
-
-
 /* why use this? */
 textarea.ui-input-text {
 	/*height: inherit;*/

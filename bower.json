@@ -9,7 +9,6 @@
     "backbone.babysitter": "~0.0.6",
     "backbone.wreqr": "~0.2.0",
     "jquery": "~2.1.0",
-    "jquery-mobile": "~1.4.0",
     "marionette": "~1.5.1",
     "r.js": "2.1.8",
     "requirejs": "~2.1.5",

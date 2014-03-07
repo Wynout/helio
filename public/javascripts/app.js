@@ -11,9 +11,7 @@ define([
     'layouts/PageLayout',
     'views/HeaderView',
     'views/NavPanelView',
-    'views/xhrErrorView',
-    'jquery.mobile-config',
-    'jquery.mobile'],
+    'views/xhrErrorView'],
 function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView, XhrErrorView) {
 
     /**

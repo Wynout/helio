@@ -1,7 +1,8 @@
 **/*.DS_store
 node_modules
 public/javascripts/bower_components
-public/build
+public/build/*
+!public/build/jquery-mobile
 *.log
 ssl/key-cert.pem
 ssl/key.pem
