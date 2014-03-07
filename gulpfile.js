@@ -130,12 +130,9 @@ gulp.task('dev', function () {
 
 
 /**
- * The default task
- *
- * Note: It’s advised against using gulp.start in favour of executing tasks in the dependency array,
- * but in this scenario we need to ensure that all is done before calling cachebusting
+ * The default task is a build task.
+ * cachebusting task needs to run separate
  */
 gulp.task('default', ['styles', 'rjs'], function () {
 
-    gulp.start('cachebusting');
 });

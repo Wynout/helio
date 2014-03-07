@@ -25,10 +25,10 @@ require.config({
         'jquery.mobile'       : './../build/jquery-mobile/jquery.mobile-1.4.2'
     },
 
-    shim: {
-        'jquery.mobile-config': ['jquery'],
-        'jquery.mobile': ['jquery', 'jquery.mobile-config']
-    },
+    // shim: {
+    //     'jquery.mobile-config': ['jquery'],
+    //     'jquery.mobile': ['jquery', 'jquery.mobile-config']
+    // },
 
     // Disabled because requirejs optimizer cannot be evauluated correctly
     // locale: window.localStorage.getItem('locale') || 'en-gb',
@@ -43,6 +43,7 @@ require.config({
 }, require([
     'jquery',
     'app',
+    'jquery.mobile-config',
     'jquery.mobile',
     'auth',
     'apps/wines/WineApp',
