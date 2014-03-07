@@ -10,7 +10,7 @@ body {
 /* Loader */
 .ui-icon-loading {
 	/* when imported and minified, relative path is lost */
-	background: url(jquery-mobile/images/ajax-loader.gif);
+	background: url(../build/jquery-mobile/images/ajax-loader.gif);
 }
 
 /* why use this? */
