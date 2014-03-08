@@ -1,5 +1,6 @@
 define(['jquery'], function ($) {
 
+
     /*jslint browser:true */
     $(document).on('mobileinit', function () {
 

@@ -8,7 +8,7 @@ require.config({
     baseURL: 'public/javascripts/bower_components',
 
     paths: {
-        jquery                : './bower_components/jquery/dist/jquery',
+        jquery                : './bower_components/jquery/jquery',
         underscore            : './bower_components/underscore-amd/underscore',
         backbone              : './bower_components/backbone-amd/backbone',
         'backbone.wreqr'      : './bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
@@ -25,10 +25,10 @@ require.config({
         'jquery.mobile'       : './../build/jquery-mobile/jquery.mobile-1.4.2'
     },
 
-    // shim: {
-    //     'jquery.mobile-config': ['jquery'],
-    //     'jquery.mobile': ['jquery', 'jquery.mobile-config']
-    // },
+    shim: {
+        'jquery.mobile-config': ['jquery'],
+        'jquery.mobile': ['jquery', 'jquery.mobile-config']
+    },
 
     // Disabled because requirejs optimizer cannot be evauluated correctly
     // locale: window.localStorage.getItem('locale') || 'en-gb',

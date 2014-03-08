@@ -34,7 +34,6 @@ function (Marionette, MsgBus, WineDeleteController, WineEditController, WineList
      */
     MsgBus.commands.setHandler('wine:routes', function () {
 
-        console.log('starting wine routes');
         return new WineRouter({
             controller: API
         });
@@ -55,7 +54,7 @@ function (Marionette, MsgBus, WineDeleteController, WineEditController, WineList
      * Subscribe to event, delete wine confirmation dialog
      */
     MsgBus.events.on('wine:delete:confirm', function (model) {
-        console.log('vent on wine:delete:confirm');
+
         API.deleteWineConfirm(model);
     });
 

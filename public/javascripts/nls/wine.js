@@ -31,7 +31,7 @@ define({
             },
             buttons: {
                 save: 'Save',
-                delete: 'Delete'
+                'delete': 'Delete'
             }
         }
     },

@@ -1,5 +1,5 @@
 define({
-    default: {
+    standard: {
         items: {
             close: 'Sluiten',
             home: 'Home',

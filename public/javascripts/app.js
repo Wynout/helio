@@ -11,7 +11,12 @@ define([
     'layouts/PageLayout',
     'views/HeaderView',
     'views/NavPanelView',
-    'views/xhrErrorView'],
+    'views/xhrErrorView',
+
+'jquery.mobile-config',
+    'jquery.mobile'
+
+    ],
 function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView, XhrErrorView) {
 
     /**
@@ -126,11 +131,11 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
         // todo: use extend to override default regions
         if (!regions.header) {
 
-            regions.header = new HeaderView.default();
+            regions.header = new HeaderView.standard();
         }
         if (!regions.navPanel) {
 
-            regions.navPanel = new NavPanelView.default();
+            regions.navPanel = new NavPanelView.standard();
         }
         var pageLayout = new PageLayout(regions);
         App.changePage(pageLayout);
@@ -176,7 +181,7 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
     App.on('initialize:after', function () {
         // Start listening for hash changes after all initializers have finished
         if (Backbone.history) {
-            console.log('Backbone.history.start();');
+
             Backbone.history.start();
         }
     });

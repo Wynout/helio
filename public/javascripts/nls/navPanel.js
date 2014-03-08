@@ -1,6 +1,6 @@
 define({
     root: {
-        default: {
+        standard: {
             items: {
                 close: 'Close',
                 home: 'Home',

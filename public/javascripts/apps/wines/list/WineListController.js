@@ -30,7 +30,7 @@ function (MsgBus, WineListView, NavPanelView) {
         _showWines: function (wines) {
 
             var regions = {
-                // header  : new App.HeaderView.default(),
+                // header  : new App.HeaderView.standard(),
                 content : new WineListView({collection: wines}),
                 navPanel: new NavPanelView.wine()
             };

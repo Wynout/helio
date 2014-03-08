@@ -46,12 +46,12 @@ function (Marionette, MsgBus, $, headerViewTemplate) {
         }
     });
 
-    var DefaultView = BaseView.extend({
+    var StandardView = BaseView.extend({
         template: headerViewTemplate,
     });
 
     return {
-        default: DefaultView
+        standard: StandardView
     };
 
 });

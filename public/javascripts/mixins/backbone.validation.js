@@ -76,7 +76,7 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
 
             if ($label.find('.validation-error-message').length===0) {
 
-                $span = $('<span></span>', {class: 'validation-error-message', text: error});
+                $span = $('<span></span>', {'class': 'validation-error-message', text: error});
                 $label.append($span);
             }
         }

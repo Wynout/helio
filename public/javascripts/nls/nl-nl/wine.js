@@ -30,7 +30,7 @@ define({
         },
         buttons: {
             save: 'Opslaan',
-            delete: 'Verwijder'
+            'delete': 'Verwijder'
         }
     }
 });

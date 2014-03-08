@@ -29,7 +29,6 @@ function (Marionette, MsgBus, AccountSignupController, AccountLoginController) {
      */
     MsgBus.commands.setHandler('account:routes', function () {
 
-        console.log('starting account routes');
         return new AccountRouter({
             controller: API
         });

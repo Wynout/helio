@@ -36,7 +36,7 @@ function (
                 MsgBus.events.trigger('nav-panel:closed');
             });
 
-            MsgBus.events.on('window:resize', this.onResize.bind(this));
+            MsgBus.events.on('window:resize', this.onResize);
             MsgBus.events.on('nav-panel:open', this.open);
             MsgBus.events.on('nav-panel:close', this.close);
         },
@@ -45,11 +45,11 @@ function (
 
             if (dimensions.width>=900) {
 
-                this.open();
+                MsgBus.events.trigger('nav-panel:open');
 
             } else {
 
-                this.close();
+                MsgBus.events.trigger('nav-panel:close');
             }
         },
 
@@ -67,14 +67,14 @@ function (
 
 
     /**
-     * Default Navigation View
+     * Standard Navigation View
      */
-    var DefaultView = BaseView.extend({
+    var StandardView = BaseView.extend({
         template: NavPanelViewTemplate,
 
         serializeData: function () {
 
-            return nlsPanel.default;
+            return nlsPanel.standard;
         }
     });
 
@@ -93,7 +93,7 @@ function (
 
 
     return {
-        default: DefaultView,
+        standard: StandardView,
         wine: WineView
     };
 });
