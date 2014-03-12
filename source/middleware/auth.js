@@ -32,7 +32,7 @@ function validateToken(req, res, next) {
 
     var token = req.headers.authorization || '',
         parts = token.split(';');
-
+console.log(parts);
     if (parts.length!==3) {
 
         return next({type: 'authorization', status: 400, message: 'bad syntax'});

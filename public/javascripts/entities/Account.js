@@ -91,6 +91,10 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
 
         return API.getAccountInfo();
     });
+    MsgBus.reqres.setHandler('account:validate:token', function () {
+
+        return API.validateToken();
+    });
     /**
      * Register Commands
      */
@@ -194,6 +198,35 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
             return {
                 username: parts[0]
             };
+        },
+
+        /**
+         * Validate access token that is set automatically in header in auth.js
+         */
+        validateToken: function () {
+
+            var defer = $.Deferred();
+            var token = window.localStorage.getItem('token')!==null ? token : '';
+            var settings = {
+                type: 'POST',
+                headers: { // maybe use $.ajaxSetup?, although its use is not recommended
+                    Accept        : 'application/json, text/javascript, */*; q=0.01',
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Authorization': token
+                }
+            };
+
+            $.ajax('/api/auth/validate', settings)
+                .done(function (data, textStatus, jqXHR) {
+
+                    return defer.resolve(true);
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+
+                    return defer.reject(false);
+                });
+
+            return defer.promise();
         }
     };
 

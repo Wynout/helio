@@ -12,6 +12,7 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
      * Solution: custom region where wrapper div is disabled
      * @link http://stackoverflow.com/questions/11195242/extra-wrappers-in-backbone-and-marionette
      */
+    // Not used for now, doesn't seem to bother bootstrap styles.. should remove later
     // var NowrapRegion = Marionette.Region.extend({
     //     open: function (view) {
 
@@ -33,70 +34,36 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
             popup    : '#popup-dialog'
         },
 
-        // initialize: function () {
-
-        //     var self = this;
-        //     MsgBus.events.on('window:resize', function (dimensions) {
-
-        //         self.onResize(dimensions);
-        //     });
-        // },
 
         // onRender: function () {
-        //     console.log(this.el);
-        // },
 
-
-        // onRender: function () {
-// console.log(this.options);
         //     // Views for the regions are passed in via the options
         //     this.header.show(this.options.header);
-            // this.content.show(this.options.content);
+        //     this.content.show(this.options.content);
         //     if (this.options.navPanel) {
 
         //         this.navPanel.show(this.options.navPanel);
         //     }
-        // },
-
-        // onResize: function (dimensions) {
-
-        //     this.repositionPopup();
-        // },
-
-        // // Reposition popup to center of window on resize
-        // repositionPopup: function () {
-
-        //     var $popup          = $(this.regions.popup),
-        //         $popupContainer = $popup.closest('div.ui-popup-container');
-
-        //     if ($popupContainer.hasClass('ui-popup-active')) {
-
-        //        $popup.popup('reposition', {positionTo: 'window'}); // or 'origin'
-        //     }
         // }
+
     });
 
 
-    // /**
-    //  * Show Popup
-    //  * @param Object View
-    //  */
-    // MsgBus.commands.setHandler('popup:show', function (View) {
+    /**
+     * Show Popup
+     * @param Object View
+     */
+    MsgBus.commands.setHandler('popup:show', function (View) {
 
-    //     $('#popup-dialog')
-    //         .html(View.render().el)
-    //         .enhanceWithin()
-    //         .popup('open');
-    // });
+    });
 
 
-    // /**
-    //  * Close Popup
-    //  */
-    // MsgBus.commands.setHandler('popup:close', function () {
+    /**
+     * Close Popup
+     */
+    MsgBus.commands.setHandler('popup:close', function () {
 
-    //     $('#popup-dialog').popup('close');
-    // });
+    });
 
     return AppLayout;
 });
