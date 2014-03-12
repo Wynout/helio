@@ -39,9 +39,7 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
         _editWine: function (wine) {
 
             var regions = {
-                // header : new App.HeaderView.default(),
-                content : new WineEditView({model: wine}),
-                navPanel: new NavPanelView.wine()
+                content : new WineEditView({model: wine})
             };
             MsgBus.commands.execute('regions:load', regions);
         }

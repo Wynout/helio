@@ -1,20 +1,11 @@
 define({
-    standard: {
-        items: {
-            close: 'Sluiten',
-            home: 'Home',
-            login: 'Inloggen',
-            signup: 'Inschrijven',
-            about: 'Over',
-            wineList: 'Wijnlijst'
-        }
-    },
-    wine: {
-        items: {
-            close: 'Sluiten',
-            home: 'Home',
-            addWine: 'Wijn toevoegen',
-            wineList: 'Wijnlijst'
-        }
+    items: {
+        close: 'Sluiten',
+        home: 'Home',
+        login: 'Inloggen',
+        signup: 'Inschrijven',
+        about: 'Over',
+        addWine: 'Wijn toevoegen',
+        wineList: 'Wijnlijst'
     }
 });

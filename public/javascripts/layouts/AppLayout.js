@@ -28,10 +28,11 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
     var AppLayout = Backbone.Marionette.Layout.extend({
         template: appLayoutTemplate,
         regions: {
-            header   : '#header',
-            content  : '#content',
-            navPanel : '#nav-panel',
-            popup    : '#popup-dialog'
+            header         : '#header',
+            content        : '#content',
+            appNavPanel    : '#app-nav-panel',
+            contentNavPanel: '#content-nav-panel',
+            popup          : '#popup-dialog'
         },
 
 

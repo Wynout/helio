@@ -59,7 +59,7 @@ function (
     App.initAppLayout = function () {
 
         App.regionMain.show(App.layout);
-        App.layout.navPanel.show(new NavPanelView.standard());
+        App.layout.appNavPanel.show(new NavPanelView());
     };
 
 
@@ -87,10 +87,6 @@ function (
      */
     MsgBus.commands.setHandler('regions:load', function (regions) {
 
-        if (regions.navPanel) {
-
-            App.layout.navPanel.show(regions.navPanel);
-        }
         App.layout.content.show(regions.content);
     });
 

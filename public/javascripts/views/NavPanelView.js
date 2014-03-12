@@ -8,14 +8,12 @@ define([
     'marionette',
     'msgbus',
     'hbs!views/NavPanelViewTemplate',
-    'hbs!views/NavPanelWineViewTemplate',
     'i18n!nls/navPanel'],
 function (
     $,
     Marionette,
     MsgBus,
     NavPanelViewTemplate,
-    NavPanelWineViewTemplate,
     nlsPanel) {
 
 
@@ -35,26 +33,10 @@ function (
 
         serializeData: function () {
 
-            return nlsPanel.standard;
+            return nlsPanel;
         }
     });
 
 
-    /**
-     * Wine Navigation View
-     */
-    var WineView = BaseView.extend({
-        template: NavPanelWineViewTemplate,
-
-        serializeData: function () {
-
-            return nlsPanel.wine;
-        }
-    });
-
-
-    return {
-        standard: StandardView,
-        wine: WineView
-    };
+    return StandardView;
 });
