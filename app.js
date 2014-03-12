@@ -42,6 +42,7 @@ app.configure('development', function () {
     app.use(express.errorHandler());
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(middleware.renderIndex.development());
+    app.use(middleware.renderApp.development()); // test bootstrap
 });
 
 app.configure('production', function () {
@@ -49,6 +50,7 @@ app.configure('production', function () {
     app.use(express.compress());
     app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
     app.use(middleware.renderIndex.production());
+    app.use(middleware.renderApp.production()); // test bootstrap
 });
 
 

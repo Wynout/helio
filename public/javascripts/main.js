@@ -8,7 +8,10 @@ require.config({
     baseURL: 'public/javascripts/bower_components',
 
     paths: {
-        jquery                : './bower_components/jquery/jquery',
+        holder                : './bower_components/holderjs/holder',
+
+        jquery                : './bower_components/jquery/dist/jquery',
+        'jquery.bootstrap'    : './bower_components/bootstrap/dist/js/bootstrap',
         underscore            : './bower_components/underscore-amd/underscore',
         backbone              : './bower_components/backbone-amd/backbone',
         'backbone.wreqr'      : './bower_components/backbone.wreqr/lib/amd/backbone.wreqr',
@@ -20,16 +23,17 @@ require.config({
         hbs                   : './bower_components/require-handlebars-plugin/hbs',
         handlebars            : './bower_components/require-handlebars-plugin/Handlebars',
         json2                 : './bower_components/require-handlebars-plugin/hbs/json2',
-        i18n                  : './bower_components/requirejs-i18n/i18n',
-        'jquery.mobile-config': 'config/jquery.mobile-config',
-        'jquery.mobile'       : './../build/jquery-mobile/jquery.mobile-1.4.2'
+        i18n                  : './bower_components/requirejs-i18n/i18n'
     },
-
+/*
     shim: {
-        'jquery.mobile-config': ['jquery'],
-        'jquery.mobile': ['jquery', 'jquery.mobile-config']
+        'jquery.bootstrap': {
+            deps: ['jquery']
+        },
+        // marionette:
+        // holder: ['jquery']
     },
-
+*/
     // Disabled because requirejs optimizer cannot be evauluated correctly
     // locale: window.localStorage.getItem('locale') || 'en-gb',
     locale: 'en-gb',
@@ -43,11 +47,13 @@ require.config({
 }, require([
     'jquery',
     'app',
-    'jquery.mobile-config',
-    'jquery.mobile',
     'auth',
     'apps/wines/WineApp',
-    'apps/account/AccountApp'],
+    'apps/account/AccountApp',
+    'jquery.bootstrap'
+    // 'bootstrap', // http://stackoverflow.com/questions/16259098/cant-load-bootstrap-with-requirejs
+    // 'holder'
+    ],
 function ($, App) {
 
     $(function () {

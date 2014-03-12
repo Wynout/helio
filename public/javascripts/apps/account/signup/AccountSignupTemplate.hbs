@@ -1,31 +1,37 @@
 <h1>{{headers.signup}}</h1>
 
-<form action="#signup">
-
-	<label for="username">{{labels.username}}:</label>
-	<input type="text" name="username" id="username" value="{{username}}" placeholder="{{placeholders.username}}" data-clear-btn="true">
-
-	<label for="name">{{labels.name}}:</label>
-	<input type="text" name="name" id="name" value="{{name}}" placeholder="{{placeholders.name}}" data-clear-btn="true">
-
-	<label for="email">{{labels.email}}:</label>
-	<input type="text" name="email" id="email" value="{{email}}" placeholder="{{placeholders.email}}" data-clear-btn="true">
-
-	<label for="password">{{labels.password}}:</label>
-	<input type="password" name="password" id="password" value="{{password}}" placeholder="{{placeholders.password}}" data-clear-btn="true">
-
-	<label for="repeatPassword">{{labels.repeatPassword}}:</label>
-	<input type="password" name="repeatPassword" id="repeatPassword" value="{{repeatPassword}}" placeholder="{{placeholders.repeatPassword}}" data-clear-btn="true">
-
-	<label for="termsOfUse">{{labels.touAgree}} <a href="#" id="termsOfUsePopup">{{labels.tou}}</a></label>
-	<input type="checkbox" name="termsOfUse" id="termsOfUse" data-mini="true">
-
-</form>
-
-<div class="ui-grid-a ui-responsive">
-	<div class="ui-block-a"><a href="#" class="signup ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-check">{{buttons.signup}}</a></div>
-	<div class="ui-block-b"><a href="#" class="cancel ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-delete" data-rel="back">{{buttons.cancel}}</a>
+<form role="form">
+	<div class="form-group">
+		<label for="username">{{labels.username}}:</label>
+		<input type="text" class="form-control" name="username" id="username" placeholder="{{placeholders.username}}" required autofocus>
 	</div>
-</div>
+
+	<div class="form-group">
+		<label for="name">{{labels.name}}:</label>
+		<input type="text" class="form-control" name="name" id="name" placeholder="{{placeholders.name}}" required>
+	</div>
+
+	<div class="form-group">
+		<label for="email">{{labels.email}}:</label>
+		<input type="text" class="form-control" name="email" id="email" placeholder="{{placeholders.email}}" required>
+	</div>
+
+	<div class="form-group">
+		<label for="password">{{labels.password}}:</label>
+		<input type="password" class="form-control" name="password" id="password" placeholder="{{placeholders.password}}" required>
+	</div>
+
+	<div class="form-group">
+		<label for="repeatPassword">{{labels.repeatPassword}}:</label>
+		<input type="password" class="form-control" name="repeatPassword" id="repeatPassword" placeholder="{{placeholders.repeatPassword}}" required>
+	</div>
+
+	<div class="form-group">
+		 <label><input type="checkbox" name="termsOfUse" id="termsOfUse"/> {{labels.touAgree}} <a href="#" id="termsOfUsePopup">{{labels.tou}}</a></label>
+		 <p class="help-block error-message"></p>
+	</div>
+
+	<button type="submit" class="signup btn btn-primary"><span class="glyphicon glyphicon-ok"></span> {{buttons.signup}}</button>
+</form>
 
 <div id="signup-result"></div>

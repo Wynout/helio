@@ -34,7 +34,7 @@ function (MsgBus, WineListView, NavPanelView) {
                 content : new WineListView({collection: wines}),
                 navPanel: new NavPanelView.wine()
             };
-            MsgBus.commands.execute('change:page', regions);
+            MsgBus.commands.execute('regions:load', regions);
         }
     };
 

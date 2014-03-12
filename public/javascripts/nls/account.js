@@ -13,12 +13,12 @@ define({
         },
         login: {
             login: {
-                header: 'Login',
-                message: 'Please enter your login credentials'
+                heading: 'Please sign in',
             },
             labels: {
                 username: 'Username',
-                password: 'Password'
+                password: 'Password',
+                remember: 'Remember me'
             },
             placeholders: {
                 username: 'Enter username',
@@ -27,7 +27,7 @@ define({
             buttons: {
                 cancel: 'Cancel',
                 switchUser: 'Switch user',
-                login: 'Login'
+                login: 'Sign in'
             },
             'switch': {
                 header: 'Switch Account'

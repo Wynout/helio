@@ -1,46 +1,14 @@
-<div data-role="header">
-    <h1>{{login.header}}</h1>
-</div>
-<form>
-    <div class="popup-content-wrapper">
+<form class="form-signin" role="form">
+	<h2 class="form-signin-heading">{{login.heading}}</h2>
 
-        <div id="login-message"></div>
+	<input type="text" class="form-control" name="user" id="username" placeholder="{{placeholders.username}}" required autofocus>
 
-        <label for="username" class="ui-hidden-accessible">{{labels.username}}:</label>
-        {{#if account.username}}
-            <input type="text" name="user" id="username" value="{{account.username}}" disabled="disabled" placeholder="{{placeholders.username}}" data-theme="a">
-        {{else}}
-            <input type="text" name="user" id="username" value="" placeholder="{{placeholders.username}}" data-theme="a">
-        {{/if}}
+	<input type="password" class="form-control" name="pass" id="password" placeholder="{{labels.password}}" required>
 
-        <label for="password" class="ui-hidden-accessible">{{labels.password}}:</label>
-        <input type="password" name="pass" id="password" value="" placeholder="{{placeholders.password}}" data-theme="a">
+	<label class="checkbox">
+		<input type="checkbox" value="remember-me"> {{labels.remember}}
+	</label>
 
-        {{#if account.username}}
-            <div class="ui-grid-a ui-responsive">
-                <div class="ui-block-a">
-                    <input class="cancel-login" type="button" value="{{buttons.cancel}}">
-                </div>
-                <div class="ui-block-b">
-                    <a href="#accounts/switch" class="switch-user ui-btn ui-corner-all ui-shadow">{{buttons.switchUser}}</a>
-                </div>
-            </div>
-
-            <div class="ui-grid-solo">
-                <div class="ui-block-a" style="margin:0;">
-                    <input class="submit-login-credentials" type="button" value="{{buttons.login}}" data-icon="check" data-iconpos="left">
-                </div>
-            </div>
-        {{else}}
-            <div class="ui-grid-a ui-responsive">
-                <div class="ui-block-a">
-                    <input class="cancel-login" type="button" value="{{buttons.cancel}}" data-icon="delete" data-iconpos="left">
-                </div>
-                <div class="ui-block-b">
-                    <input class="submit-login-credentials" type="button" value="{{buttons.login}}" data-icon="check" data-iconpos="left">
-                </div>
-            </div>
-        {{/if}}
-
-    </div>
+	<div id="login-message" class="alert alert-danger alert-dismissable"></div>
+	<button class="submit-login-credentials btn btn-lg btn-primary btn-block" type="submit"><span class="glyphicon glyphicon-user"></span> {{buttons.login}}</button>
 </form>

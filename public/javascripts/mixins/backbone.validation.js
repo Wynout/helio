@@ -32,52 +32,69 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
     });
 
 
-    /**
+     /**
      * Overriding default validation callbacks
      */
     _.extend(Backbone.Validation.callbacks, {
+        valid: function(view, attr, selector) {
 
-        valid: function (view, attr, selector) {
+            console.log(view,attr,selector);
+            var control, group;
 
-            var $input = view.$('[' + selector + '=' + attr + ']'),
-                $label = view.$('[for=' + $input.attr('id') + ']'),
-                $wrapper;
+            control = view.$('[' + selector + '=' + attr + ']');
+            group = control.parents('.form-group');
+            group.removeClass('has-error');
 
-            // textarea does not have wrapper div
-            if ($input.is('textarea')) {
+            if (control.data('error-style') === 'tooltip') {
 
-                $wrapper = $input;
+                if (control.data('tooltip')) {
+
+                    return control.tooltip('hide');
+                }
+            } else if (control.data('error-style') === 'inline') {
+
+                return group.find('.help-inline.error-message').remove();
             } else {
 
-                $wrapper = $input.closest('div');
+                return group.find('.help-block.error-message').remove();
             }
-
-            $wrapper.removeClass('validation-input-invalid');
-            $label.find('.validation-error-message').remove();
         },
 
         invalid: function (view, attr, error, selector) {
 
-            var $input = view.$('[' + selector + '=' + attr + ']'),
-                $label = view.$('[for=' + $input.attr('id') + ']'),
-                $span,
-                $wrapper;
+            var control, group, position, target;
+            control = view.$('[' + selector + '=' + attr + ']');
+            group   = control.parents('.form-group');
+            group.addClass('has-error');
 
-            // textarea does not have wrapper div
-            if ($input.is('textarea')) {
+            if (control.data('error-style') === 'tooltip') {
 
-                $wrapper = $input;
+                position = control.data('tooltip-position') || 'right';
+                control.tooltip({
+                    placement: position,
+                    trigger: 'manual',
+                    title: error
+                });
+                return control.tooltip('show');
+
+            } else if (control.data('error-style') === 'inline') {
+
+                if (group.find('.help-inline').length === 0) {
+
+                    group.find('.form-control')
+                        .after('<span class=\'help-inline error-message\'></span>');
+                }
+                target = group.find('.help-inline');
+                return target.text(error);
             } else {
 
-                $wrapper = $input.closest('div');
-            }
+                if (group.find('.help-block').length === 0) {
 
-            $wrapper.addClass('validation-input-invalid');
-
-            if ($label.find('.validation-error-message').length===0) {
-
-                $span = $('<span></span>', {'class': 'validation-error-message', text: error});
-                $label.append($span);
+                    group.find('.form-control')
+                        .after('<p class=\'help-block error-message\'></p>');
+                }
+                target = group.find('.help-block');
+                return target.text(error);
             }
         }
     });

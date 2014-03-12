@@ -68,8 +68,7 @@ function (
 
         events: {
             'click .submit-login-credentials': 'validateCredentials',
-            'keypress input'                 : 'keypress',
-            'click .cancel-login'            : 'cancelLogin'
+            'keypress input'                 : 'keypress'
         },
 
         // Login on enter press
@@ -95,7 +94,9 @@ function (
             this.loginMessage.show(messageView);
         },
 
-        validateCredentials: function () {
+        validateCredentials: function (event) {
+
+            event.preventDefault();
 
             var self = this;
             var credentials = {
@@ -113,7 +114,8 @@ function (
                         Backbone.history.navigate('/', {trigger: true});
                     } else {
 
-                        window.location.reload();
+                        // window.location.reload();
+                        Backbone.history.navigate('#dashboard', {trigger: true});
                     }
                 })
                 .fail(function (error) {
@@ -124,7 +126,7 @@ function (
             return false;
         },
 
-        cancelLogin: function () {
+        logoff: function () {
 
             MsgBus.commands.execute('account:logoff');
             MsgBus.commands.execute('popup:close');

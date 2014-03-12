@@ -13,8 +13,10 @@ function (MsgBus, AccountLoginView, AccountSwitchView) {
          */
         login: function () {
 
-            var View = new AccountLoginView();
-            MsgBus.commands.execute('popup:show', View);
+            var regions = {
+                content: new AccountLoginView(),
+            };
+            MsgBus.commands.execute('regions:load', regions);
         },
 
         /**
@@ -26,7 +28,7 @@ function (MsgBus, AccountLoginView, AccountSwitchView) {
             var regions = {
                 content: new AccountSwitchView()
             };
-            MsgBus.commands.execute('change:page', regions);
+            MsgBus.commands.execute('regions:load', regions);
             this.login();
         }
     };

@@ -8,22 +8,18 @@ define(['msgbus', 'apps/wines/static/WineStaticView'], function (MsgBus, WineSta
     var controller = {
         showHome: function () {
 
-            var regions, pageLayout;
-
-            regions = {
+            var regions = {
                 content: new WineStaticView.home(),
             };
-            MsgBus.commands.execute('change:page', regions);
+            MsgBus.commands.execute('regions:load', regions);
         },
 
         showAbout: function () {
 
-            var regions, pageLayout;
-
-            regions = {
+            var regions = {
                 content: new WineStaticView.about(),
             };
-            MsgBus.commands.execute('change:page', regions);
+            MsgBus.commands.execute('regions:load', regions);
         }
     };
     return controller;

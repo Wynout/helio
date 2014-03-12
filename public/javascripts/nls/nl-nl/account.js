@@ -12,12 +12,12 @@ define({
     },
     login: {
         login: {
-            header: 'Inloggen',
-            message: 'Voer uw login-gegevens in'
+            heading: 'Meld u alstublieft aan',
         },
         labels: {
             username: 'Gebruikersnaam',
-            password: 'Wachtwoord'
+            password: 'Wachtwoord',
+            remember: 'Onthoud mij'
         },
         placeholders: {
             username: 'Vul uw gebruikersnaam in',

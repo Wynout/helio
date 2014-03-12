@@ -43,7 +43,7 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
                 content : new WineEditView({model: wine}),
                 navPanel: new NavPanelView.wine()
             };
-            MsgBus.commands.execute('change:page', regions);
+            MsgBus.commands.execute('regions:load', regions);
         }
 
     };

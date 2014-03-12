@@ -6,19 +6,19 @@
 define(['msgbus', 'apps/account/signup/AccountSignupView'],
 function (MsgBus, AccountSignupView) {
 
-	var controller = {
+    var controller = {
 
-		signup: function () {
+        signup: function () {
 
-			var account = MsgBus.reqres.request('account:entity:add');
-			var regions = {
+            var account = MsgBus.reqres.request('account:entity:add');
+            var regions = {
                 // header : new App.HeaderView.default(),
                 content : new AccountSignupView({model: account}),
                 // navPanel: new NavPanelView.default()
             };
-            MsgBus.commands.execute('change:page', regions);
-		}
-	};
+            MsgBus.commands.execute('regions:load', regions);
+        }
+    };
 
-	return controller;
+    return controller;
 });

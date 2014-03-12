@@ -8,16 +8,19 @@ define([
     'backbone',
     'marionette',
     'msgbus',
-    'layouts/PageLayout',
+    'layouts/AppLayout',
     'views/HeaderView',
     'views/NavPanelView',
-    'views/xhrErrorView',
-
-'jquery.mobile-config',
-    'jquery.mobile'
-
-    ],
-function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView, XhrErrorView) {
+    'views/xhrErrorView'],
+function (
+    $,
+    Backbone,
+    Marionette,
+    MsgBus,
+    AppLayout,
+    HeaderView,
+    NavPanelView,
+    XhrErrorView) {
 
     /**
      * Create a composite application instance
@@ -28,7 +31,14 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
     /**
      * Containing Incoming and Outgoing jQuery Mobile pages
      */
-    App.views = {};
+    // App.views = {};
+
+    // Add the main region, that will hold the page layout.
+    App.addRegions({
+        regionMain: '#main'
+    });
+
+    App.layout = new AppLayout();
 
 
     /**
@@ -36,8 +46,7 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
      */
     App.addInitializer(function () {
 
-        this.initExtensions();
-        this.initEvents();
+        this.initAppLayout();
 
         // Start App Routers
         MsgBus.commands.execute('wine:routes');
@@ -45,62 +54,11 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
     });
 
 
-    App.initExtensions = function() {
+    // The main initializing function sets up the basic layout and its regions.
+    App.initAppLayout = function () {
 
-        /**
-         * Override Marionette onRender and onShow events so JQM 'create' event is
-         * triggered on view's element.
-         * This ensures dynamically created is given the jQuery Mobile treatment
-         */
-        // Marionette.View.prototype.onRender = Marionette.View.prototype.onShow = function () {
-        //     this.$el.trigger('create');
-        //     return this;
-        // };
-    };
-
-    App.initEvents = function () {
-
-        /**
-         * Close Marionette.View when it's been replaced by JQM changePage.
-         * Marionette handles removal of associated DOM structure and unbinding of events.
-         */
-        $(window.document).on('pagecontainerhide', function (event, ui) {
-
-            if (App.views.outgoing) {
-
-                App.views.outgoing.close();
-            }
-        });
-
-
-        /**
-         * Trigger window resize event after 100ms
-         */
-        $(window).resize(function () {
-
-            clearTimeout(this.id);
-            this.id = setTimeout(function () {
-
-                App.triggerResizeEvent();
-            }, 100);
-        });
-
-
-        /**
-         * Trigger resize event to open/close panels on page has change
-         */
-        $(window.document).on('pagechange', function (event) {
-
-            App.triggerResizeEvent();
-        });
-
-
-        // test login popup
-        $(window.document).on('click', '.login-popup', function (event, ui) {
-
-            MsgBus.events.trigger('account:login');
-            return false;
-        });
+        // Inject the main layout into the #main region of the page.
+        App.regionMain.show(App.layout);
     };
 
 
@@ -123,12 +81,13 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
 
 
     /**
-     * Register command 'change:page'
+     * Register command 'regions:load'
      * This command creates a new page and handles the JQM page transition
      */
-    MsgBus.commands.setHandler('change:page', function (regions) {
+    MsgBus.commands.setHandler('regions:load', function (regions) {
 
         // todo: use extend to override default regions
+        /*
         if (!regions.header) {
 
             regions.header = new HeaderView.standard();
@@ -136,9 +95,13 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
         if (!regions.navPanel) {
 
             regions.navPanel = new NavPanelView.standard();
-        }
-        var pageLayout = new PageLayout(regions);
-        App.changePage(pageLayout);
+        }*/
+        console.log('regions:load', regions.content.el);
+        App.layout.content.show(regions.content);
+
+
+        // var pageLayout = new PageLayout(regions);
+        // App.changePage(pageLayout);
     });
 
 
@@ -149,16 +112,18 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
      */
     App.changePage = function (view, transition) {
 
-        App.views.outgoing = App.views.incoming;
-        App.views.incoming = view;
+        // console.log('App.changePage', view);
 
-        view.render();
-        $('body').append(view.$el);
+        // App.views.outgoing = App.views.incoming;
+        // App.views.incoming = view;
 
-        $.mobile.pageContainer.pagecontainer('change', view.$el, {
-            changeHash: false,
-            transition: transition || $.mobile.defaultPageTransition
-        });
+        // view.render();
+        // $('.main').prepend(view.$el);
+
+        // $.mobile.pageContainer.pagecontainer('change', view.$el, {
+        //     changeHash: false,
+        //     transition: transition || $.mobile.defaultPageTransition
+        // });
     };
 
 
@@ -187,6 +152,7 @@ function ($, Backbone, Marionette, MsgBus, PageLayout, HeaderView, NavPanelView,
     });
     App.on('start', function () {
         // Fires after all initializers and after the initializer events
+        console.log('Fires after all initializers and after the initializer events');
     });
 
 

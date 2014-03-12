@@ -5,15 +5,9 @@
 */
 
 /**
- * jQuery Mobile
+ * Bootstrap styles
  */
-@import url(../build/jquery-mobile/jquery.mobile-1.4.2.css);
-
-
-/**
- * Override jQuery Mobile
- */
-@import url(jqm-override.css);
+@import url(signin.css);
 
 
 /**
