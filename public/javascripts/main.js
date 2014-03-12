@@ -50,6 +50,7 @@ require.config({
     'auth',
     'apps/wines/WineApp',
     'apps/account/AccountApp',
+    'apps/dashboard/DashboardApp',
     'jquery.bootstrap'
     // 'bootstrap', // http://stackoverflow.com/questions/16259098/cant-load-bootstrap-with-requirejs
     // 'holder'

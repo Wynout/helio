@@ -2,8 +2,7 @@ define({
     root: {
         standard: {
             items: {
-                close: 'Close',
-                home: 'Home',
+                dashboard: 'Dashboard',
                 login: 'Login',
                 signup: 'Signup',
                 about: 'About',
@@ -12,8 +11,7 @@ define({
         },
         wine: {
             items: {
-                close: 'Close',
-                home: 'Home',
+                dashboard: 'Dashboard',
                 addWine: 'Add wine',
                 wineList: 'Wine list'
             }

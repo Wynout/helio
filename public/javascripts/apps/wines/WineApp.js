@@ -19,7 +19,6 @@ function (Marionette, MsgBus, WineDeleteController, WineEditController, WineList
      */
     var WineRouter = Marionette.AppRouter.extend({
         appRoutes: {
-            ''         : 'showHome',
             'home'     : 'showHome',
             'about'    : 'showAbout',
             'wines/add': 'addWine',
@@ -46,7 +45,6 @@ function (Marionette, MsgBus, WineDeleteController, WineEditController, WineList
     MsgBus.events.on('wine:selected', function (wine) {
 
         API.showWine(wine);
-        // Backbone.history.navigate('wine/edit/' + wine._id);
     });
 
 

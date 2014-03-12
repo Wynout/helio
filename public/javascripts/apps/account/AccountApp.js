@@ -17,9 +17,9 @@ function (Marionette, MsgBus, AccountSignupController, AccountLoginController) {
      */
     var AccountRouter = Marionette.AppRouter.extend({
         appRoutes: {
-            'signup': 'signup',
-            'login': 'login',
-            'accounts/switch': 'switchAccount'
+            'accounts/switch': 'switchAccount',
+            'login'          : 'login',
+            'signup'         : 'signup'
         }
     });
 
@@ -32,11 +32,6 @@ function (Marionette, MsgBus, AccountSignupController, AccountLoginController) {
         return new AccountRouter({
             controller: API
         });
-    });
-
-    MsgBus.events.on('account:login', function () {
-
-        AccountLoginController.login();
     });
 
 

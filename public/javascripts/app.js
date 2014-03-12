@@ -29,15 +29,15 @@ function (
 
 
     /**
-     * Containing Incoming and Outgoing jQuery Mobile pages
+     * Add the main region, that will hold the page layout.
      */
-    // App.views = {};
-
-    // Add the main region, that will hold the page layout.
     App.addRegions({
         regionMain: '#main'
     });
 
+    /**
+     * App Layout
+     */
     App.layout = new AppLayout();
 
 
@@ -51,14 +51,15 @@ function (
         // Start App Routers
         MsgBus.commands.execute('wine:routes');
         MsgBus.commands.execute('account:routes');
+        MsgBus.commands.execute('dashboard:routes');
     });
 
 
     // The main initializing function sets up the basic layout and its regions.
     App.initAppLayout = function () {
 
-        // Inject the main layout into the #main region of the page.
         App.regionMain.show(App.layout);
+        App.layout.navPanel.show(new NavPanelView.standard());
     };
 
 
@@ -86,45 +87,12 @@ function (
      */
     MsgBus.commands.setHandler('regions:load', function (regions) {
 
-        // todo: use extend to override default regions
-        /*
-        if (!regions.header) {
+        if (regions.navPanel) {
 
-            regions.header = new HeaderView.standard();
+            App.layout.navPanel.show(regions.navPanel);
         }
-        if (!regions.navPanel) {
-
-            regions.navPanel = new NavPanelView.standard();
-        }*/
-        console.log('regions:load', regions.content.el);
         App.layout.content.show(regions.content);
-
-
-        // var pageLayout = new PageLayout(regions);
-        // App.changePage(pageLayout);
     });
-
-
-    /**
-     * Based on the following example from Christophe Coenraets
-     * @link http://coenraets.org/blog/2012/03/using-backbone-js-with-jquery-mobile/
-     * The outgoing page is closed on JQM 'pagecontainerhide' event
-     */
-    App.changePage = function (view, transition) {
-
-        // console.log('App.changePage', view);
-
-        // App.views.outgoing = App.views.incoming;
-        // App.views.incoming = view;
-
-        // view.render();
-        // $('.main').prepend(view.$el);
-
-        // $.mobile.pageContainer.pagecontainer('change', view.$el, {
-        //     changeHash: false,
-        //     transition: transition || $.mobile.defaultPageTransition
-        // });
-    };
 
 
     /**
@@ -155,26 +123,5 @@ function (
         console.log('Fires after all initializers and after the initializer events');
     });
 
-
-    /**
-     * Start/Stop Sub Application
-     */
-    App.startSubApp = function (appName, args) {
-
-        var currentApp = App.module(appName);
-        if (App.currentApp === currentApp) {
-
-            return;
-        } else if (App.currentApp) {
-
-            App.currentApp.stop();
-        }
-
-        App.currentApp = currentApp;
-        currentApp.start(args);
-    };
-
-
     return App;
-
 });

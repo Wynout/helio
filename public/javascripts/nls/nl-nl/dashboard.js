@@ -1,0 +1,5 @@
+define({
+    show: {
+        heading: 'Dashboard'
+    }
+});
