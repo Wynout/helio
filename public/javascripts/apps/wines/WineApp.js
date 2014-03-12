@@ -9,18 +9,15 @@ define([
     'apps/wines/delete/WineDeleteController',
     'apps/wines/edit/WineEditController',
     'apps/wines/list/WineListController',
-    'apps/wines/static/WineStaticController',
     'entities/Wine'
     ],
-function (Marionette, MsgBus, WineDeleteController, WineEditController, WineListController, WineStaticController) {
+function (Marionette, MsgBus, WineDeleteController, WineEditController, WineListController) {
 
     /**
      * Setup WineApp Router
      */
     var WineRouter = Marionette.AppRouter.extend({
         appRoutes: {
-            'home'     : 'showHome',
-            'about'    : 'showAbout',
             'wines/add': 'addWine',
             'wines'    : 'showWines',
             'wines/:id': 'editWine'
@@ -70,16 +67,6 @@ function (Marionette, MsgBus, WineDeleteController, WineEditController, WineList
      * Expose WineApp API through WineRouter
      */
     var API = {
-        showHome: function () {
-
-            WineStaticController.showHome();
-        },
-
-        showAbout: function () {
-
-            WineStaticController.showAbout();
-        },
-
         addWine: function () {
 
            WineEditController.addWine();
