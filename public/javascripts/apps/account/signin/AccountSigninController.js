@@ -1,8 +1,8 @@
 /*
- |------------------------------------------------------------------------------
- | Account Signin Controller                          AccountSigninController.js
- |------------------------------------------------------------------------------
- */
+|------------------------------------------------------------------------------
+| Account Signin Controller                          AccountSigninController.js
+|------------------------------------------------------------------------------
+*/
 define(['backbone', 'msgbus', 'apps/account/signin/AccountSigninView'],
 function (Backbone, MsgBus, AccountSigninView) {
 
@@ -25,8 +25,8 @@ function (Backbone, MsgBus, AccountSigninView) {
          */
         signout: function () {
 
-            MsgBus.commands.execute('account:signout');
             Backbone.history.navigate('signin', {trigger: true});
+            MsgBus.commands.execute('account:signout');
         }
     };
 

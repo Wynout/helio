@@ -5,12 +5,14 @@
 */
 define([
     'jquery',
+    'backbone',
     'marionette',
     'msgbus',
     'hbs!views/NavPanelViewTemplate',
     'i18n!nls/navPanel'],
 function (
     $,
+    Backbone,
     Marionette,
     MsgBus,
     NavPanelViewTemplate,
@@ -30,6 +32,10 @@ function (
      */
     var StandardView = BaseView.extend({
         template: NavPanelViewTemplate,
+
+        events: {
+            'click li': 'clickListItem'
+        },
 
         initialize: function () {
 
@@ -53,18 +59,41 @@ function (
 
                 this.signedout();
             }
+
+            this.setActiveItem();
+        },
+
+        setActiveItem: function () {
+
+            this.unsetActiveItem();
+            this.$el.find('a[href="#' + Backbone.history.fragment + '"]')
+                .closest('li')
+                .addClass('active');
+        },
+
+        unsetActiveItem: function () {
+
+            this.$el.find('li.active').removeClass('active');
+        },
+
+        clickListItem: function (event) {
+
+            this.unsetActiveItem();
+            $(event.currentTarget).addClass('active');
         },
 
         signedin: function () {
-            console.log('NavPanelView signedin');
+
             this.$el.find('li.hide-before-signin').removeClass('hidden');
             this.$el.find('li.show-before-signin').addClass('hidden');
+            this.setActiveItem();
         },
 
         signedout: function () {
-            console.log('NavPanelView signedout');
+
             this.$el.find('li.show-before-signin').removeClass('hidden');
             this.$el.find('li.hide-before-signin').addClass('hidden');
+            this.setActiveItem();
         }
     });
 

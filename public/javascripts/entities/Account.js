@@ -176,7 +176,6 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
         signout: function () {
 
             window.localStorage.removeItem('token');
-            console.log('signout');
             MsgBus.events.trigger('account:signedout');
         },
 

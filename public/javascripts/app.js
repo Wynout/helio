@@ -59,7 +59,6 @@ function (
     App.initAppLayout = function () {
 
         App.regionMain.show(App.layout);
-        App.layout.appNavPanel.show(new NavPanelView());
     };
 
 
@@ -92,16 +91,6 @@ function (
 
 
     /**
-     * Publish window resize event with dimensions of active page
-     */
-    App.triggerResizeEvent = function () {
-
-        var width = $.mobile.activePage.outerWidth(true);
-        MsgBus.events.trigger('window:resize', {width: width});
-    };
-
-
-    /**
      * Application Lifecycle Events
      */
     App.on('initialize:before', function () {
@@ -113,6 +102,7 @@ function (
 
             Backbone.history.start();
         }
+        App.layout.appNavPanel.show(new NavPanelView());
     });
     App.on('start', function () {
         // Fires after all initializers and after the initializer events

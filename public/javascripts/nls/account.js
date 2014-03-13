@@ -38,7 +38,7 @@ define({
         },
         signup: {
             headers: {
-                signup: 'Signup'
+                signup: 'Sign up'
             },
             labels: {
                 username: 'Username',
