@@ -2,7 +2,7 @@ define({
     items: {
         close: 'Sluiten',
         home: 'Home',
-        login: 'Inloggen',
+        signin: 'Inloggen',
         signup: 'Inschrijven',
         about: 'Over',
         addWine: 'Wijn toevoegen',

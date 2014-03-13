@@ -83,9 +83,9 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
 
         return API.signup(form);
     });
-    MsgBus.reqres.setHandler('account:login', function (credentials) {
+    MsgBus.reqres.setHandler('account:signin', function (credentials) {
 
-        return API.login(credentials);
+        return API.signin(credentials);
     });
     MsgBus.reqres.setHandler('account:info', function () {
 
@@ -98,9 +98,9 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
     /**
      * Register Commands
      */
-    MsgBus.commands.setHandler('account:logoff', function () {
+    MsgBus.commands.setHandler('account:signout', function () {
 
-        return API.logoff();
+        return API.signout();
     });
 
 
@@ -138,10 +138,10 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
         },
 
         /**
-         * Perform login using credentials.
+         * Perform signin using credentials.
          * When authenticated, authentication token is stored in localStorage
          */
-        login: function (credentials) {
+        signin: function (credentials) {
 
             var defer = $.Deferred();
             var settings = {
@@ -172,7 +172,7 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
         /**
          * Removes authentication token
          */
-        logoff: function () {
+        signout: function () {
 
             window.localStorage.removeItem('token');
         },

@@ -38,7 +38,6 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
     _.extend(Backbone.Validation.callbacks, {
         valid: function(view, attr, selector) {
 
-            console.log(view,attr,selector);
             var control, group;
 
             control = view.$('[' + selector + '=' + attr + ']');

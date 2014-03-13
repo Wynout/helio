@@ -64,14 +64,14 @@ function (
 
 
     /**
-     * Register command 'xhr:error:show'
-     * This command displays an error view to the user
+     * Register command 'xhr:error:handler'
      */
-    MsgBus.commands.setHandler('xhr:error:show', function (error) {
+    MsgBus.commands.setHandler('xhr:error:handler', function (error) {
 
         if (error.type==='authorization') {
 
-            MsgBus.events.trigger('account:login');
+            // redirect to login
+            Backbone.history.navigate('signin/redirect', {trigger: true});
         } else {
 
             // catch all xhr errors view

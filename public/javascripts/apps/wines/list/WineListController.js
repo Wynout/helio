@@ -22,8 +22,7 @@ function (MsgBus, WineListView, NavPanelView) {
                 })
                 .fail(function (error, collection, jqXHR, options) {
 
-                    self._showWines();
-                    MsgBus.commands.execute('xhr:error:show', error);
+                    MsgBus.commands.execute('xhr:error:handler', error);
                 });
         },
 

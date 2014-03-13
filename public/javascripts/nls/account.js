@@ -11,8 +11,8 @@ define({
                 termsOfUse: 'Terms of use must be accepted'
             }
         },
-        login: {
-            login: {
+        signin: {
+            signin: {
                 heading: 'Please sign in',
             },
             labels: {
@@ -27,7 +27,7 @@ define({
             buttons: {
                 cancel: 'Cancel',
                 switchUser: 'Switch user',
-                login: 'Sign in'
+                signin: 'Sign in'
             },
             'switch': {
                 header: 'Switch Account'

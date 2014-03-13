@@ -10,8 +10,8 @@ define({
             termsOfUse: 'De gebruiksrechtovereenkomst moet worden geaccepteerd'
         }
     },
-    login: {
-        login: {
+    signin: {
+        signin: {
             heading: 'Meld u alstublieft aan',
         },
         labels: {
@@ -26,7 +26,7 @@ define({
         buttons: {
             cancel: 'Annuleer',
             switchUser: 'Wisselen',
-            login: 'Inloggen'
+            signin: 'Inloggen'
         },
         'switch': {
             header: 'Account wisselen'

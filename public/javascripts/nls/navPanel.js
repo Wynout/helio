@@ -2,7 +2,7 @@ define({
     root: {
         items: {
             dashboard: 'Dashboard',
-            login: 'Login',
+            signin: 'Login',
             signup: 'Signup',
             about: 'About',
             addWine: 'Add wine',

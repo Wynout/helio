@@ -1,6 +1,6 @@
 /*
 |------------------------------------------------------------------------------
-| Account Login View                                        AccountLoginView.js
+| Account Signin View                                      AccountSigninView.js
 |------------------------------------------------------------------------------
 */
 define([
@@ -8,31 +8,31 @@ define([
     'backbone',
     'marionette',
     'msgbus',
-    'hbs!apps/account/login/AccountLoginTemplate',
-    'hbs!apps/account/login/AccountLoginMessageTemplate',
-    'hbs!apps/account/login/AccountLoginErrorTemplate',
+    'hbs!apps/account/signin/AccountSigninTemplate',
+    'hbs!apps/account/signin/AccountSigninMessageTemplate',
+    'hbs!apps/account/signin/AccountSigninErrorTemplate',
     'i18n!nls/account'],
 function (
     $,
     Backbone,
     Marionette,
     MsgBus,
-    accountLoginTemplate,
-    accountLoginMessageTemplate,
-    accountLoginErrorTemplate,
+    accountSigninTemplate,
+    accountSigninMessageTemplate,
+    accountSigninErrorTemplate,
     nlsAccount) {
 
 
     /**
-     * Message view shows initial login message
+     * Message view shows initial signin message
      */
     var MessageView = Marionette.ItemView.extend({
-        template: accountLoginMessageTemplate,
+        template: accountSigninMessageTemplate,
 
         serializeData: function () {
 
             return $.extend(true,
-                nlsAccount.login,
+                nlsAccount.signin,
                 MsgBus.reqres.request('account:info')
             );
         },
@@ -43,13 +43,13 @@ function (
      * Error view shows error feedback
      */
     var ErrorView = Marionette.ItemView.extend({
-        template: accountLoginErrorTemplate,
+        template: accountSigninErrorTemplate,
 
         serializeData: function () {
 
             return $.extend(true,
                 this.options,
-                nlsAccount.login,
+                nlsAccount.signin,
                 MsgBus.reqres.request('account:info')
             );
         }
@@ -57,21 +57,21 @@ function (
 
 
     /**
-     * Account login view
+     * Account signin view
      */
-    var AccountLoginLayout = Marionette.Layout.extend({
-        template: accountLoginTemplate,
+    var AccountSigninLayout = Marionette.Layout.extend({
+        template: accountSigninTemplate,
 
         regions: {
-            loginMessage: '#login-message'
+            signinMessage: '#signin-message'
         },
 
         events: {
-            'click .submit-login-credentials': 'validateCredentials',
+            'click .submit-signin-credentials': 'validateCredentials',
             'keypress input'                 : 'keypress'
         },
 
-        // Login on enter press
+        // Signin on enter press
         keypress: function (event) {
 
             if (event.keyCode===13) {
@@ -83,7 +83,7 @@ function (
         serializeData: function () {
 
             return $.extend(true,
-                nlsAccount.login,
+                nlsAccount.signin,
                 MsgBus.reqres.request('account:info')
             );
         },
@@ -91,12 +91,10 @@ function (
         onRender: function () {
 
             var messageView = new MessageView();
-            this.loginMessage.show(messageView);
+            this.signinMessage.show(messageView);
         },
 
-        validateCredentials: function (event) {
-
-            event.preventDefault();
+        validateCredentials: function () {
 
             var self = this;
             var credentials = {
@@ -104,35 +102,26 @@ function (
                 password: this.$el.find('#password').val()
             };
 
-            var login = MsgBus.reqres.request('account:login', credentials);
-            login
+            var performSignin = MsgBus.reqres.request('account:signin', credentials);
+            performSignin
                 .done(function (token) {
 
-                    MsgBus.commands.execute('popup:close');
-                    if (Backbone.history.fragment==='accounts/switch') {
+                    if (self.options.action==='redirect') {
 
-                        Backbone.history.navigate('/', {trigger: true});
+                        window.history.back();
                     } else {
 
-                        // window.location.reload();
-                        Backbone.history.navigate('#dashboard', {trigger: true});
+                        Backbone.history.navigate('dashboard', {trigger: true});
                     }
                 })
                 .fail(function (error) {
 
                     var errorView = new ErrorView({error: error});
-                    self.loginMessage.show(errorView);
+                    self.signinMessage.show(errorView);
                 });
             return false;
-        },
-
-        logoff: function () {
-
-            MsgBus.commands.execute('account:logoff');
-            MsgBus.commands.execute('popup:close');
-            Backbone.history.navigate('/', {trigger: true});
         }
     });
 
-    return AccountLoginLayout;
+    return AccountSigninLayout;
 });
