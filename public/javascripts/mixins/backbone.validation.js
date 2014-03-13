@@ -89,8 +89,16 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
 
                 if (group.find('.help-block').length === 0) {
 
-                    group.find('.form-control')
-                        .after('<p class=\'help-block error-message\'></p>');
+                    if (control.eq(0).attr('type')==='checkbox') {
+
+                        // Checkbox has error-message after label, instead of input
+                        control.closest('label')
+                            .after('<p class=\'help-block error-message\'></p>');
+                    } else {
+
+                        group.find('.form-control')
+                            .after('<p class=\'help-block error-message\'></p>');
+                    }
                 }
                 target = group.find('.help-block');
                 return target.text(error);
