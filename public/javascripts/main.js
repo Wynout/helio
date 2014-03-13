@@ -9,6 +9,7 @@ require.config({
 
     paths: {
         holder                : './bower_components/holderjs/holder',
+        compatability         : './vendor/compatability',
 
         jquery                : './bower_components/jquery/dist/jquery',
         'jquery.bootstrap'    : './bower_components/bootstrap/dist/js/bootstrap',
@@ -51,7 +52,8 @@ require.config({
     'apps/wines/WineApp',
     'apps/account/AccountApp',
     'apps/dashboard/DashboardApp',
-    'jquery.bootstrap'
+    'jquery.bootstrap',
+    'compatability'
     // 'bootstrap', // http://stackoverflow.com/questions/16259098/cant-load-bootstrap-with-requirejs
     // 'holder'
     ],

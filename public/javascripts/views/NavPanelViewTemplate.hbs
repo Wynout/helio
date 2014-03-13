@@ -1,7 +1,7 @@
 <ul class="nav nav-sidebar">
-    <li class="active"><a href="#dashboard"><span class="glyphicon glyphicon-dashboard"></span>{{items.dashboard}}</a></li>
-	<li><a href="#signin"><span class="glyphicon glyphicon-user">{{items.signin}}</a></li>
-    <li><a href="#signup"><span class="glyphicon glyphicon-ok-sign">{{items.signup}}</a></li>
-    <li><a href="#wines"><span class="glyphicon glyphicon-list"></span>{{items.wineList}}</a></li>
-    <li><a href="#wines/add"><span class="glyphicon glyphicon-plus"></span>{{items.addWine}}</a></li>
+    <li class="hide-before-signin hidden"><a href="#dashboard"><span class="glyphicon glyphicon-dashboard"></span>{{items.dashboard}}</a></li>
+	<li class="show-before-signin hidden active"><a href="#signin"><span class="glyphicon glyphicon-user">{{items.signin}}</a></li>
+    <li class="show-before-signin hidden"><a href="#signup"><span class="glyphicon glyphicon-ok-sign">{{items.signup}}</a></li>
+    <li class="hide-before-signin hidden"><a href="#wines"><span class="glyphicon glyphicon-list"></span>{{items.wineList}}</a></li>
+    <li class="hide-before-signin hidden"><a href="#wines/add"><span class="glyphicon glyphicon-plus"></span>{{items.addWine}}</a></li>
 </ul>

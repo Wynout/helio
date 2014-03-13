@@ -158,6 +158,7 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
 
                     var token = data.token || '';
                     window.localStorage.setItem('token', token);
+                    MsgBus.events.trigger('account:signedin');
                     return defer.resolve(token);
                 })
                 .fail(function (jqXHR, textStatus, errorThrown) {
@@ -175,6 +176,8 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
         signout: function () {
 
             window.localStorage.removeItem('token');
+            console.log('signout');
+            MsgBus.events.trigger('account:signedout');
         },
 
         /**

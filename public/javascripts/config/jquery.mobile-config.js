@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+                                                                                     bbbbbbbbbbbbdefine(['jquery'], function ($) {
 
 
     /*jslint browser:true */
