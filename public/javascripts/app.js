@@ -11,7 +11,8 @@ define([
     'layouts/AppLayout',
     'views/NavBarView',
     'views/NavPanelView',
-    'views/xhrErrorView'],
+    'views/xhrErrorView',
+    'backbone.routefilter'],
 function (
     $,
     Backbone,

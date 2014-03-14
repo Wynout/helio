@@ -21,6 +21,14 @@ function (Marionette, MsgBus, WineDeleteController, WineEditController, WineList
             'wines/add': 'addWine',
             'wines'    : 'showWines',
             'wines/:id': 'editWine'
+        },
+        before: function (route) {
+
+            MsgBus.events.trigger('route:filter:before', route);
+        },
+        after: function (route) {
+
+            MsgBus.events.trigger('route:filter:after', route);
         }
     });
 

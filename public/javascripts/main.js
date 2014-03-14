@@ -19,6 +19,7 @@ require.config({
         'backbone.babysitter' : './bower_components/backbone.babysitter/lib/amd/backbone.babysitter',
         'backbone.validation' : './bower_components/backbone-validation/dist/backbone-validation-amd',
         'backbone.stickit'    : './bower_components/backbone.stickit/backbone.stickit',
+        'backbone.routefilter': './bower_components/backbone.routeFilter/dist/backbone.routefilter',
 
         marionette            : './bower_components/marionette/lib/core/amd/backbone.marionette',
         hbs                   : './bower_components/require-handlebars-plugin/hbs',
@@ -26,6 +27,13 @@ require.config({
         json2                 : './bower_components/require-handlebars-plugin/hbs/json2',
         i18n                  : './bower_components/requirejs-i18n/i18n'
     },
+
+    shim: {
+        'backbone.routefilter': {
+            deps: ['backbone']
+        }
+    },
+
 /*
     shim: {
         'jquery.bootstrap': {

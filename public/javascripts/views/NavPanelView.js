@@ -31,8 +31,11 @@ function (
 
         initialize: function () {
 
+            var self = this;
+
             MsgBus.events.on('account:signedin', this.signedin.bind(this));
             MsgBus.events.on('account:signedout', this.signedout.bind(this));
+            MsgBus.events.on('route:filter:before', this.setActiveItem.bind(this));
         },
 
         serializeData: function () {
@@ -51,26 +54,27 @@ function (
 
                 this.signedout();
             }
-
             this.setActiveItem();
         },
 
-        setActiveItem: function () {
+        setActiveItem: function (route) {
 
-            this.unsetActiveItem();
-            this.$el.find('a[href="#' + Backbone.history.fragment + '"]')
+            var item = route || Backbone.history.fragment;
+
+            this.unsetActiveItems();
+            this.$el.find('a[href="#' + item + '"]')
                 .closest('li')
                 .addClass('active');
         },
 
-        unsetActiveItem: function () {
+        unsetActiveItems: function () {
 
             this.$el.find('li.active').removeClass('active');
         },
 
         clickListItem: function (event) {
 
-            this.unsetActiveItem();
+            this.unsetActiveItems();
             $(event.currentTarget).addClass('active');
         },
 

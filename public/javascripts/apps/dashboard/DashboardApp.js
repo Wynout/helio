@@ -21,6 +21,14 @@ function (
         appRoutes: {
             '': 'dashboard',
             'dashboard': 'dashboard'
+        },
+        before: function (route) {
+
+            MsgBus.events.trigger('route:filter:before', route);
+        },
+        after: function (route) {
+
+            MsgBus.events.trigger('route:filter:after', route);
         }
     });
 

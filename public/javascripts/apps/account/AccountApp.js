@@ -21,6 +21,14 @@ function (Marionette, MsgBus, AccountSignupController, AccountSigninController) 
             'signin/:action': 'signin',
             'signout'       : 'signout',
             'signup'        : 'signup'
+        },
+        before: function (route) {
+
+            MsgBus.events.trigger('route:filter:before', route);
+        },
+        after: function (route) {
+
+            MsgBus.events.trigger('route:filter:after', route);
         }
     });
 
