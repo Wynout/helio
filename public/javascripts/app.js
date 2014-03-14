@@ -9,7 +9,7 @@ define([
     'marionette',
     'msgbus',
     'layouts/AppLayout',
-    'views/HeaderView',
+    'views/NavBarView',
     'views/NavPanelView',
     'views/xhrErrorView'],
 function (
@@ -18,7 +18,7 @@ function (
     Marionette,
     MsgBus,
     AppLayout,
-    HeaderView,
+    NavBarView,
     NavPanelView,
     XhrErrorView) {
 
@@ -102,6 +102,7 @@ function (
 
             Backbone.history.start();
         }
+        App.layout.navBar.show(new NavBarView());
         App.layout.appNavPanel.show(new NavPanelView());
     });
     App.on('start', function () {

@@ -1,44 +1,10 @@
 <div id="wrapper">
 
-	<!-- Header -->
-	<div id="header" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle toggle-sidebar">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="/">Heliosfeer</a>
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-					<span class="glyphicon glyphicon-cog"></span>
-				</button>
-			</div>
-			<div class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<!--<li><a href="#account"><span class="glyphicon glyphicon-user"></span>Account</a></li>-->
-					<li><a href="#help"><span class="glyphicon glyphicon-question-sign"></span>Help</a></li>
-					<li><a href="#settings"><span class="glyphicon glyphicon-cog"></span>Settings</a></li>
-					<li><a href="#signout"><span class="glyphicon glyphicon-user"></span>Sign out</a></li>
-				</ul>
-				<form class="navbar-form navbar-right">
-					<input type="text" class="form-control" placeholder="Search...">
-				</form>
-			</div>
-		</div>
-	</div>
+	<!-- Navigation Bar -->
+	<div id="nav-bar"></div>
 
-	<!-- Sidebar -->
-	<div id="sidebar-wrapper">
-		<!--
-		<ul class="sidebar-nav">
-			<li class="sidebar-brand"><a href="#">Start Bootstrap</a></li>
-			<li><a href="#">Dashboard</a></li>
-			<li><a href="#">Shortcuts</a></li>
-		</ul>
-		-->
-	</div>
+	<!-- Navigation Sidebar -->
+	<div id="sidebar-wrapper"></div>
 
 	<!-- Page content -->
 	<div id="page-content-wrapper">
@@ -47,12 +13,3 @@
 	</div>
 
 </div>
-
-<!-- Custom JavaScript for the Menu Toggle -->
-<script>
-$('.toggle-sidebar').click(function (event) {
-
-	event.preventDefault();
-	$('#wrapper').toggleClass('active');
-});
-</script>

@@ -1,6 +1,6 @@
 /*
 |------------------------------------------------------------------------------
-| Navigation Panel Views                                        NavPanelView.js
+| Navigation Panel View                                         NavPanelView.js
 |------------------------------------------------------------------------------
 */
 define([
@@ -20,17 +20,9 @@ function (
 
 
     /**
-     * Navigation Panel Base View
+     * Navigation Panel View
      */
-    var BaseView = Marionette.ItemView.extend({
-
-    });
-
-
-    /**
-     * Standard Navigation View
-     */
-    var StandardView = BaseView.extend({
+    var NavPanelView = Marionette.ItemView.extend({
         template: NavPanelViewTemplate,
 
         events: {
@@ -97,5 +89,5 @@ function (
         }
     });
 
-    return StandardView;
+    return NavPanelView;
 });
