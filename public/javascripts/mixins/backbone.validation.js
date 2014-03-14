@@ -39,9 +39,8 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
         valid: function(view, attr, selector) {
 
             var control, group;
-
             control = view.$('[' + selector + '=' + attr + ']');
-            group = control.parents('.form-group');
+            group   = control.parents('.form-group');
             group.removeClass('has-error');
 
             if (control.data('error-style') === 'tooltip') {
@@ -81,7 +80,7 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
                 if (group.find('.help-inline').length === 0) {
 
                     group.find('.form-control')
-                        .after('<span class=\'help-inline error-message\'></span>');
+                        .after('<span class="help-inline error-message"></span>');
                 }
                 target = group.find('.help-inline');
                 return target.text(error);
@@ -93,11 +92,11 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
 
                         // Checkbox has error-message after label, instead of input
                         control.closest('label')
-                            .after('<p class=\'help-block error-message\'></p>');
+                            .after('<p class="help-block error-message"></p>');
                     } else {
 
                         group.find('.form-control')
-                            .after('<p class=\'help-block error-message\'></p>');
+                            .after('<p class="help-block error-message"></p>');
                     }
                 }
                 target = group.find('.help-block');
