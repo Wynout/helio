@@ -106,7 +106,7 @@ function (
     });
     App.on('start', function () {
         // Fires after all initializers and after the initializer events
-        console.log('Fires after all initializers and after the initializer events');
+        // console.log('Fires after all initializers and after the initializer events');
     });
 
     return App;

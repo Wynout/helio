@@ -30,7 +30,7 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
         regions: {
             header         : '#header',
             content        : '#content',
-            appNavPanel    : '#app-nav-panel',
+            appNavPanel    : '#sidebar-wrapper',
             contentNavPanel: '#content-nav-panel',
             popup          : '#popup-dialog'
         },

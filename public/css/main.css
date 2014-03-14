@@ -7,6 +7,10 @@
 /**
  * Bootstrap styles
  */
+/*@import url(../javascripts/bower_components/bootstrap/dist/css/bootstrap.css);*/
+@import url(header.css);
+@import url(sidebar.css);
+@import url(sidebar-media-queries.css);
 @import url(signin.css);
 
 
@@ -14,3 +18,9 @@
  * Backbone form validation styles
  */
 @import url(backbone-validation.css);
+
+
+/**
+ * Global Styles
+ */
+@import url(global.css);
