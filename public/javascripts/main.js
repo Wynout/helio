@@ -28,13 +28,7 @@ require.config({
         i18n                  : './bower_components/requirejs-i18n/i18n'
     },
 
-    shim: {
-        'backbone.routefilter': {
-            deps: ['backbone']
-        }
-    },
-
-/*
+    /*
     shim: {
         'jquery.bootstrap': {
             deps: ['jquery']
@@ -42,7 +36,7 @@ require.config({
         // marionette:
         // holder: ['jquery']
     },
-*/
+    */
     // Disabled because requirejs optimizer cannot be evauluated correctly
     // locale: window.localStorage.getItem('locale') || 'en-gb',
     locale: 'en-gb',

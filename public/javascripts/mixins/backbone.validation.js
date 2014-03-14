@@ -1,6 +1,6 @@
 /*
 |------------------------------------------------------------------------------
-| Extending Backbone.Validation                     views/backboneValidation.js
+| Extending Backbone.Validation                    mixins/backboneValidation.js
 |
 | "Object Extension Is A Poor Man’s Mixin"
 | @link http://lostechies.com/derickbailey/2012/10/07/javascript-mixins-beyond-simple-object-extension/

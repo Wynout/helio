@@ -12,7 +12,7 @@ define([
     'views/NavBarView',
     'views/NavPanelView',
     'views/xhrErrorView',
-    'backbone.routefilter'],
+    'mixins/backbone.routefilter'],
 function (
     $,
     Backbone,
