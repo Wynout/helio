@@ -1,9 +1,7 @@
 /*
 |------------------------------------------------------------------------------
 | Extending Backbone Router prototype            mixins/backbone.routefilter.js
-|
-| "Object Extension Is A Poor Man’s Mixin"
-| @link http://lostechies.com/derickbailey/2012/10/07/javascript-mixins-beyond-simple-object-extension/
+| https://github.com/boazsender/backbone.routefilter
 |------------------------------------------------------------------------------
 */
 define(['backbone', 'underscore'], function (Backbone, _) {
@@ -31,7 +29,7 @@ define(['backbone', 'underscore'], function (Backbone, _) {
         // for adding routes to a router instance on the fly, and the
         // method which backbone uses internally for binding routes to handlers
         // on the Backbone.history singleton once it's instantiated.
-        route: function(route, name, callback) {
+        route: function (route, name, callback) {
 
             // If there is no callback present for this route, then set it to
             // be the name that was set in the routes property of the constructor,
