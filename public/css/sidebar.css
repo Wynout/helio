@@ -53,12 +53,13 @@
 }
 
 .sidebar-nav li.active,
+.sidebar-nav li.active a:hover,
 .sidebar-nav li a:focus {
 	background-color: #428bca;
+	cursor: default;
 }
 .sidebar-nav li.active a {
 	color: #fff;
-	font-weight: bold;
 }
 
 
