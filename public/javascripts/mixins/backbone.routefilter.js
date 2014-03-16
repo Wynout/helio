@@ -1,6 +1,7 @@
 /*
 |------------------------------------------------------------------------------
 | Extending Backbone Router prototype            mixins/backbone.routefilter.js
+|
 | https://github.com/boazsender/backbone.routefilter
 |------------------------------------------------------------------------------
 */

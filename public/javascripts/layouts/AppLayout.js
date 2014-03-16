@@ -31,20 +31,31 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
             navBar      : '#nav-bar',
             content     : '#content',
             appNavPanel : '#sidebar-wrapper'
-        },
+        }
+    });
 
 
-        // onRender: function () {
+    /**
+     * Returns currently active media query breakpoint
+     * note: breakpoint name is set in stylesheet
+     * @return {String} breakpoint
+     */
+    MsgBus.reqres.setHandler('layout:media:query:breakpoint', function () {
+        /*jslint browser:true */
 
-        //     // Views for the regions are passed in via the options
-        //     this.header.show(this.options.header);
-        //     this.content.show(this.options.content);
-        //     if (this.options.navPanel) {
+        var breakpoint = '';
+        if (window.getComputedStyle) { // not supported in ie8
 
-        //         this.navPanel.show(this.options.navPanel);
-        //     }
-        // }
+            breakpoint = window.getComputedStyle(document.body, ':after')
+                .getPropertyValue('content');
+        }
 
+        // Some browsers are including the quotes in the returned :after value
+        if (breakpoint.indexOf('narrowscreen')!==-1) {
+
+            return 'narrowscreen';
+        }
+        return '';
     });
 
 

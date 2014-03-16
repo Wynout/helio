@@ -1,9 +1,24 @@
 
 /**
- * Respond.js doesn't parse CSS referenced via @import, nor does it work with media queries within style elements, as those styles can't be re-requested for parsing
- * CSS is concatenated into a single file
+ * Narrowscreen breakpoint
+ *
+ * Need for separate file
+ * Respond.js doesn't parse CSS referenced via @import,
+ * nor does it work with media queries within style elements, as those styles can't be re-requested for parsing
+ * (CSS is concatenated into a single file)
  */
 @media (max-width:767px) {
+
+	/*
+	Easily checking in JavaScript if a CSS media query has been executed
+	http://adactio.com/journal/5429/
+	http://bricss.net/post/22198838298/easily-checking-in-javascript-if-a-css-media-query-has 
+	if (size.indexOf("widescreen") !=-1)
+	*/
+	body:after {
+		content: 'narrowscreen';
+		display: none;
+	}
 
 	#wrapper {
 		padding-left: 0;
@@ -13,12 +28,13 @@
 		left: 0;
 	}
 
-	#wrapper.active {
+	/* push content when panel is opened */
+	#wrapper.nav-panel-open {
 		position: relative;
 		left: 250px;
 	}
 
-	#wrapper.active #sidebar-wrapper {
+	#wrapper.nav-panel-open #sidebar-wrapper {
 		left: 250px;
 		width: 250px;
 		transition: all 0.2s ease 0s;

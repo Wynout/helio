@@ -26,7 +26,7 @@ function (
         template: NavBarViewTemplate,
 
         events: {
-
+            'click .toggle-sidebar': 'toggleSidebar'
         },
 
         initialize: function () {
@@ -51,6 +51,11 @@ function (
 
                 this.signedout();
             }
+        },
+
+        toggleSidebar: function () {
+
+            MsgBus.commands.execute('navpanel:toggle');
         },
 
         signedin: function () {

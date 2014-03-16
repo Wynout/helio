@@ -31,11 +31,13 @@ function (
 
         initialize: function () {
 
-            var self = this;
-
             MsgBus.events.on('account:signedin', this.signedin.bind(this));
             MsgBus.events.on('account:signedout', this.signedout.bind(this));
             MsgBus.events.on('route:filter:before', this.setActiveItem.bind(this));
+
+            MsgBus.commands.setHandler('navpanel:open', this.openNavPanel.bind(this));
+            MsgBus.commands.setHandler('navpanel:close', this.closeNavPanel.bind(this));
+            MsgBus.commands.setHandler('navpanel:toggle', this.toggleNavPanel.bind(this));
         },
 
         serializeData: function () {
@@ -76,6 +78,28 @@ function (
 
             this.unsetActiveItems();
             $(event.currentTarget).addClass('active');
+
+            var breakpoint = MsgBus.reqres.request('layout:media:query:breakpoint');
+
+            if (breakpoint==='narrowscreen') {
+
+                this.closeNavPanel();
+            }
+        },
+
+        openNavPanel: function () {
+
+            $('#wrapper').addClass('nav-panel-open');
+        },
+
+        closeNavPanel: function () {
+
+            $('#wrapper').removeClass('nav-panel-open');
+        },
+
+        toggleNavPanel: function () {
+
+            $('#wrapper').toggleClass('nav-panel-open');
         },
 
         signedin: function () {
