@@ -79,7 +79,7 @@ function (
             this.unsetActiveItems();
             $(event.currentTarget).addClass('active');
 
-            var breakpoint = MsgBus.reqres.request('layout:media:query:breakpoint');
+            var breakpoint = MsgBus.reqres.request('layout:media:query');
 
             if (breakpoint==='narrowscreen') {
 
