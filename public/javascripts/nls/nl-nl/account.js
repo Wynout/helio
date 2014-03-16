@@ -33,6 +33,9 @@ define({
         },
         error: {
             header: 'Login fout'
+        },
+        messages: {
+            capslock: 'Capslock staat aangeschakeld!'
         }
     },
     signup: {
@@ -54,6 +57,9 @@ define({
             email: 'Vul uw E-mailadres in',
             password: 'Vul uw wachtwoord in',
             repeatPassword: 'Herhaal uw wachtwoord'
+        },
+        messages: {
+            capslock: 'Capslock staat aangeschakeld!. Weet u zeker dat u dit wilt doen?'
         },
         buttons: {
             signup: 'Inschrijven',

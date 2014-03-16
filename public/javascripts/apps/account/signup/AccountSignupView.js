@@ -4,20 +4,24 @@
 |------------------------------------------------------------------------------
 */
 define([
+    'jquery',
     'underscore',
     'backbone',
     'marionette',
     'msgbus',
+    'vendor/utils',
     'apps/account/signup/AccountSignupTouView',
     'hbs!apps/account/signup/AccountSignupTemplate',
     'i18n!nls/account',
     'backbone.stickit',
     'mixins/backbone.validation'],
 function (
+    $,
     _,
     Backbone,
     Marionette,
     MsgBus,
+    Utils,
     AccountSignupTouView,
     AccountSignupTemplate,
     nlsAccount) {
@@ -44,7 +48,8 @@ function (
                 event.preventDefault();
                 event.stopPropagation(); // prevents the event from bubling parent up to parent label element
                 this.termsOfUse();
-            }
+            },
+            'keypress input[type="password"]' : 'checkCapslock'
         },
 
         /**
@@ -100,6 +105,17 @@ function (
         serializeData: function () {
 
             return _.extend({}, nlsAccount.signup);
+        },
+
+        checkCapslock: function (event) {
+
+            if (Utils.isCapslockOn(event)) {
+
+                $(event.currentTarget).popover('show');
+            } else {
+
+                $(event.currentTarget).popover('hide');
+            }
         },
 
         // Called by the region, after the region has added the view to the dom

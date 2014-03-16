@@ -34,6 +34,9 @@ define({
             },
             error: {
                 header: 'Login failure'
+            },
+            messages: {
+                capslock: 'Capslock is on!'
             }
         },
         signup: {
@@ -55,6 +58,9 @@ define({
                 email: 'Enter your email address',
                 password: 'Enter a password',
                 repeatPassword: 'Repeat password'
+            },
+            messages: {
+                capslock: 'Capslock is on!. Are you sure you want to do this? '
             },
             buttons: {
                 signup: 'Signup',

@@ -8,6 +8,7 @@ define([
     'backbone',
     'marionette',
     'msgbus',
+    'vendor/utils',
     'hbs!apps/account/signin/AccountSigninTemplate',
     'hbs!apps/account/signin/AccountSigninMessageTemplate',
     'hbs!apps/account/signin/AccountSigninErrorTemplate',
@@ -17,6 +18,7 @@ function (
     Backbone,
     Marionette,
     MsgBus,
+    Utils,
     accountSigninTemplate,
     accountSigninMessageTemplate,
     accountSigninErrorTemplate,
@@ -68,7 +70,8 @@ function (
 
         events: {
             'click .submit-signin-credentials': 'validateCredentials',
-            'keypress input'                 : 'keypress'
+            'keypress input'                  : 'keypress',
+            'keypress input[type="password"]' : 'checkCapslock'
         },
 
         // Signin on enter press
@@ -77,6 +80,17 @@ function (
             if (event.keyCode===13) {
 
                 this.validateCredentials();
+            }
+        },
+
+        checkCapslock: function (event) {
+
+            if (Utils.isCapslockOn(event)) {
+
+                $(event.currentTarget).popover('show');
+            } else {
+
+                $(event.currentTarget).popover('hide');
             }
         },
 
