@@ -109,13 +109,8 @@ function (
 
         checkCapslock: function (event) {
 
-            if (Utils.isCapslockOn(event)) {
-
-                $(event.currentTarget).popover('show');
-            } else {
-
-                $(event.currentTarget).popover('hide');
-            }
+            var action = Utils.isCapslockOn(event) ? 'show' : 'hide';
+            $(event.currentTarget).popover(action);
         },
 
         // Called by the region, after the region has added the view to the dom

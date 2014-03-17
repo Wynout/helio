@@ -31,6 +31,8 @@ function (
 
         initialize: function () {
 
+            this.$wrapper = $('#wrapper');
+
             MsgBus.events.on('account:signedin', this.signedin.bind(this));
             MsgBus.events.on('account:signedout', this.signedout.bind(this));
             MsgBus.events.on('route:filter:before', this.setActiveItem.bind(this));
@@ -89,17 +91,17 @@ function (
 
         openNavPanel: function () {
 
-            $('#wrapper').addClass('nav-panel-open');
+            this.$wrapper.addClass('nav-panel-open');
         },
 
         closeNavPanel: function () {
 
-            $('#wrapper').removeClass('nav-panel-open');
+            this.$wrapper.removeClass('nav-panel-open');
         },
 
         toggleNavPanel: function () {
 
-            $('#wrapper').toggleClass('nav-panel-open');
+            this.$wrapper.toggleClass('nav-panel-open');
         },
 
         signedin: function () {
