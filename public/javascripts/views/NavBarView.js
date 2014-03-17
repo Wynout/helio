@@ -67,7 +67,9 @@ function (
         signedout: function () {
 
             this.$el.find('.show-before-signin').removeClass('hidden');
+            this.$el.find('.navbar-collapse.collapse').removeClass('in'); // class prevents complete collapse
             this.$el.find('.hide-before-signin').addClass('hidden');
+
         }
     });
 
