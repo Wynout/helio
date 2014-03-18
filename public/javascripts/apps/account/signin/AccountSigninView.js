@@ -10,7 +10,6 @@ define([
     'msgbus',
     'vendor/utils',
     'hbs!apps/account/signin/AccountSigninTemplate',
-    'hbs!apps/account/signin/AccountSigninMessageTemplate',
     'hbs!apps/account/signin/AccountSigninErrorTemplate',
     'i18n!nls/account'],
 function (
@@ -20,25 +19,8 @@ function (
     MsgBus,
     Utils,
     accountSigninTemplate,
-    accountSigninMessageTemplate,
     accountSigninErrorTemplate,
     nlsAccount) {
-
-
-    /**
-     * Message view shows initial signin message
-     */
-    var MessageView = Marionette.ItemView.extend({
-        template: accountSigninMessageTemplate,
-
-        serializeData: function () {
-
-            return $.extend(true,
-                nlsAccount.signin,
-                MsgBus.reqres.request('account:info')
-            );
-        },
-    });
 
 
     /**
@@ -97,12 +79,6 @@ function (
             );
         },
 
-        onRender: function () {
-
-            var messageView = new MessageView();
-            this.signinMessage.show(messageView);
-        },
-
         validateCredentials: function () {
 
             var self = this;
@@ -125,10 +101,16 @@ function (
                 })
                 .fail(function (error) {
 
-                    var errorView = new ErrorView({error: error});
-                    self.signinMessage.show(errorView);
+                    self.showSigninError(error);
                 });
             return false;
+        },
+
+        showSigninError: function (error) {
+
+            var errorView = new ErrorView({error: error});
+            this.signinMessage.show(errorView);
+            this.signinMessage.$el.removeClass('hidden');
         }
     });
 
