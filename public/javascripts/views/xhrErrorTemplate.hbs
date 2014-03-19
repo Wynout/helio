@@ -1,9 +1,15 @@
-<div data-role="header">
-    <h1>Error</h1>
-</div>
-
-<div style="padding:10px 20px;min-width:300px;">
-    <h3>{{error.type}}</h3>
-    <p>{{error.message}}</p>
-    <a href="#" class="close ui-btn ui-corner-all ui-shadow ui-btn-inline">Close</a>
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title" id="modalTitleLabel">{{modal.title}}</h4>
+		</div>
+		<div class="modal-body">
+			<h3>{{error.type}}</h3>
+    		<p>{{error.message}}</p>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" data-dismiss="modal">{{modal.close}}</button>
+		</div>
+	</div>
 </div>

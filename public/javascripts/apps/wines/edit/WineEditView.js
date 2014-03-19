@@ -12,6 +12,7 @@ define([
     'hbs!apps/wines/edit/WineEditSuccessTemplate',
     'hbs!apps/wines/edit/WineEditErrorTemplate',
     'i18n!nls/wine',
+    'i18n!nls/validation',
     'mixins/backbone.validation'],
 function (
     $,
@@ -21,13 +22,21 @@ function (
     wineEditTemplate,
     wineEditSuccessTemplate,
     wineEditErrorTemplate,
-    nlsAccount) {
+    nlsWine,
+    nlsValidation) {
 
     /**
      * Message shown when wine successfully saved
      */
     var SuccessView = Marionette.ItemView.extend({
-        template: wineEditSuccessTemplate
+        template: wineEditSuccessTemplate,
+
+        serializeData: function () {
+
+            return {
+                saved: nlsWine.saved
+            };
+        }
     });
 
 
@@ -40,9 +49,10 @@ function (
         serializeData: function () {
 
             return {
-                error: this.options.error
+                error: this.options.error,
+                invalid: nlsValidation.invalid
             };
-        },
+        }
     });
 
 
@@ -53,7 +63,7 @@ function (
         template: wineEditTemplate,
 
         regions: {
-            saveResult: '#save-result'
+            saveResult : '#save-result'
         },
 
         events: {
@@ -71,8 +81,7 @@ function (
                 Backbone.Validation.bind(this);
                 this.model.on('validated:invalid', function (model, errors) {
 
-                    var errorView = new ErrorView({error: {message: 'Fix validation errors and try again'}});
-                    self.saveResult.show(errorView);
+                    self.saveResult.show(new ErrorView());
                 });
             }
         },
@@ -81,7 +90,7 @@ function (
 
             return $.extend(
                 this.model.toJSON(),
-                nlsAccount.edit
+                nlsWine.edit
             );
         },
 
@@ -99,7 +108,6 @@ function (
                 change = {};
             change[target.name] = target.value;
             this.model.set(change);
-            console.log(change);
         },
 
         saveWine: function () {
@@ -109,14 +117,11 @@ function (
             saveWine
                 .done(function () {
 
-                    var successView = new SuccessView();
-                    self.saveResult.show(successView);
+                    self.saveResult.show(new SuccessView());
                 })
                 .fail(function (error, model, jqXHR, options) {
 
-                    var errorView = new ErrorView({error: {message: 'Wine could not be saved'}});
-                    self.saveResult.show(errorView);
-                    MsgBus.commands.execute('xhr:error:show', error);
+                    MsgBus.commands.execute('xhr:error:handler', error);
                 });
 
             return false;

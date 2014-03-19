@@ -3,7 +3,16 @@
 | XHR Error Handler View                                        xhrErrorView.js
 |------------------------------------------------------------------------------
 */
-define(['marionette', 'msgbus', 'hbs!views/xhrErrorTemplate'], function (Marionette, MsgBus, xhrErrorTemplate) {
+define([
+    'marionette',
+    'msgbus',
+    'hbs!views/xhrErrorTemplate',
+    'i18n!nls/xhr'],
+function (
+    Marionette,
+    MsgBus,
+    xhrErrorTemplate,
+    nlsXhr) {
 
     /**
      * XHR Error view
@@ -18,6 +27,7 @@ define(['marionette', 'msgbus', 'hbs!views/xhrErrorTemplate'], function (Marione
         serializeData: function () {
 
             return {
+                modal: nlsXhr.modal,
                 error: this.options.error,
                 account: MsgBus.reqres.request('account:info')
             };

@@ -1,5 +1,9 @@
 define({
     root: {
+        modal: {
+            title: 'Error',
+            close: 'Close'
+        },
         xhrErrorMessages: {
             // authentication
             'username is required': 'Username is required',

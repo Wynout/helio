@@ -32,5 +32,9 @@ define({
             save: 'Opslaan',
             'delete': 'Verwijder'
         }
+    },
+    saved: {
+        title: 'Succes',
+        message: 'Wijn succesvol opgeslagen'
     }
 });

@@ -33,6 +33,10 @@ define({
                 save: 'Save',
                 'delete': 'Delete'
             }
+        },
+        saved: {
+            title: 'Success',
+            message: 'Wine saved successfully'
         }
     },
     'nl-nl': true

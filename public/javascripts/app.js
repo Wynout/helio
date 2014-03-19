@@ -64,7 +64,18 @@ function (
 
 
     /**
+     * Register command 'regions:load'
+     * This command creates a new page and handles the JQM page transition
+     */
+    MsgBus.commands.setHandler('regions:load', function (regions) {
+
+        App.layout.content.show(regions.content);
+    });
+
+
+    /**
      * Register command 'xhr:error:handler'
+     * @param {Object} error
      */
     MsgBus.commands.setHandler('xhr:error:handler', function (error) {
 
@@ -76,18 +87,18 @@ function (
 
             // catch all xhr errors view
             var xhrErrorView = new XhrErrorView({error: error});
-            MsgBus.commands.execute('popup:show', xhrErrorView);
+            MsgBus.commands.execute('modal:show', xhrErrorView);
         }
     });
 
 
     /**
-     * Register command 'regions:load'
-     * This command creates a new page and handles the JQM page transition
+     * Register command modal:show
+     * @param {Object} view
      */
-    MsgBus.commands.setHandler('regions:load', function (regions) {
+    MsgBus.commands.setHandler('modal:show', function (view) {
 
-        App.layout.content.show(regions.content);
+        App.layout.modal.show(view);
     });
 
 

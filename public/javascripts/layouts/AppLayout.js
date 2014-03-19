@@ -3,8 +3,20 @@
 | Page Layout View                                                PageLayout.js
 |------------------------------------------------------------------------------
 */
-define(['marionette', 'backbone', 'msgbus', 'jquery', 'hbs!layouts/AppLayoutTemplate'],
-function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'marionette',
+    'msgbus',
+    'hbs!layouts/AppLayoutTemplate'],
+function (
+    $,
+    _,
+    Backbone,
+    Marionette,
+    MsgBus,
+    appLayoutTemplate) {
 
     /*global document*/
 
@@ -86,6 +98,40 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
 
 
     /**
+     * Managing A Modal Dialog With Backbone And Marionette
+     * @link http://lostechies.com/derickbailey/2012/04/17/managing-a-modal-dialog-with-backbone-and-marionette/
+     */
+    var ModalRegion = Backbone.Marionette.Region.extend({
+        el: '#modal',
+
+        constructor: function () {
+
+            _.bindAll(this, 'getEl', 'showModal', 'hideModal');
+            Backbone.Marionette.Region.prototype.constructor.apply(this, arguments);
+            this.on('show', this.showModal, this);
+        },
+
+        getEl: function (selector) {
+
+            var $el = $(selector);
+            $el.on('hidden', this.close);
+            return $el;
+        },
+
+        showModal: function (view) {
+
+            view.on('close', this.hideModal, this);
+            this.$el.modal('show');
+        },
+
+        hideModal: function () {
+
+            this.$el.modal('hide');
+        }
+    });
+
+
+    /**
      * App Layout
      */
     var AppLayout = Backbone.Marionette.Layout.extend({
@@ -93,7 +139,8 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
         regions: {
             navBar      : '#nav-bar',
             content     : '#content',
-            appNavPanel : '#sidebar-wrapper'
+            appNavPanel : '#sidebar-wrapper',
+            modal       : ModalRegion
         },
 
         events: {

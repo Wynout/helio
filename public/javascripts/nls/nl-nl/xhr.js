@@ -1,4 +1,8 @@
 define({
+    modal: {
+        title: 'Foutmelding',
+        close: 'Sluit'
+    },
     xhrErrorMessages: {
         // authentication
         'username is required': 'Gebruikersnaam is verplicht',
