@@ -97,7 +97,7 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
         },
 
         events: {
-            // Media Query narrowscreen: Close navpanel on click '#content' div
+            // Media Query narrowscreen: Close panels on click '#content' div
             // <div id="content">must have have content else is not clickable!</div>
             'click #content': function (event) {
 
@@ -105,6 +105,7 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
                 if (breakpoint==='narrowscreen') {
 
                     MsgBus.commands.execute('navpanel:close');
+                    MsgBus.commands.execute('navbar:close');
                 }
             }
         },
