@@ -24,15 +24,7 @@ function (Backbone, Marionette, MsgBus, WineEditView, NavPanelView) {
                     self._editWine(wine);
                 }).fail(function (error, model, xhr, options) {
 
-                    if (error.status===404) {
-
-                        // Most of the time this is bad practice. I think we can get away with it.
-                        Backbone.history.navigate('wines', {trigger: true}); // Updates URL and run router handler
-                    } else {
-
-                        self._editWine();
-                        MsgBus.commands.execute('xhr:error:show', error);
-                    }
+                    MsgBus.commands.execute('xhr:error:handler', error);
                 });
         },
 

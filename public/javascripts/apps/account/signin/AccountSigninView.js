@@ -79,7 +79,9 @@ function (
             );
         },
 
-        validateCredentials: function () {
+        validateCredentials: function (event) {
+
+            event.preventDefault();
 
             var self = this;
             var credentials = {
@@ -91,13 +93,10 @@ function (
             performSignin
                 .done(function (token) {
 
-                    if (self.options.action==='redirect') {
-
-                        window.history.back();
-                    } else {
-
-                        Backbone.history.navigate('dashboard', {trigger: true});
-                    }
+                    var fragment = window.localStorage.getItem('signin/redirect'),
+                        to       = fragment ? fragment : 'dashboard';
+                    window.localStorage.removeItem('signin/redirect');
+                    Backbone.history.navigate(to, {trigger: true});
                 })
                 .fail(function (error) {
 

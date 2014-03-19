@@ -81,7 +81,8 @@ function (
 
         if (error.type==='authorization') {
 
-            // redirect to login
+            // after sigin redirect to current fragment
+            window.localStorage.setItem('signin/redirect', Backbone.history.fragment);
             Backbone.history.navigate('signin/redirect', {trigger: true});
         } else {
 
