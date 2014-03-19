@@ -109,7 +109,6 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
 
             var defer = $.Deferred(),
                 wines = new WineCollection();
-            // $.mobile.loading('show');
             wines.fetch({
                 success: function (collection, response, options) {
 
@@ -119,10 +118,6 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
 
                     var error = Xhr.errorHandler(jqXHR);
                     return defer.reject(error, collection, jqXHR, options);
-                },
-                complete: function () {
-
-                    // $.mobile.loading('hide');
                 }
             });
             return defer.promise();
@@ -132,7 +127,6 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
 
             var defer = $.Deferred(),
                 wine  = new WineModel({_id: id});
-            // $.mobile.loading('show');
             wine.fetch({
                 success: function (model, response, options) {
 
@@ -142,10 +136,6 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
 
                     var error = Xhr.errorHandler(jqXHR);
                     return defer.reject(error, model, jqXHR, options);
-                },
-                complete: function () {
-
-                    // $.mobile.loading('hide');
                 }
             });
             return defer.promise();
@@ -154,7 +144,6 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
         saveWine: function (model) {
 
             var defer = $.Deferred();
-            // $.mobile.loading('show');
             model.save(null, {
                 success: function (model, response, jqXHR) {
 
@@ -164,10 +153,6 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
 
                     var error = Xhr.errorHandler(jqXHR);
                     return defer.reject(error, model, jqXHR, options);
-                },
-                complete: function () {
-
-                    // $.mobile.loading('hide');
                 }
             });
             return defer.promise();
@@ -176,7 +161,6 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
         deleteWine: function (model) {
 
             var defer = $.Deferred();
-            // $.mobile.loading('show');
             model.destroy({
                 wait: true, // Wait for the server to respond before removing the model from the collection.
                 success: function (model, response, options) {
@@ -187,10 +171,6 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
 
                     var error = Xhr.errorHandler(jqXHR);
                     return defer.reject(error, model, jqXHR, options);
-                },
-                complete: function () {
-
-                    // $.mobile.loading('hide');
                 }
             });
             return defer.promise();
