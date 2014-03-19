@@ -18,7 +18,6 @@ function (Marionette, MsgBus, AccountSignupController, AccountSigninController) 
     var AccountRouter = Marionette.AppRouter.extend({
         appRoutes: {
             'signin'        : 'signin',
-            'signin/:action': 'signin',
             'signout'       : 'signout',
             'signup'        : 'signup'
         },

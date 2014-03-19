@@ -12,10 +12,10 @@ function (Backbone, MsgBus, AccountSigninView) {
          * Show Signin form
          * @param {String} action
          */
-        signin: function (action) {
+        signin: function () {
 
             var regions = {
-                content: new AccountSigninView({action: action}),
+                content: new AccountSigninView(),
             };
             MsgBus.commands.execute('regions:load', regions);
         },

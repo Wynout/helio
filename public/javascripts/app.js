@@ -83,7 +83,7 @@ function (
 
             // after sigin redirect to current fragment
             window.localStorage.setItem('signin/redirect', Backbone.history.fragment);
-            Backbone.history.navigate('signin/redirect', {trigger: true});
+            Backbone.history.navigate('signin', {trigger: true});
         } else {
 
             // catch all xhr errors view
