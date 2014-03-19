@@ -96,6 +96,19 @@ function (Marionette, Backbone, MsgBus, $, appLayoutTemplate) {
             appNavPanel : '#sidebar-wrapper'
         },
 
+        events: {
+            // Media Query narrowscreen: Close navpanel on click '#content' div
+            // <div id="content">must have have content else is not clickable!</div>
+            'click #content': function (event) {
+
+                var breakpoint = syncMediaQuery();
+                if (breakpoint==='narrowscreen') {
+
+                    MsgBus.commands.execute('navpanel:close');
+                }
+            }
+        },
+
         initialize: function () {
 
             syncMediaQuery(); // run when dom is ready
