@@ -87,9 +87,9 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
 
         return API.signin(credentials);
     });
-    MsgBus.reqres.setHandler('account:info', function () {
+    MsgBus.reqres.setHandler('account:token:info', function () {
 
-        return API.getAccountInfo();
+        return API.getTokenInfo();
     });
     MsgBus.reqres.setHandler('account:validate:token', function () {
 
@@ -180,22 +180,22 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
         },
 
         /**
-         * Returns account from token in localstorage
+         * Returns token info
          * @return {Object} {username: 'name'}
          */
-        getAccountInfo: function () {
+        getTokenInfo: function () {
 
             var token,
                 parts,
-                username,
-                info = {username: ''};
+                defaults = {username: ''};
 
             token = window.localStorage.getItem('token');
             token = token ? token : '';
             parts = token.split(';');
+
             if (parts.length!==3) {
 
-                return info;
+                return defaults;
             }
             return {
                 username: parts[0]

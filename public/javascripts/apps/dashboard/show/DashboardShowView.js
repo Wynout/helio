@@ -29,7 +29,7 @@ function (
 
             return $.extend(true,
                 nlsDashboard.show,
-                MsgBus.reqres.request('account:info')
+                MsgBus.reqres.request('account:token:info')
             );
         }
     });

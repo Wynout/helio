@@ -26,8 +26,8 @@ function (
         template: NavBarViewTemplate,
 
         events: {
-            'click .toggle-sidebar': 'toggleSidebar',
-            'click .navbar-brand': 'toggleNavBar'
+            'click .toggle-sidebar' : 'toggleSidebar',
+            'click .navbar-brand'   : 'toggleNavBar'
         },
 
         initialize: function () {
@@ -47,9 +47,9 @@ function (
 
         onRender: function () {
 
-            var account = MsgBus.reqres.request('account:info');
+            var token = MsgBus.reqres.request('account:token:info');
 
-            if (account.username) {
+            if (token.username) {
 
                 this.signedin();
             } else {

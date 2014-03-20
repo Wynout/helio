@@ -34,7 +34,7 @@ function (
             return $.extend(true,
                 this.options,
                 nlsAccount.signin,
-                MsgBus.reqres.request('account:info')
+                MsgBus.reqres.request('account:token:info')
             );
         }
     });
@@ -75,7 +75,7 @@ function (
 
             return $.extend(true,
                 nlsAccount.signin,
-                MsgBus.reqres.request('account:info')
+                MsgBus.reqres.request('account:token:info')
             );
         },
 
