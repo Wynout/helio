@@ -41,7 +41,7 @@ function (
 
         onShow: function () {
 
-            this.$el.delay(1500).fadeOut(600);
+            this.$el.delay(1500).fadeOut(300);
         }
     });
 
@@ -146,13 +146,17 @@ function (
             );
         },
 
+        enableLiveValidation: function () {
+
+            this.stickit();
+        },
+
         // Called by the region, after the region has added the view to the dom
         onShow: function () {
 
-            // Enable live validation on existing resource
             if (this.model.get('_id')) {
 
-                this.stickit();
+                this.enableLiveValidation();
             }
         },
 
@@ -176,6 +180,7 @@ function (
 
             if (!this.model.isValid(true)) { // true forces a validation before the result is returned
 
+                this.enableLiveValidation();
                 return false;
             }
 
@@ -207,7 +212,7 @@ function (
             setTimeout(function () {
 
                 $save.removeClass('btn-success');
-            }, 300);
+            }, 1500);
             this.alertSuccess.show(new SuccessView());
         },
 
