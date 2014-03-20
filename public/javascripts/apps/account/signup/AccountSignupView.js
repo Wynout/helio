@@ -96,9 +96,8 @@ function (
 
         initialize: function () {
 
-            // Since we are automatically updating the model, we want the model
-            // to also hold invalid values, otherwise, we might be validating
-            // something else than the user has entered in the form.
+            // Hook up the validation
+            // forceUpdate: Since we are automatically updating the model, we want the model to also hold invalid values, otherwise, we might be validating something else than the user has entered in the form.
             Backbone.Validation.bind(this, {forceUpdate: true});
         },
 

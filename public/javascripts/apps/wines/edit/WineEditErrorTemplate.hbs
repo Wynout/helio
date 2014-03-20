@@ -1,1 +1,6 @@
-<div class="alert alert-danger"><strong>{{invalid.title}}:</strong> {{invalid.message}}</div>
+<div class="list-group">
+	<li class="list-group-item list-group-item-danger active"><strong>{{invalid.title}}:</strong> {{invalid.message}}</li>
+	{{#each errors}}
+	<li class="list-group-item list-group-item-danger">{{this}}</li>
+	{{/each}}
+</div>

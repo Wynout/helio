@@ -1,5 +1,11 @@
 body {
 	padding-top: 40px;
-	/*padding-bottom: 40px;*/
 	background-color: #eee;
+}
+
+/* model validation error list */
+li.list-group-item-danger.active {
+	color: #fff;
+	background-color: #a94442;
+	border-color: #a94442;
 }
