@@ -79,6 +79,20 @@ function (
             );
         },
 
+        onShow: function () {
+
+            var $username = this.$el.find('#username'),
+                $password = this.$el.find('#password');
+
+            if ($username.val()) {
+
+                $password.focus();
+            } else {
+
+                $username.focus();
+            }
+        },
+
         validateCredentials: function () {
 
             var self = this;
