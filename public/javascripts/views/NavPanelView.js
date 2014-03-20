@@ -104,6 +104,9 @@ function (
             this.$wrapper.toggleClass('nav-panel-open');
         },
 
+        /**
+         * Show/Hide navigation items after sign out
+         */
         signedin: function () {
 
             this.$el.find('li.hide-before-signin').removeClass('hidden');
@@ -111,6 +114,9 @@ function (
             this.setActiveItem();
         },
 
+        /**
+         * Show/Hide navigation items after sign out
+         */
         signedout: function () {
 
             this.$el.find('li.show-before-signin').removeClass('hidden');

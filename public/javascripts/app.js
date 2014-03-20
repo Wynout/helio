@@ -82,6 +82,7 @@ function (
         if (error.type==='authorization') {
 
             // after sigin redirect to current fragment
+            MsgBus.events.trigger('account:signedout');
             window.localStorage.setItem('signin/redirect', Backbone.history.fragment);
             Backbone.history.navigate('signin', {trigger: true});
         } else {
