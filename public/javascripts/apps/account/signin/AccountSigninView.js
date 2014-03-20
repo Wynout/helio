@@ -79,9 +79,7 @@ function (
             );
         },
 
-        validateCredentials: function (event) {
-
-            event.preventDefault();
+        validateCredentials: function () {
 
             var self = this;
             var credentials = {
