@@ -41,7 +41,7 @@ function (
 
         onShow: function () {
 
-            this.$el.delay(3000).fadeOut();
+            this.$el.delay(1500).fadeOut(600);
         }
     });
 
@@ -130,11 +130,11 @@ function (
             Backbone.Validation.bind(this, {forceUpdate: true});
             this.model.on('validated:invalid', function (model, errors) {
 
-                self.showAlertError(errors);
+                self.showError(errors);
             });
             this.model.on('validated:valid', function (model) {
 
-               self.hideErrorAlert();
+               self.hideError();
             });
         },
 
@@ -184,7 +184,7 @@ function (
             saveWine
                 .done(function () {
 
-                    self.showAlertSuccess();
+                    self.showSuccess();
                 })
                 .fail(function (error, model, jqXHR, options) {
 
@@ -200,17 +200,23 @@ function (
             return false;
         },
 
-        showAlertSuccess: function () {
+        showSuccess: function () {
 
+            var $save = this.$el.find('button.save');
+            $save.addClass('btn-success');
+            setTimeout(function () {
+
+                $save.removeClass('btn-success');
+            }, 300);
             this.alertSuccess.show(new SuccessView());
         },
 
-        showAlertError: function (errors) {
+        showError: function (errors) {
 
             this.alertError.show(new ErrorView({errors: errors}));
         },
 
-        hideErrorAlert: function () {
+        hideError: function () {
 
             this.alertError.close();
         }
