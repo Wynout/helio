@@ -37,6 +37,11 @@ function (
             return {
                 saved: nlsWine.saved
             };
+        },
+
+        onShow: function () {
+
+            this.$el.delay(3000).fadeOut();
         }
     });
 
