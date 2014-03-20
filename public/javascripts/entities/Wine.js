@@ -24,8 +24,8 @@ function ($, _, Backbone, MsgBus, Xhr, nlsWine) {
             _id: null,
             name: '',
             grapes: '',
-            country: 'USA',
-            region: 'California',
+            country: '',
+            region: '',
             year: '',
             description: '',
             picture: null
