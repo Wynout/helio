@@ -149,7 +149,11 @@ function (
         // Called by the region, after the region has added the view to the dom
         onShow: function () {
 
-            this.stickit();
+            // Enable live validation on existing resource
+            if (this.model.get('_id')) {
+
+                this.stickit();
+            }
         },
 
         // Called when the view has been closed.
