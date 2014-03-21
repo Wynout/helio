@@ -199,8 +199,8 @@ function (
             return false;
         },
 
-        deleteWineConfirm: function () {
-
+        deleteWineConfirm: function (event) {
+            event.preventDefault();
             MsgBus.events.trigger('wine:delete:confirm', this.model);
             return false;
         },

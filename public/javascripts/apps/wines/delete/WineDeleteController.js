@@ -3,15 +3,15 @@
 | Wine Delete Controller                                WineDeleteController.js
 |------------------------------------------------------------------------------
 */
-define(['msgbus', 'apps/wines/delete/WineDeleteView'],
-function (MsgBus, WineDeleteView) {
+define(['backbone', 'msgbus', 'apps/wines/delete/WineDeleteView'],
+function (Backbone, MsgBus, WineDeleteView) {
 
     var controller = {
 
         deleteWineConfirm: function (model) {
 
-            var View = new WineDeleteView.confirm({model: model});
-            MsgBus.commands.execute('popup:show', View);
+            var View = new WineDeleteView({model: model});
+            MsgBus.commands.execute('modal:show', View);
         },
 
         deleteWine: function (model) {
@@ -21,13 +21,11 @@ function (MsgBus, WineDeleteView) {
             deleteWine
                 .done(function (model, response, options) {
 
-                    var View = new WineDeleteView.success({model: model});
-                    MsgBus.commands.execute('popup:show', View);
+                    Backbone.history.navigate('wines', {trigger: true});
                 })
-                .fail(function (model, xhr, options) {
+                .fail(function (error, model, jqXHR, options) {
 
-                    var View = new WineDeleteView.error({model: model});
-                    MsgBus.commands.execute('popup:show', View);
+                    MsgBus.commands.execute('xhr:error:handler', error);
                 });
         }
 

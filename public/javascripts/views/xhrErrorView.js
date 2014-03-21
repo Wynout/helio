@@ -29,7 +29,7 @@ function (
             return {
                 modal: nlsXhr.modal,
                 error: this.options.error,
-                account: MsgBus.reqres.request('account:info')
+                account: MsgBus.reqres.request('account:token:info')
             };
         },
 

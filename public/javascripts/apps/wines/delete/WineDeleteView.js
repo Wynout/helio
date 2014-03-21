@@ -6,77 +6,29 @@
 define([
     'marionette',
     'msgbus',
-    'hbs!apps/wines/delete/WineDeleteConfirmTemplate',
-    'hbs!apps/wines/delete/WineDeleteSuccessTemplate',
-    'hbs!apps/wines/delete/WineDeleteErrorTemplate'],
+    'hbs!apps/wines/delete/WineDeleteTemplate'],
 function (
     Marionette,
     MsgBus,
-    wineDeleteConfirmTemplate,
-    wineDeleteSuccessTemplate,
-    wineDeleteErrorTemplate) {
+    wineDeleteTemplate) {
 
 
     /**
-     * Delete Confirm popup dialog
+     * Delete Confirm modal
      */
     var DeleteConfirmView = Marionette.ItemView.extend({
-        template: wineDeleteConfirmTemplate,
+        template: wineDeleteTemplate,
         events: {
             'click .delete-confirmed' : 'deleteWine'
         },
 
         deleteWine: function () {
 
+            MsgBus.commands.execute('modal:hide');
             MsgBus.events.trigger('wine:delete', this.model);
             return false;
         }
     });
 
-
-    /**
-     * Delete Success popup dialog
-     */
-    var DeleteSuccessView = Marionette.ItemView.extend({
-        template: wineDeleteSuccessTemplate,
-        events: {
-            'click .okay': 'okay'
-        },
-
-        okay: function () {
-            // not used: a.okay href points to #wines
-        }
-    });
-
-
-    /**
-     * Delete Error popup dialog
-     */
-    var DeleteErrorView = Marionette.ItemView.extend({
-        template: wineDeleteErrorTemplate,
-        events: {
-            'click .retry': 'retry'
-        },
-
-        serializeData: function () {
-
-            return {
-                model: this.options.model.toJSON,
-                xhr: JSON.parse(JSON.stringify(this.options.xhr))
-            };
-        },
-
-        retry: function () {
-
-            MsgBus.events.trigger('wine:delete', this.model);
-            return false;
-        }
-    });
-
-    return {
-        confirm: DeleteConfirmView,
-        success: DeleteSuccessView,
-        error  : DeleteErrorView
-    };
-
+    return DeleteConfirmView;
 });

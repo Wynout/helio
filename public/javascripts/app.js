@@ -100,7 +100,32 @@ function (
      */
     MsgBus.commands.setHandler('modal:show', function (view) {
 
-        App.layout.modal.show(view);
+        var $modal = $('#modal');
+        if ($modal.hasClass('in')) {
+
+            // wait for hide animation to complete
+            $modal.modal('hide');
+            $modal.on('hidden.bs.modal', function (event) {
+
+                App.layout.modal.show(view);
+                $modal.off('hidden.bs.modal');
+            });
+
+        } else {
+
+            App.layout.modal.show(view);
+        }
+    });
+
+
+    /**
+     * Register command modal:hide
+     * @param {Object} view
+     */
+    MsgBus.commands.setHandler('modal:hide', function () {
+
+        $('#modal').modal('hide');
+        App.layout.modal.close();
     });
 
 
