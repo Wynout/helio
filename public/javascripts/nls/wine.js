@@ -37,6 +37,16 @@ define({
         saved: {
             title: 'Success',
             message: 'Wine saved successfully'
+        },
+        'delete': {
+            modal: {
+                title: 'Delete Wine?',
+                message: 'This action cannot be undone.'
+            },
+            buttons: {
+                'delete': 'Delete',
+                cancel: 'Cancel'
+            }
         }
     },
     'nl-nl': true

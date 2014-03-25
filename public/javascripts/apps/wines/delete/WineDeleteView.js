@@ -4,13 +4,17 @@
 |------------------------------------------------------------------------------
 */
 define([
+    'jquery',
     'marionette',
     'msgbus',
-    'hbs!apps/wines/delete/WineDeleteTemplate'],
+    'hbs!apps/wines/delete/WineDeleteTemplate',
+    'i18n!nls/wine'],
 function (
+    $,
     Marionette,
     MsgBus,
-    wineDeleteTemplate) {
+    wineDeleteTemplate,
+    nlsWine) {
 
 
     /**
@@ -20,6 +24,14 @@ function (
         template: wineDeleteTemplate,
         events: {
             'click .delete-confirmed' : 'deleteWine'
+        },
+
+        serializeData: function () {
+
+            return $.extend(
+                this.model.toJSON(),
+                nlsWine['delete']
+            );
         },
 
         deleteWine: function () {

@@ -36,5 +36,15 @@ define({
     saved: {
         title: 'Succes',
         message: 'Wijn succesvol opgeslagen'
+    },
+    'delete': {
+        modal: {
+            title: 'Wijn verwijderen?',
+            message: 'Deze actie kan niet ongedaan worden gemaakt.'
+        },
+        buttons: {
+            'delete': 'Verwijder',
+            cancel: 'Annuleer'
+        }
     }
 });
