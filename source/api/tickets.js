@@ -102,13 +102,12 @@ module.exports = function (app) {
             if (ticket) {
 
                 // TODO create mongoose plugin to handle multiple fields
-                ticket.country     = req.body.country;
+                ticket.type        = req.body.type;
+                ticket.title       = req.body.title;
                 ticket.description = req.body.description;
-                ticket.grapes      = req.body.grapes;
-                ticket.name        = req.body.name;
-                ticket.picture     = req.body.picture;
-                ticket.region      = req.body.region;
-                ticket.year        = req.body.year;
+                ticket.status      = req.body.status;
+                ticket.urgency     = req.body.urgency;
+                ticket.active      = req.body.active;
 
                 ticket.save(function (err) {
 

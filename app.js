@@ -59,7 +59,7 @@ app.configure('production', function () {
  * TODO: add authentication
  * @link http://mongoosejs.com/docs/connections.html
  */
-mongoose.connect('mongodb://localhost/winedb');
+mongoose.connect('mongodb://localhost/helio');
 
 
 /**
