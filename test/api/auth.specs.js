@@ -234,8 +234,8 @@ describe('/api/auth.js', function () {
             it ('should return error.type "authorization"', function () {
                 expect(jsonResponse.error.type).to.equal('authorization');
             });
-            it ('should return error.message "Bad syntax"', function () {
-                expect(jsonResponse.error.message).to.equal('Bad syntax');
+            it ('should return error.message "bad syntax"', function () {
+                expect(jsonResponse.error.message).to.equal('bad syntax');
             });
         });
 
@@ -266,8 +266,8 @@ describe('/api/auth.js', function () {
             it ('should return error.type "authorization"', function () {
                 expect(jsonResponse.error.type).to.equal('authorization');
             });
-            it ('should return error.message "Unauthorized access"', function () {
-                expect(jsonResponse.error.message).to.equal('Unauthorized access');
+            it ('should return error.message "unauthorized access"', function () {
+                expect(jsonResponse.error.message).to.equal('unauthorized access');
             });
         });
 
@@ -298,8 +298,8 @@ describe('/api/auth.js', function () {
             it ('should return error.type "authorization"', function () {
                 expect(jsonResponse.error.type).to.equal('authorization');
             });
-            it ('should return error.message "Authorization expired"', function () {
-                expect(jsonResponse.error.message).to.equal('Authorization expired');
+            it ('should return error.message "authorization expired"', function () {
+                expect(jsonResponse.error.message).to.equal('authorization expired');
             });
         });
 
