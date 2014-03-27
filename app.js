@@ -62,18 +62,20 @@ app.configure('production', function () {
 mongoose.connect('mongodb://localhost/winedb');
 
 
-// API endpoinds
+/**
+ * API endpoinds
+ */
 require('./source/api/auth')(app);
 require('./source/api/wines')(app);
+require('./source/api/tickets')(app);
 
 
-// Error handling middlewares
-
-
+/**
+ * Error handling middlewares
+ */
 app.use(middleware.errorHandlers.logErrors);
 app.use(middleware.errorHandlers.clientErrorHandler);
 app.use(middleware.errorHandlers.errorHandler);
-
 
 
 /**
