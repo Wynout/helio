@@ -17,6 +17,7 @@
     "require-handlebars-plugin": "~0.8.0",
     "requirejs": "~2.1.5",
     "requirejs-i18n": "~2.0.4",
-    "underscore-amd": "~1.5.2"
+    "underscore-amd": "~1.5.2",
+    "font-awesome": "~4.0.3"
   }
 }
