@@ -6,6 +6,7 @@ define({
         signup: 'Inschrijven',
         about: 'Over',
         addWine: 'Wijn toevoegen',
-        wineList: 'Wijnlijst'
+        wineList: 'Wijnlijst',
+        tickets: 'Bonnen'
     }
 });

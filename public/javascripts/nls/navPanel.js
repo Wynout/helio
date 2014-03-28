@@ -6,7 +6,8 @@ define({
             signup: 'Sign up',
             about: 'About',
             addWine: 'Add wine',
-            wineList: 'Wine list'
+            wineList: 'Wine list',
+            tickets: 'Tickets'
         }
     },
     'nl-nl': true

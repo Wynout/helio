@@ -53,6 +53,7 @@ function (
         MsgBus.commands.execute('wine:routes');
         MsgBus.commands.execute('account:routes');
         MsgBus.commands.execute('dashboard:routes');
+        MsgBus.commands.execute('ticket:routes');
     });
 
 

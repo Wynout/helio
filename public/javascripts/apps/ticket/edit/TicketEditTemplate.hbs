@@ -1,0 +1,24 @@
+<form role="form">
+	<div class="form-group">
+		<label for="ticket-id">{{labels.id}}:</label>
+		<input type="text" class="form-control" name="id" id="ticket-id" value="{{_id}}" placeholder="{{placeholders.id}}" disabled="disabled">
+	</div>
+
+	<div class="form-group">
+		<label for="ticket-title">{{labels.title}}:</label>
+		<input type="text" class="form-control" name="title" id="ticket-title" value="{{title}}" placeholder="{{placeholders.title}}">
+	</div>
+
+	<div class="form-group">
+		<label for="ticket-description">{{labels.description}}:</label>
+		<textarea name="description" class="form-control" id="ticket-description" placeholder="{{placeholders.description}}" rows="6">{{description}}</textarea>
+	</div>
+
+	<div id="alert-error-region"></div>
+
+	<button type="submit" class="save btn btn-primary"><span class="glyphicon glyphicon-ok"></span> {{buttons.save}}</button>
+	<button type="submit" class="delete-confirm btn btn-danger"><span class="glyphicon glyphicon-remove"></span> {{buttons.delete}}</button>
+</form>
+
+<br />
+<div id="alert-success-region"></div>

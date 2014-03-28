@@ -1,0 +1,42 @@
+/*
+|------------------------------------------------------------------------------
+| Ticket Edit Controller                                TicketEditController.js
+|------------------------------------------------------------------------------
+*/
+define(['backbone', 'marionette', 'msgbus', 'apps/ticket/edit/TicketEditView', 'views/NavPanelView'],
+function (Backbone, Marionette, MsgBus, TicketEditView, NavPanelView) {
+
+    var controller = {
+
+        addTicket: function () {
+
+            var model = MsgBus.reqres.request('ticket:entity:add');
+            this._editTicket(model);
+        },
+
+        editTicket: function (id) {
+
+            var fetchTicket = MsgBus.reqres.request('ticket:entity', id),
+                self        = this;
+            fetchTicket
+                .done(function (model) {
+
+                    self._editTicket(model);
+                }).fail(function (error, model, xhr, options) {
+
+                    MsgBus.commands.execute('xhr:error:handler', error);
+                });
+        },
+
+        _editTicket: function (model) {
+
+            var regions = {
+                content : new TicketEditView({model: model})
+            };
+            MsgBus.commands.execute('regions:load', regions);
+        }
+
+    };
+
+    return controller;
+});
