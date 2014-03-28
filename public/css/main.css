@@ -26,6 +26,17 @@ li.sidebar-search {
 
 
 /**
+ * Morris styles
+ */
+@import url(../javascripts/bower_components/morris.js/morris.css);
+/* quick fix */
+#donut {
+	height: 200px;
+	width: 200px;
+	margin: 0 auto;
+}
+
+/**
  * Backbone form validation styles
  */
 @import url(backbone-validation.css);

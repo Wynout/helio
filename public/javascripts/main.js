@@ -9,6 +9,8 @@ require.config({
 
     paths: {
         holder                : './bower_components/holderjs/holder',
+        raphael               : './bower_components/raphael/raphael',
+        morris                : './bower_components/morris.js/morris',
         compatability         : './vendor/compatability',
 
         jquery                : './bower_components/jquery/dist/jquery',
@@ -28,15 +30,13 @@ require.config({
         i18n                  : './bower_components/requirejs-i18n/i18n'
     },
 
-    /*
     shim: {
-        'jquery.bootstrap': {
-            deps: ['jquery']
+        morris: {
+            deps: ['jquery', 'raphael'],
+            exports: 'Morris'
         },
-        // marionette:
-        // holder: ['jquery']
     },
-    */
+
     // Disabled because requirejs optimizer cannot be evauluated correctly
     // locale: window.localStorage.getItem('locale') || 'en-gb',
     locale: 'en-gb',
