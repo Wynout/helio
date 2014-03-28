@@ -8,6 +8,9 @@ define({
             addWine: 'Add wine',
             wineList: 'Wine list',
             tickets: 'Tickets'
+        },
+        placeholders: {
+            search: 'Search...'
         }
     },
     'nl-nl': true

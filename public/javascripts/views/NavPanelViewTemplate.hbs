@@ -1,4 +1,17 @@
 <ul class="nav sidebar-nav">
+	{{!-- search list item --}}
+	<li class="sidebar-search hide-before-signin hidden">
+        <div class="input-group custom-search-form">
+            <input type="text" class="form-control" placeholder="{{placeholders.search}}">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                    <i class="fa fa-search"></i>
+                </button>
+            </span>
+        </div>
+        {{!-- /input-group --}}
+    </li>
+    {{!-- navigation items --}}
     <li class="hide-before-signin hidden"><a href="#dashboard"><span class="glyphicon glyphicon-dashboard"></span>{{items.dashboard}}</a></li>
 	<li class="show-before-signin hidden"><a href="#signin"><span class="glyphicon glyphicon-user"></span>{{items.signin}}</a></li>
     <li class="show-before-signin hidden"><a href="#signup"><span class="glyphicon glyphicon-ok-sign"></span>{{items.signup}}</a></li>

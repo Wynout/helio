@@ -8,5 +8,8 @@ define({
         addWine: 'Wijn toevoegen',
         wineList: 'Wijnlijst',
         tickets: 'Bonnen'
+    },
+    placeholders: {
+        search: 'Zoeken...'
     }
 });

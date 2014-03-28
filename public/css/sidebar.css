@@ -4,19 +4,20 @@
 }
 
 #sidebar-wrapper {
-	margin-left: -250px;
-	left: 250px;
-	width: 250px;
 	background: #222;
-	position: fixed;
 	height: 100%;
+	left: 250px;
+	margin-left: -250px;
 	overflow-y: auto;
+	position: fixed;
+	top: 50px;
+	width: 250px;
 	z-index: 1000;
 	transition: all 0.3s ease-in 0s;
 }
 
 #page-content-wrapper {
-	margin-top: 10px; /* push down */
+	margin-top: 50px; /* push down */
 	width: 100%;
 }
 
