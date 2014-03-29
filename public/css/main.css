@@ -5797,6 +5797,9 @@ button.close {
 .navbar-toggle .icon-bar {
   width: 16px;
 }
+.navbar-fixed-top {
+  border-width: 0;
+}
 #wrapper {
   padding-left: 250px;
   transition: all 0.4s ease 0s;
