@@ -1,0 +1,58 @@
+/*
+|------------------------------------------------------------------------------
+| Main styles entry point                                             main.less
+|------------------------------------------------------------------------------
+*/
+@import "sidebar-media-queries.less";
+
+/**
+ * Bootstrap styles
+ */
+@import "../javascripts/bower_components/bootstrap/less/bootstrap.less";
+@icon-font-path: "../javascripts/bower_components/bootstrap/fonts/";
+
+@import "header.less";
+@import "sidebar.less";
+@import "signin.less";
+
+/**
+ * Font Awesome styles
+ */
+@import "../javascripts/bower_components/font-awesome/less/font-awesome.less";
+@fa-font-path: "../javascripts/bower_components/font-awesome/fonts";
+/* quick fix */
+li.sidebar-search {
+	line-height: normal;
+	text-indent: 0;
+	padding: 15px;
+}
+
+
+/**
+ * Morris styles
+ */
+// @import url(../javascripts/bower_components/morris.js/morris.css);
+@import "../javascripts/bower_components/morris.js/less/morris.core.less";
+
+/* quick fix */
+#donut {
+	height: 200px;
+	width: 200px;
+	margin: 0 auto;
+}
+
+/**
+ * Backbone form validation styles
+ */
+@import "backbone-validation.less";
+
+
+/**
+ * Global Styles
+ */
+@import "global.less";
+
+
+
+
+

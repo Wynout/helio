@@ -10,6 +10,9 @@ var gulp         = require('gulp'),
     nodemon      = require('gulp-nodemon'),
     bust         = require('gulp-buster'),
     // sass         = require('gulp-ruby-sass'),
+    less         = require('gulp-less'),
+    path         = require('path'),
+
     autoprefixer = require('gulp-autoprefixer'),
     cssimport    = require('gulp-cssimport'),
     minifycss    = require('gulp-minify-css'),
@@ -26,6 +29,20 @@ var gulp         = require('gulp'),
     lr           = require('tiny-lr'),
     server       = lr(); // defines LiveReload server
 
+/**
+ * Build Less
+ */
+gulp.task('less', function () {
+
+    gulp.src('public/less/main.less')
+        .pipe(plumber())
+        .pipe(less({
+            compress: false,
+            paths: [ path.join(__dirname, 'less', 'includes') ]
+        }))
+        .pipe(gulp.dest('public/css'));
+});
+
 
 /**
  * Styles Task
@@ -36,7 +53,7 @@ var gulp         = require('gulp'),
  * - auto-refresh the page
  * - notify that task is completed
  */
- gulp.task('styles', function () {
+gulp.task('styles', function () {
 
     // By returning the stream it makes it asynchronous, ensuring the task is fully complete before we get a notification to say it’s finished.
     return gulp.src('public/css/main.css')
@@ -124,6 +141,12 @@ gulp.task('dev', function () {
         env    : {'NODE_ENV': 'development'}
 
     };
+
+    gulp.watch('public/less/*.less', function () {
+
+        gulp.run('less');
+    });
+
     return nodemon(options)
         .on('restart', ['lint']);
 });
@@ -133,6 +156,6 @@ gulp.task('dev', function () {
  * The default task is a build task.
  * cachebusting task needs to run separate
  */
-gulp.task('default', ['styles', 'rjs'], function () {
+gulp.task('default', ['less', 'styles', 'rjs'], function () {
 
 });

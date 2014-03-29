@@ -163,15 +163,6 @@ Now, you can use key.pem and key-cert.pem in the options you pass to createServe
 $ npm install -g grunt-cli
 ```
 
-
-### Build jQuery Mobile
-```
-$ cd public/javascripts/bower_components/jquery-mobile
-$ grunt
-```
-
-
-
 <a name="start-server"/>
 ### Start Server
 Development mode
