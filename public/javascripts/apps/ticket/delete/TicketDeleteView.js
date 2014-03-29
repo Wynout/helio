@@ -7,21 +7,21 @@ define([
     'jquery',
     'marionette',
     'msgbus',
-    'hbs!apps/wines/delete/WineDeleteTemplate',
-    'i18n!nls/wine'],
+    'hbs!apps/ticket/delete/TicketDeleteTemplate',
+    'i18n!nls/ticket'],
 function (
     $,
     Marionette,
     MsgBus,
-    wineDeleteTemplate,
-    nlsWine) {
+    ticketDeleteTemplate,
+    nlsTicket) {
 
 
     /**
      * Delete Confirm modal
      */
     var DeleteConfirmView = Marionette.ItemView.extend({
-        template: wineDeleteTemplate,
+        template: ticketDeleteTemplate,
         events: {
             'click .delete-confirmed' : 'deleteWine'
         },
@@ -30,14 +30,14 @@ function (
 
             return $.extend(
                 this.model.toJSON(),
-                nlsWine['delete']
+                nlsTicket['delete']
             );
         },
 
         deleteWine: function () {
 
             MsgBus.commands.execute('modal:hide');
-            MsgBus.events.trigger('wine:delete', this.model);
+            MsgBus.events.trigger('ticket:delete', this.model);
             return false;
         }
     });
