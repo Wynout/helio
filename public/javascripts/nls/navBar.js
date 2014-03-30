@@ -6,7 +6,8 @@ define({
         },
         items: {
             settings: 'Settings',
-            signout: 'Sign out'
+            signout: 'Sign out',
+            profile: 'My Profile'
         }
     },
     'nl-nl': true

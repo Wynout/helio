@@ -5,6 +5,7 @@ define({
     },
     items: {
         settings: 'Instellingen',
-        signout: 'Uitloggen'
+        signout: 'Uitloggen',
+        profile: 'Mijn Profiel'
     }
 });
