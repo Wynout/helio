@@ -35,7 +35,7 @@ function (
 
             MsgBus.events.on('account:signedin', this.signedin.bind(this));
             MsgBus.events.on('account:signedout', this.signedout.bind(this));
-            MsgBus.events.on('route:filter:before', this.setActiveItem.bind(this));
+            MsgBus.events.on('route:filter:after', this.setActiveItem.bind(this));
 
             MsgBus.commands.setHandler('navpanel:open', this.openNavPanel.bind(this));
             MsgBus.commands.setHandler('navpanel:close', this.closeNavPanel.bind(this));
