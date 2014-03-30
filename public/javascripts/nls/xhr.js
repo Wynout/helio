@@ -4,6 +4,12 @@ define({
             title: 'Error',
             close: 'Close'
         },
+        xhrErrorTypes: {
+            'unknown': 'Unknown error',
+            'authentication': 'Authentication error',
+            'retrieval': 'Retrieval error',
+            'validation': 'Validation error'
+        },
         xhrErrorMessages: {
             // authentication
             'username is required': 'Username is required',
@@ -15,8 +21,9 @@ define({
             'bad syntax': 'Bad syntax',
             'unauthorized access': 'Unauthorized access',
             'authorization expired': 'Authorization expired',
-            // wines
-            'not found': 'Not found'
+            // other
+            'not found': 'Not found',
+            'validation failed': 'Validation failed'
         }
     },
     'nl-nl': true

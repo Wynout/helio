@@ -23,6 +23,12 @@ define(['underscore', 'i18n!nls/xhr'], function (_, nlsXhr) {
                 },
                 response = _.extend(defaults, jqXHR.responseJSON);
 
+            // Set error.type translation
+            if (_.has(nlsXhr.xhrErrorTypes, response.error.type)) {
+
+                response.error.type = nlsXhr.xhrErrorTypes[response.error.type];
+            }
+
             // Set error.message translation
             if (_.has(nlsXhr.xhrErrorMessages, response.error.message)) {
 

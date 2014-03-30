@@ -3,6 +3,12 @@ define({
         title: 'Foutmelding',
         close: 'Sluit'
     },
+    xhrErrorTypes: {
+        'unknown': 'Onbekende fout',
+        'authentication': 'Authenticatie fout',
+        'retrieval': 'Ophaal fout',
+        'validation': 'Validatiefout'
+    },
     xhrErrorMessages: {
         // authentication
         'username is required': 'Gebruikersnaam is verplicht',
@@ -14,7 +20,8 @@ define({
         'bad syntax': 'Slechte syntax',
         'unauthorized access': 'Ongeautoriseerde toegang',
         'authorization expired': 'Autorisatie is verlopen',
-        // wines
-        'not found': 'Niet gevonden'
+        // other
+        'not found': 'Niet gevonden',
+        'validation failed': 'Validatie is mislukt'
     }
 });
