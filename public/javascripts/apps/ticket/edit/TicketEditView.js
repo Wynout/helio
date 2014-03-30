@@ -83,6 +83,12 @@ function (
          * Use stickit to perform binding between the model and the view
          */
         bindings: {
+            '#ticket-type': {
+                observe: 'type',
+                setOptions: {
+                    validate: true
+                }
+            },
             '#ticket-title': {
                 observe: 'title',
                 setOptions: {
