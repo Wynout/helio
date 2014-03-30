@@ -42,13 +42,9 @@ module.exports = function (app) {
 
         // TODO create mongoose plugin to handle multiple fields
         var ticket = new TicketModel({
-            country     : req.body.country,
-            description : req.body.description,
-            grapes      : req.body.grapes,
-            name        : req.body.name,
-            picture     : req.body.picture,
-            region      : req.body.region,
-            year        : req.body.year
+            type        : req.body.type,
+            title       : req.body.title,
+            description : req.body.description
         });
 
         return ticket.save(function (err) {

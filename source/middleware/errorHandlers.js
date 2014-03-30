@@ -25,7 +25,13 @@ function clientErrorHandler(err, req, res, next) {
     //     acceptJson = ~accept.indexOf('json') ? true : false;
     // if (!acceptJson) { next(); }
 
-    res.json(err.status, {error: {type: err.type, message: err.message}});
+    if (err.name!==undefined && err.name==='ValidationError') {
+
+        res.json(400, {error: {type: 'validation', message: 'validation failed', errors: err.errors}});
+    } else {
+
+        res.json(err.status, {error: {type: err.type, message: err.message}});
+    }
 }
 
 
