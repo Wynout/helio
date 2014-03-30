@@ -9,11 +9,13 @@ define({
         edit: {
             labels: {
                 id: 'Id',
+                type: 'Type',
                 title: 'Title',
                 description: 'Description'
             },
             placeholders: {
                 id: 'id',
+                type: 'Ticket type',
                 title: 'Title of ticket',
                 description: 'Ticket description'
             },
