@@ -4,11 +4,13 @@
  |------------------------------------------------------------------------------
  */
 define([
+    'backbone',
     'marionette',
     'msgbus',
     'apps/dashboard/show/DashboardShowController',
     'apps/dashboard/show/DashboardShowView'],
 function (
+    Backbone,
     Marionette,
     MsgBus,
     DashboardShowController,
@@ -19,7 +21,7 @@ function (
      */
     var Dashboard = Marionette.AppRouter.extend({
         appRoutes: {
-            '': 'dashboard',
+            '': 'redirectDashboard',
             'dashboard': 'dashboard'
         },
         before: function (route) {
@@ -51,6 +53,10 @@ function (
         dashboard: function () {
 
             DashboardShowController.show();
+        },
+        redirectDashboard: function () {
+
+            Backbone.history.navigate('dashboard', {trigger: true});
         }
     };
 
