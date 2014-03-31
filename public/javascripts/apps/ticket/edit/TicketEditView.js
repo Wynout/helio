@@ -9,10 +9,9 @@ define([
     'marionette',
     'msgbus',
     'hbs!apps/ticket/edit/TicketEditTemplate',
-    'hbs!apps/ticket/edit/TicketEditSuccessTemplate',
-    'hbs!apps/ticket/edit/TicketEditErrorTemplate',
+    'views/ValidationInvalidView',
+    'views/SuccessView',
     'i18n!nls/ticket',
-    'i18n!nls/validation',
     'backbone.stickit',
     'mixins/backbone.validation'],
 function (
@@ -21,45 +20,9 @@ function (
     Marionette,
     MsgBus,
     ticketEditTemplate,
-    ticketEditSuccessTemplate,
-    ticketEditErrorTemplate,
-    nlsTicket,
-    nlsValidation) {
-
-    /**
-     * Message shown when ticket successfully saved
-     */
-    var SuccessView = Marionette.ItemView.extend({
-        template: ticketEditSuccessTemplate,
-
-        serializeData: function () {
-
-            return {
-                saved: nlsTicket.saved
-            };
-        },
-
-        onShow: function () {
-
-            this.$el.delay(1500).fadeOut(300);
-        }
-    });
-
-
-    /**
-     * Message shown when ticket could not be saved
-     */
-    var ErrorView = Marionette.ItemView.extend({
-        template: ticketEditErrorTemplate,
-
-        serializeData: function () {
-
-            return {
-                errors: this.options.errors,
-                invalid: nlsValidation.invalid
-            };
-        }
-    });
+    ValidationInvalidView,
+    SuccessView,
+    nlsTicket) {
 
 
     /**
@@ -196,12 +159,12 @@ function (
 
                 $save.removeClass('btn-success');
             }, 1500);
-            this.alertSuccess.show(new SuccessView());
+            this.alertSuccess.show(new SuccessView({title: nlsTicket.saved.title, message: nlsTicket.saved.message}));
         },
 
         showError: function (errors) {
 
-            this.alertError.show(new ErrorView({errors: errors}));
+            this.alertError.show(new ValidationInvalidView({errors: errors}));
         },
 
         hideError: function () {
