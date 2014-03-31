@@ -62,6 +62,7 @@ function (
             if (event.keyCode===13) {
 
                 this.validateCredentials();
+                return false;
             }
         },
 
