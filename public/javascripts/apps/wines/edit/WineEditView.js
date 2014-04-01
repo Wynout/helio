@@ -9,8 +9,8 @@ define([
     'marionette',
     'msgbus',
     'hbs!apps/wines/edit/WineEditTemplate',
-    'hbs!apps/wines/edit/WineEditSuccessTemplate',
-    'hbs!apps/wines/edit/WineEditErrorTemplate',
+    'views/ValidationInvalidView',
+    'views/SuccessView',
     'i18n!nls/wine',
     'i18n!nls/validation',
     'backbone.stickit',
@@ -21,45 +21,9 @@ function (
     Marionette,
     MsgBus,
     wineEditTemplate,
-    wineEditSuccessTemplate,
-    wineEditErrorTemplate,
-    nlsWine,
-    nlsValidation) {
-
-    /**
-     * Message shown when wine successfully saved
-     */
-    var SuccessView = Marionette.ItemView.extend({
-        template: wineEditSuccessTemplate,
-
-        serializeData: function () {
-
-            return {
-                saved: nlsWine.saved
-            };
-        },
-
-        onShow: function () {
-
-            this.$el.delay(1500).fadeOut(300);
-        }
-    });
-
-
-    /**
-     * Message shown when wine could not be saved
-     */
-    var ErrorView = Marionette.ItemView.extend({
-        template: wineEditErrorTemplate,
-
-        serializeData: function () {
-
-            return {
-                errors: this.options.errors,
-                invalid: nlsValidation.invalid
-            };
-        }
-    });
+    ValidationInvalidView,
+    SuccessView,
+    nlsWine) {
 
 
     /**
@@ -130,7 +94,7 @@ function (
             Backbone.Validation.bind(this, {forceUpdate: true});
             this.model.on('validated:invalid', function (model, errors) {
 
-                self.showError(errors);
+                self.showValidationError(errors);
             });
             this.model.on('validated:valid', function (model) {
 
@@ -213,12 +177,12 @@ function (
 
                 $save.removeClass('btn-success');
             }, 1500);
-            this.alertSuccess.show(new SuccessView());
+            this.alertSuccess.show(new SuccessView({title: nlsWine.saved.title, message: nlsWine.saved.message}));
         },
 
-        showError: function (errors) {
+        showValidationError: function (errors) {
 
-            this.alertError.show(new ErrorView({errors: errors}));
+            this.alertError.show(new ValidationInvalidView({errors: errors}));
         },
 
         hideError: function () {

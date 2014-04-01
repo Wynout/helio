@@ -75,7 +75,7 @@ function (
             Backbone.Validation.bind(this, {forceUpdate: true});
             this.model.on('validated:invalid', function (model, errors) {
 
-                self.showError(errors);
+                self.showValidationError(errors);
             });
             this.model.on('validated:valid', function (model) {
 
@@ -162,7 +162,7 @@ function (
             this.alertSuccess.show(new SuccessView({title: nlsTicket.saved.title, message: nlsTicket.saved.message}));
         },
 
-        showError: function (errors) {
+        showValidationError: function (errors) {
 
             this.alertError.show(new ValidationInvalidView({errors: errors}));
         },
