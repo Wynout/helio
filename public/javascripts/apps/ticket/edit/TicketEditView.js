@@ -38,6 +38,7 @@ function (
 
         events: {
             'change'                : 'change',
+            'click .create'         : 'saveTicket',
             'click .save'           : 'saveTicket',
             'click .delete-confirm' : 'deleteTicketConfirm'
         },
@@ -121,7 +122,7 @@ function (
             this.model.set(change);
         },
 
-        saveTicket: function () {
+        saveTicket: function (event) {
 
             if (!this.model.isValid(true)) { // true forces a validation before the result is returned
 
@@ -130,11 +131,19 @@ function (
             }
 
             var self       = this,
-                saveTicket = MsgBus.reqres.request('ticket:entity:save', this.model);
-            saveTicket
-                .done(function () {
+                saveTicket = MsgBus.reqres.request('ticket:entity:save', this.model),
+                create     = this.model.get('_id')===null ? true : false;
 
-                    self.showSuccess();
+            saveTicket
+                .done(function (model, response, jqXHR) {
+
+                    if (create) {
+
+                        MsgBus.events.trigger('ticket:edit', model);
+                    } else {
+
+                        self.showSuccess();
+                    }
                 })
                 .fail(function (error, model, jqXHR, options) {
 

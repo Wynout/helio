@@ -1,26 +1,33 @@
 /*
- |------------------------------------------------------------------------------
- | Ticket App Module                                                TicketApp.js
- |------------------------------------------------------------------------------
- */
+|------------------------------------------------------------------------------
+| Ticket App Module                                                TicketApp.js
+|------------------------------------------------------------------------------
+*/
 define([
     'marionette',
     'msgbus',
     'apps/ticket/delete/TicketDeleteController',
     'apps/ticket/edit/TicketEditController',
     'apps/ticket/list/TicketListController',
-    'entities/Ticket'
-    ],
-function (Marionette, MsgBus, TicketDeleteController, TicketEditController, TicketListController) {
+    'entities/Ticket'],
+function (
+    Marionette,
+    MsgBus,
+    TicketDeleteController,
+    TicketEditController,
+    TicketListController) {
+
+
+    var ticketRouter;
 
     /**
      * Setup TicketApp Router
      */
     var TicketRouter = Marionette.AppRouter.extend({
         appRoutes: {
-            'tickets/add': 'addTicket',
-            'tickets'    : 'showTickets',
-            'tickets/:id': 'editTicket'
+            'tickets/create': 'createTicket',
+            'tickets'       : 'showTickets',
+            'tickets/:id'   : 'editTicket'
         },
         before: function (route) {
 
@@ -38,9 +45,22 @@ function (Marionette, MsgBus, TicketDeleteController, TicketEditController, Tick
      */
     MsgBus.commands.setHandler('ticket:routes', function () {
 
-        return new TicketRouter({
+        ticketRouter = new TicketRouter({
             controller: API
         });
+    });
+
+
+    /**
+     * Subscribe to event, edit ticket
+     */
+    MsgBus.events.on('ticket:edit', function (model) {
+
+        var id    = model.get('_id'),
+            route = 'tickets/' + id;
+        API.editTicket(id);
+        ticketRouter.navigate(route);
+        ticketRouter.after(route);
     });
 
 
@@ -66,9 +86,9 @@ function (Marionette, MsgBus, TicketDeleteController, TicketEditController, Tick
      * Expose WineApp API through TicketRouter
      */
     var API = {
-        addTicket: function () {
+        createTicket: function () {
 
-           TicketEditController.addTicket();
+           TicketEditController.createTicket();
         },
 
         showTickets: function () {

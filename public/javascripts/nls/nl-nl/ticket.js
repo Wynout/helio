@@ -19,6 +19,7 @@ define({
             description: 'Ticket omschrijving'
         },
         buttons: {
+            create: 'Aanmaken',
             save: 'Opslaan',
             'delete': 'Verwijder'
         }

@@ -3,12 +3,12 @@
 | Ticket Edit Controller                                TicketEditController.js
 |------------------------------------------------------------------------------
 */
-define(['backbone', 'marionette', 'msgbus', 'apps/ticket/edit/TicketEditView', 'views/NavPanelView'],
-function (Backbone, Marionette, MsgBus, TicketEditView, NavPanelView) {
+define(['backbone', 'marionette', 'msgbus', 'apps/ticket/edit/TicketEditView'],
+function (Backbone, Marionette, MsgBus, TicketEditView) {
 
     var controller = {
 
-        addTicket: function () {
+        createTicket: function () {
 
             var model = MsgBus.reqres.request('ticket:entity:add');
             this._editTicket(model);
@@ -31,7 +31,7 @@ function (Backbone, Marionette, MsgBus, TicketEditView, NavPanelView) {
         _editTicket: function (model) {
 
             var regions = {
-                content : new TicketEditView({model: model})
+                content: new TicketEditView({model: model})
             };
             MsgBus.commands.execute('regions:load', regions);
         }

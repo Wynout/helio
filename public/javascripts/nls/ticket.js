@@ -20,6 +20,7 @@ define({
                 description: 'Ticket description'
             },
             buttons: {
+                create: 'Create',
                 save: 'Save',
                 'delete': 'Delete'
             }

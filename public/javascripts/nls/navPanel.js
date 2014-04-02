@@ -7,7 +7,8 @@ define({
             about: 'About',
             addWine: 'Add wine',
             wineList: 'Wine list',
-            tickets: 'Tickets'
+            tickets: 'Tickets',
+            createTicket: 'Create Ticket'
         },
         placeholders: {
             search: 'Search...'

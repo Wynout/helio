@@ -21,8 +21,14 @@
 
 	<div id="alert-error-region"></div>
 
-	<button type="submit" class="save btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i> {{buttons.save}}</button>
-	<button type="submit" class="delete-confirm btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> {{buttons.delete}}</button>
+	{{#if _id}}
+		{{!-- edit existing --}}
+		<button type="submit" class="save btn btn-primary"><i class="fa fa-floppy-o fa-lg"></i> {{buttons.save}}</button>
+		<button type="submit" class="delete-confirm btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> {{buttons.delete}}</button>
+	{{else}}
+		{{!-- create --}}
+		<button type="submit" class="create btn btn-primary"><i class="fa fa-ticket fa-lg"></i> {{buttons.create}}</button>
+	{{/if}}
 </form>
 
 <br />
