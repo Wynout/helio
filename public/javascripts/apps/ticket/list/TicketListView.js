@@ -5,9 +5,10 @@
 */
 define([
     'marionette',
+    'msgbus',
     'hbs!apps/ticket/list/TicketListItemTemplate',
     'hbs!apps/ticket/list/TicketListTemplate'],
-function (Marionette, TicketListItemTemplate, TicketListTemplate) {
+function (Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
 
 	/**
 	 * Ticket List Item View
@@ -15,12 +16,13 @@ function (Marionette, TicketListItemTemplate, TicketListTemplate) {
 	var TicketListItemView = Marionette.ItemView.extend({
 		template: TicketListItemTemplate,
 		tagName: 'li',
-		className: 'list-group-item'
-		/*,
-		triggers: {
-			'click': 'selected'
+		events: {
+			'click': function (event) {
+
+				event.preventDefault();
+				MsgBus.events.trigger('ticket:edit', this.model);
+			}
 		}
-		*/
 	});
 
 
@@ -41,7 +43,7 @@ function (Marionette, TicketListItemTemplate, TicketListTemplate) {
 		template: TicketListTemplate,
 
 		regions: {
-			tickets: '#ticket-list'
+			tickets: '#todo-list'
 		},
 
 		onShow: function () {

@@ -1,9 +1,55 @@
-<ul class="nav nav-pills">
-	<li class="active"><a href="#">New <span class="badge">7</span></a></li>
-	<li><a href="#">Active <span class="badge">2</span></a></li>
-	<li><a href="#">Messages <span class="badge">5</span></a></li>
-</ul>
+<div id="todo-container" class="enyo-unselectable">
+	<section id="todoapp">
+		<header id="header">
+			<h1 id="header_control">tickets</h1>
+			<form id="todo-form">
+				<input class="enyo-input" id="new-todo" placeholder="What needs to be done?">
+			</form>
+		</header>
+		<section id="main-todo">
+			<input type="checkbox" id="toggle-all">
+			<label for="toggle-all" id="toggle-all-label">Mark all as complete</label>
+			<ul id="todo-list">
+				<li id="todo-list_2">
+					<div class="view" id="todo-list_2_taskRow">
+						<input type="checkbox" class="toggle" id="todo-list_2_checkbox">
+						<label id="todo-list_2_textLabel">Todo text</label>
+						<button type="button" class="destroy" id="todo-list_2_button"></button>
+					</div>
+					<input class="edit enyo-input" onblur="enyo.bubble(arguments[0])" id="todo-list_2_inputField" type="text" value="Todo text">
+				</li>
+				<li id="todo-list_3" class="completed">
+					<div class="view" id="todo-list_3_taskRow">
+						<input type="checkbox" class="toggle" id="todo-list_3_checkbox" checked="checked">
+						<label id="todo-list_3_textLabel">Done</label>
+						<button type="button" class="destroy" id="todo-list_3_button"></button>
+					</div>
+					<input class="edit enyo-input" onblur="enyo.bubble(arguments[0])" id="todo-list_3_inputField" type="text" value="Done">
+				</li>
+			</ul>
+		</section>
 
-<br />
+		<footer id="footer">
+			<span id="todo-count">
+				<strong id="count-number">1</strong>
+				<span id="countText"> item left</span>
+			</span>
+			<ul id="filters">
+				<li id="footer_control3">
+					<a class="selected" href="#/" id="tagAll">All</a>
+				</li>
+				<li id="footer_control5">
+					<a href="#/active" id="tagActive">Active</a>
+				</li>
+				<li id="footer_control7">
+					<a href="#/completed" id="tagComplete">Completed</a>
+				</li>
+			</ul>
+			<button type="button" class="enyo-tool-decorator" id="clear-completed">Clear completed (1)</button>
+		</footer>
+	</section>
 
-<div id="ticket-list"></div>
+	<footer id="info">
+
+	</footer>
+</div>
