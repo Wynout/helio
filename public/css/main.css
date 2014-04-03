@@ -6309,6 +6309,10 @@ label[for='toggle-all'] {
   #clear-completed {
     display: none;
   }
+  .ticket-edit-view {
+    margin: 0;
+    padding: 15px;
+  }
 }
 /**
  * widescreen breakpoint
@@ -7731,8 +7735,16 @@ html body form textarea.validation-input-valid {
 /**
  * Global Styles
  */
-body {
-  background-color: #eee;
+/**
+ * Narrowscreen breakpoint
+ */
+/**
+ * widescreen breakpoint
+ */
+@media (min-width: 768px) {
+  body {
+    background-color: #eee;
+  }
 }
 /* model validation error list */
 li.list-group-item-danger.active {

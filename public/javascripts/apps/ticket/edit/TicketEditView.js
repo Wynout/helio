@@ -30,6 +30,7 @@ function (
      */
     var TicketEditView = Marionette.Layout.extend({
         template: ticketEditTemplate,
+        className: 'ticket-edit-view',
 
         regions: {
             alertSuccess : '#alert-success-region',
