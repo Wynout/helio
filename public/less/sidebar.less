@@ -76,11 +76,6 @@
 
 /**
  * Narrowscreen breakpoint
- *
- * Need for separate file
- * Respond.js doesn't parse CSS referenced via @import,
- * nor does it work with media queries within style elements, as those styles can't be re-requested for parsing
- * (CSS is concatenated into a single file)
  */
 @media (max-width:767px) {
 
@@ -121,13 +116,13 @@
 	}
 
 	.inset {
-		padding: 15px;
+		padding:0;
 	}
 
 }
 
 /**
- * Narrowscreen breakpoint
+ * widescreen breakpoint
  */
 @media (min-width:768px) {
 

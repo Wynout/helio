@@ -5865,11 +5865,6 @@ button.close {
 }
 /**
  * Narrowscreen breakpoint
- *
- * Need for separate file
- * Respond.js doesn't parse CSS referenced via @import,
- * nor does it work with media queries within style elements, as those styles can't be re-requested for parsing
- * (CSS is concatenated into a single file)
  */
 @media (max-width: 767px) {
   /*
@@ -5902,11 +5897,11 @@ button.close {
     display: inline-block;
   }
   .inset {
-    padding: 15px;
+    padding: 0;
   }
 }
 /**
- * Narrowscreen breakpoint
+ * widescreen breakpoint
  */
 @media (min-width: 768px) {
   head {
@@ -6278,8 +6273,8 @@ label[for='toggle-all'] {
   box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
 }
 /*
-	Hack to remove background from Mobile Safari.
-	Can't use it globally since it destroys checkboxes in Firefox and Opera
+Hack to remove background from Mobile Safari.
+Can't use it globally since it destroys checkboxes in Firefox and Opera
 */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   #toggle-all,
@@ -6304,6 +6299,33 @@ label[for='toggle-all'] {
 .hidden {
   display: none;
 }
+/**
+ * Narrowscreen breakpoint
+ */
+@media (max-width: 767px) {
+  #todoapp {
+    margin: 0 0 30px 0;
+    border: none;
+    border-radius: 0;
+  }
+  #new-todo,
+  .edit {
+    font-size: 20px;
+  }
+  #todo-list li label {
+    font-size: 16px;
+  }
+  #filters {
+    position: relative;
+    float: right;
+  }
+  #clear-completed {
+    display: none;
+  }
+}
+/**
+ * widescreen breakpoint
+ */
 /**
  * Font Awesome styles
  */

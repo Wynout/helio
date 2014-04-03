@@ -382,8 +382,8 @@ label[for='toggle-all'] {
 
 
 /*
-	Hack to remove background from Mobile Safari.
-	Can't use it globally since it destroys checkboxes in Firefox and Opera
+Hack to remove background from Mobile Safari.
+Can't use it globally since it destroys checkboxes in Firefox and Opera
 */
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
@@ -411,4 +411,41 @@ label[for='toggle-all'] {
 
 .hidden {
 	display: none;
+}
+
+
+/**
+ * Narrowscreen breakpoint
+ */
+@media (max-width:767px) {
+
+	#todoapp {
+		margin: 0 0 30px 0;
+		border: none;
+		border-radius: 0;
+	}
+
+	#new-todo, .edit {
+		font-size: 20px;
+	}
+
+	#todo-list li label {
+		font-size: 16px;
+	}
+
+	#filters {
+		position: relative;
+		float: right;
+	}
+
+	#clear-completed {
+		display: none;
+	}
+}
+
+/**
+ * widescreen breakpoint
+ */
+@media (min-width:768px) {
+
 }
