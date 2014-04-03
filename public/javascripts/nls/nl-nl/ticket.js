@@ -5,6 +5,31 @@ define({
             description: 'U moet een omschrijving invoeren'
         }
     },
+    list: {
+        headings: {
+            all: 'Alle bonnen',
+            active: 'Actieve bonnen',
+            completed: 'Voltooide bonnen'
+        },
+        labels: {
+            toggleAll: 'Markeer alles als voltooid'
+        },
+        placeholders: {
+            create: 'Wat moet er gebeuren?'
+        },
+        count: {
+            singular: 'bon resterend',
+            plurar: 'bonnen resterend'
+        },
+        filters: {
+            all: 'Alles',
+            active: 'Actief',
+            completed: 'Voltooid'
+        },
+        buttons: {
+            clearCompleted: 'Voltooide bonnen wissen ({0})'
+        }
+    },
     edit: {
         labels: {
             id: 'Id',

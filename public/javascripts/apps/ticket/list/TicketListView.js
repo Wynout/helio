@@ -8,8 +8,9 @@ define([
     'marionette',
     'msgbus',
     'hbs!apps/ticket/list/TicketListItemTemplate',
-    'hbs!apps/ticket/list/TicketListTemplate'],
-function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
+    'hbs!apps/ticket/list/TicketListTemplate',
+    'i18n!nls/ticket'],
+function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nlsTicket) {
 
 	/**
 	 * Ticket List Item View
@@ -17,6 +18,7 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
 	var TicketListItemView = Marionette.ItemView.extend({
 		template: TicketListItemTemplate,
 		tagName: 'li',
+		// className: 'completed',
 		events: {
 			'click .view label': function (event) {
 
@@ -41,7 +43,7 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
 
 
 	/**
-	 * Ticket List View
+	 * Ticket List Layout View
 	 */
 	var TicketListView = Marionette.Layout.extend({
 		template: TicketListTemplate,
@@ -49,6 +51,13 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
 		regions: {
 			tickets: '#todo-list'
 		},
+
+		serializeData: function () {
+
+            return $.extend(
+                nlsTicket.list
+            );
+        },
 
 		onShow: function () {
 

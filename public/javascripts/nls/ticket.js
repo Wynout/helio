@@ -6,6 +6,31 @@ define({
                 description: 'You must enter a description'
             }
         },
+        list: {
+            headings: {
+                all: 'All tickets',
+                active: 'Active tickets',
+                completed: 'Completed tickets'
+            },
+            labels: {
+                toggleAll: 'Mark all as complete'
+            },
+            placeholders: {
+                create: 'What needs to be done?'
+            },
+            count: {
+                singular: 'item left',
+                plurar: 'items left'
+            },
+            filters: {
+                all: 'All',
+                active: 'Active',
+                completed: 'Completed'
+            },
+            buttons: {
+                clearCompleted: 'Clear completed ({0})'
+            }
+        },
         edit: {
             labels: {
                 id: 'Id',

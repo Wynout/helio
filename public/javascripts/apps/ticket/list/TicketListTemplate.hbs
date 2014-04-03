@@ -1,55 +1,27 @@
 <div id="todo-container" class="enyo-unselectable">
 	<section id="todoapp">
 		<header id="header-todo">
-			<h1 id="header_control">All tickets</h1>
+			<h1>{{headings.all}}</h1>
 			<form id="todo-form">
-				<input id="new-todo" placeholder="What needs to be done?">
+				<input id="new-todo" placeholder="{{placeholders.create}}">
 			</form>
 		</header>
 		<section id="main-todo">
 			<input type="checkbox" id="toggle-all">
-			<label for="toggle-all" id="toggle-all-label">Mark all as complete</label>
-			<ul id="todo-list">
-				<li id="todo-list_2">
-					<div class="view" id="todo-list_2_taskRow">
-						<input type="checkbox" class="toggle" id="todo-list_2_checkbox">
-						<label id="todo-list_2_textLabel">Todo text</label>
-						<button type="button" class="destroy" id="todo-list_2_button"></button>
-					</div>
-					<input class="edit enyo-input" onblur="enyo.bubble(arguments[0])" id="todo-list_2_inputField" type="text" value="Todo text">
-				</li>
-				<li id="todo-list_3" class="completed">
-					<div class="view" id="todo-list_3_taskRow">
-						<input type="checkbox" class="toggle" id="todo-list_3_checkbox" checked="checked">
-						<label id="todo-list_3_textLabel">Done</label>
-						<button type="button" class="destroy" id="todo-list_3_button"></button>
-					</div>
-					<input class="edit enyo-input" onblur="enyo.bubble(arguments[0])" id="todo-list_3_inputField" type="text" value="Done">
-				</li>
-			</ul>
+			<label for="toggle-all" id="toggle-all-label">{{labels.toggleAll}}</label>
+			<ul id="todo-list"></ul>
 		</section>
-
 		<footer id="footer">
 			<span id="todo-count">
-				<strong id="count-number">1</strong>
-				<span id="countText"> item left</span>
+				<strong id="count-number">1</strong><span id="count-text"> item left</span>
 			</span>
 			<ul id="filters">
-				<li id="footer_control3">
-					<a class="selected" href="#/" id="tagAll">All</a>
-				</li>
-				<li id="footer_control5">
-					<a href="#/active" id="tagActive">Active</a>
-				</li>
-				<li id="footer_control7">
-					<a href="#/completed" id="tagComplete">Completed</a>
-				</li>
+				<li><a class="selected" href="#/" id="tagAll">{{filters.all}}</a></li>
+				<li><a href="#/active" id="tagActive">{{filters.active}}</a></li>
+				<li><a href="#/completed" id="tagComplete">{{filters.completed}}</a></li>
 			</ul>
-			<button type="button" class="enyo-tool-decorator" id="clear-completed">Clear completed (1)</button>
+			<button type="button" id="clear-completed">{{buttons.clearCompleted}}</button>
 		</footer>
 	</section>
-
-	<footer id="info">
-
-	</footer>
+	<footer id="info"></footer>
 </div>
