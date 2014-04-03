@@ -4,11 +4,12 @@
 |------------------------------------------------------------------------------
 */
 define([
+	'jquery',
     'marionette',
     'msgbus',
     'hbs!apps/ticket/list/TicketListItemTemplate',
     'hbs!apps/ticket/list/TicketListTemplate'],
-function (Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
+function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
 
 	/**
 	 * Ticket List Item View
@@ -17,10 +18,14 @@ function (Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
 		template: TicketListItemTemplate,
 		tagName: 'li',
 		events: {
-			'click': function (event) {
+			'click .view label': function (event) {
 
 				event.preventDefault();
 				MsgBus.events.trigger('ticket:edit', this.model);
+			},
+			'click input.toggle': function (event) {
+
+				MsgBus.events.trigger('ticket:toggle', this.model);
 			}
 		}
 	});
@@ -31,8 +36,7 @@ function (Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
 	 */
 	var TicketCollectionView = Marionette.CollectionView.extend({
 		itemView: TicketListItemView,
-		tagName: 'ul',
-		className: 'list-group'
+		id: 'todo-list'
 	});
 
 
@@ -48,6 +52,7 @@ function (Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate) {
 
 		onShow: function () {
 
+			this.$el.find('#new-todo').focus();
 			this.tickets.show(new TicketCollectionView({collection: this.options.collection}));
 		}
 	});

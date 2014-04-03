@@ -5991,7 +5991,7 @@ input[type="checkbox"] {
 #todoapp {
   background: #fff;
   background: rgba(255, 255, 255, 0.9);
-  margin: 130px 0 40px 0;
+  margin: 0;
   border: 1px solid #ccc;
   position: relative;
   border-top-left-radius: 2px;
@@ -6002,7 +6002,7 @@ input[type="checkbox"] {
   content: '';
   border-left: 1px solid #f5d6d6;
   border-right: 1px solid #f5d6d6;
-  width: 2px;
+  width: 5px;
   position: absolute;
   top: 0;
   left: 40px;
@@ -6016,38 +6016,34 @@ input[type="checkbox"] {
   color: #a9a9a9;
 }
 #todoapp h1 {
-  position: absolute;
-  top: -120px;
   width: 100%;
-  font-size: 70px;
-  font-weight: bold;
+  font-size: 20px;
   text-align: center;
-  color: #b3b3b3;
-  color: rgba(255, 255, 255, 0.3);
-  text-shadow: -1px -1px rgba(0, 0, 0, 0.2);
+  color: #000;
+  margin: 0;
+  line-height: 40px;
   -webkit-text-rendering: optimizeLegibility;
   -moz-text-rendering: optimizeLegibility;
   -ms-text-rendering: optimizeLegibility;
   -o-text-rendering: optimizeLegibility;
   text-rendering: optimizeLegibility;
 }
-#header {
-  padding-top: 60px;
+#header-todo {
   border-radius: inherit;
 }
-#header:before {
+#header-todo:before {
   content: '';
   position: absolute;
   top: 0;
   right: 0;
   left: 0;
-  height: 60px;
+  height: 40px;
   z-index: 2;
-  border-bottom: 1px solid #6c615c;
-  background: #8d7d77;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(132, 110, 100, 0.8)), to(rgba(101, 84, 76, 0.8)));
-  background: -webkit-linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
-  background: linear-gradient(top, rgba(132, 110, 100, 0.8), rgba(101, 84, 76, 0.8));
+  border-bottom: 2px solid #c9beb8;
+  background: #428bca;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(66, 139, 202, 0.8)), to(rgba(47, 106, 156, 0.8)));
+  background: -webkit-linear-gradient(top, rgba(66, 139, 202, 0.8), rgba(47, 106, 156, 0.8));
+  background: linear-gradient(top, rgba(66, 139, 202, 0.8), rgba(47, 106, 156, 0.8));
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, StartColorStr='#9d8b83', EndColorStr='#847670');
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
@@ -6086,7 +6082,7 @@ input[type="checkbox"] {
 #main-todo {
   position: relative;
   z-index: 2;
-  border-top: 1px dotted #adadad;
+  border-top: 1px dotted #7eb6d6;
 }
 label[for='toggle-all'] {
   display: none;
@@ -6116,8 +6112,8 @@ label[for='toggle-all'] {
 }
 #todo-list li {
   position: relative;
-  font-size: 24px;
-  border-bottom: 1px dotted #ccc;
+  font-size: 20px;
+  border-bottom: 1px dotted #7eb6d6;
   list-style: none;
 }
 #todo-list li:last-child {
@@ -6139,6 +6135,8 @@ label[for='toggle-all'] {
 #todo-list li .toggle {
   text-align: center;
   width: 40px;
+  cursor: pointer;
+  outline: none;
   /* auto, since non-WebKit browsers doesn't support input styling */
   height: auto;
   position: absolute;
@@ -6170,11 +6168,17 @@ label[for='toggle-all'] {
   white-space: pre;
   word-break: break-word;
   padding: 15px 60px 15px 15px;
-  margin-left: 45px;
+  margin: 0 0 0 45px;
   display: block;
   line-height: 1.2;
   -webkit-transition: color 0.4s;
   transition: color 0.4s;
+}
+#todo-list li:hover {
+  background-color: rgba(66, 139, 202, 0.15);
+}
+#todo-list li:hover label {
+  cursor: pointer;
 }
 #todo-list li.completed label {
   color: #a9a9a9;
