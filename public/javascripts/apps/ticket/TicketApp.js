@@ -52,6 +52,16 @@ function (
 
 
     /**
+     * Subscribe to event create ticket
+     * @param {String} text
+     */
+    MsgBus.events.on('ticket:create', function (text) {
+
+        API.createTicket(text);
+    });
+
+
+    /**
      * Subscribe to event, edit ticket
      */
     MsgBus.events.on('ticket:edit', function (model) {
@@ -86,9 +96,9 @@ function (
      * Expose WineApp API through TicketRouter
      */
     var API = {
-        createTicket: function () {
+        createTicket: function (options) {
 
-           TicketEditController.createTicket();
+           TicketEditController.createTicket(options);
         },
 
         showTickets: function () {

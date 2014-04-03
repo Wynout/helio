@@ -8,9 +8,10 @@ function (Backbone, Marionette, MsgBus, TicketEditView) {
 
     var controller = {
 
-        createTicket: function () {
+        createTicket: function (text) {
 
             var model = MsgBus.reqres.request('ticket:entity:add');
+            model.set('title', text);
             this._editTicket(model);
         },
 

@@ -104,6 +104,11 @@ function (
 
                 this.enableLiveValidation();
             }
+
+            if (this.model.get('title')) {
+
+                this.$el.find('#ticket-description').focus();
+            }
         },
 
         // Called when the view has been closed.
