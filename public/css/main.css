@@ -5949,11 +5949,6 @@ button.close {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
 button {
   margin: 0;
   padding: 0;
@@ -5968,22 +5963,11 @@ button {
   -o-appearance: none;
   appearance: none;
 }
-body {
-  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  line-height: 1.4em;
-  color: #4d4d4d;
-  margin: 0 auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -ms-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
-}
 button,
 input[type="checkbox"] {
   outline: none;
 }
-#todoapp {
+#ticket-list-view {
   background: #fff;
   background: rgba(255, 255, 255, 0.9);
   margin: 0;
@@ -5993,7 +5977,7 @@ input[type="checkbox"] {
   border-top-right-radius: 2px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.15);
 }
-#todoapp:before {
+#ticket-list-view:before {
   content: '';
   border-left: 1px solid #f5d6d6;
   border-right: 1px solid #f5d6d6;
@@ -6003,14 +5987,14 @@ input[type="checkbox"] {
   left: 40px;
   height: 100%;
 }
-#todoapp input::-webkit-input-placeholder {
+#ticket-list-view input::-webkit-input-placeholder {
   font-style: italic;
 }
-#todoapp input::-moz-placeholder {
+#ticket-list-view input::-moz-placeholder {
   font-style: italic;
   color: #a9a9a9;
 }
-#todoapp h1 {
+#ticket-list-view h1 {
   width: 100%;
   font-size: 20px;
   text-align: center;
@@ -6023,10 +6007,10 @@ input[type="checkbox"] {
   -o-text-rendering: optimizeLegibility;
   text-rendering: optimizeLegibility;
 }
-#header-todo {
+#ticket-header {
   border-radius: inherit;
 }
-#header-todo:before {
+#ticket-header:before {
   content: '';
   position: absolute;
   top: 0;
@@ -6043,7 +6027,7 @@ input[type="checkbox"] {
   border-top-left-radius: 1px;
   border-top-right-radius: 1px;
 }
-#new-todo,
+#new-ticket,
 .edit {
   position: relative;
   margin: 0;
@@ -6067,14 +6051,14 @@ input[type="checkbox"] {
   -o-font-smoothing: antialiased;
   font-smoothing: antialiased;
 }
-#new-todo {
+#new-ticket {
   padding: 16px 16px 16px 60px;
   border: none;
   background: rgba(0, 0, 0, 0.02);
   z-index: 2;
   box-shadow: none;
 }
-#main-todo {
+#main-ticket {
   position: relative;
   z-index: 2;
   border-top: 1px dotted #7eb6d6;
@@ -6102,34 +6086,40 @@ label[for='toggle-all'] {
 #toggle-all:checked:before {
   color: #737373;
 }
-#todo-list {
+#ticket-list {
   margin: 0;
   padding: 0;
   list-style: none;
 }
-#todo-list li {
+#ticket-list li {
   position: relative;
   font-size: 20px;
   border-bottom: 1px dotted #7eb6d6;
   list-style: none;
 }
-#todo-list li:last-child {
+#ticket-list li:nth-child(2n+1) {
+  background-color: rgba(66, 139, 202, 0.05);
+}
+#ticket-list li:hover {
+  background-color: rgba(66, 139, 202, 0.15);
+}
+#ticket-list li:last-child {
   border-bottom: none;
 }
-#todo-list li.editing {
+#ticket-list li.editing {
   border-bottom: none;
   padding: 0;
 }
-#todo-list li.editing .edit {
+#ticket-list li.editing .edit {
   display: block;
   width: 506px;
   padding: 13px 17px 12px 17px;
   margin: 0 0 0 43px;
 }
-#todo-list li.editing .view {
+#ticket-list li.editing .view {
   display: none;
 }
-#todo-list li .toggle {
+#ticket-list li .toggle {
   text-align: center;
   width: 40px;
   cursor: pointer;
@@ -6147,7 +6137,7 @@ label[for='toggle-all'] {
   -o-appearance: none;
   appearance: none;
 }
-#todo-list li .toggle:after {
+#ticket-list li .toggle:after {
   content: '✔';
   /* 40 + a couple of pixels visual adjustment */
   line-height: 43px;
@@ -6155,13 +6145,13 @@ label[for='toggle-all'] {
   color: #d9d9d9;
   text-shadow: 0 -1px 0 #bfbfbf;
 }
-#todo-list li .toggle:checked:after {
+#ticket-list li .toggle:checked:after {
   color: #85ada7;
   text-shadow: 0 1px 0 #669991;
   bottom: 1px;
   position: relative;
 }
-#todo-list li label {
+#ticket-list li label {
   white-space: pre;
   word-break: break-word;
   padding: 15px 60px 15px 15px;
@@ -6171,17 +6161,14 @@ label[for='toggle-all'] {
   -webkit-transition: color 0.4s;
   transition: color 0.4s;
 }
-#todo-list li:hover {
-  background-color: rgba(66, 139, 202, 0.15);
-}
-#todo-list li:hover label {
+#ticket-list li:hover label {
   cursor: pointer;
 }
-#todo-list li.completed label {
+#ticket-list li.completed label {
   color: #a9a9a9;
   text-decoration: line-through;
 }
-#todo-list li .destroy {
+#ticket-list li .destroy {
   display: none;
   position: absolute;
   top: 0;
@@ -6195,22 +6182,22 @@ label[for='toggle-all'] {
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
 }
-#todo-list li .destroy:hover {
+#ticket-list li .destroy:hover {
   text-shadow: 0 0 1px #000000, 0 0 10px rgba(199, 107, 107, 0.8);
   -webkit-transform: scale(1.3);
   -ms-transform: scale(1.3);
   transform: scale(1.3);
 }
-#todo-list li .destroy:after {
+#ticket-list li .destroy:after {
   content: '✖';
 }
-#todo-list li:hover .destroy {
+#ticket-list li:hover .destroy {
   display: block;
 }
-#todo-list li .edit {
+#ticket-list li .edit {
   display: none;
 }
-#todo-list li.editing:last-child {
+#ticket-list li.editing:last-child {
   margin-bottom: -1px;
 }
 #footer {
@@ -6234,7 +6221,7 @@ label[for='toggle-all'] {
   z-index: -1;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3), 0 6px 0 -3px rgba(255, 255, 255, 0.8), 0 7px 1px -3px rgba(0, 0, 0, 0.3), 0 43px 0 -6px rgba(255, 255, 255, 0.8), 0 44px 2px -6px rgba(0, 0, 0, 0.2);
 }
-#todo-count {
+#ticket-count {
   float: left;
   text-align: left;
 }
@@ -6272,16 +6259,16 @@ label[for='toggle-all'] {
   background: rgba(0, 0, 0, 0.15);
   box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
 }
-/*
-Hack to remove background from Mobile Safari.
-Can't use it globally since it destroys checkboxes in Firefox and Opera
-*/
+/**
+ * Hack to remove background from Mobile Safari.
+ * Can't use it globally since it destroys checkboxes in Firefox and Opera
+ */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   #toggle-all,
-  #todo-list li .toggle {
+  #ticket-list li .toggle {
     background: none;
   }
-  #todo-list li .toggle {
+  #ticket-list li .toggle {
     height: 40px;
   }
   #toggle-all {
@@ -6303,16 +6290,16 @@ Can't use it globally since it destroys checkboxes in Firefox and Opera
  * Narrowscreen breakpoint
  */
 @media (max-width: 767px) {
-  #todoapp {
+  #ticket-list-view {
     margin: 0 0 30px 0;
     border: none;
     border-radius: 0;
   }
-  #new-todo,
+  #new-ticket,
   .edit {
     font-size: 20px;
   }
-  #todo-list li label {
+  #ticket-list li label {
     font-size: 16px;
   }
   #filters {

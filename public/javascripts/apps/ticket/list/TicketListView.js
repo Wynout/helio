@@ -38,7 +38,7 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
      */
     var TicketCollectionView = Marionette.CollectionView.extend({
         itemView: TicketListItemView,
-        id: 'todo-list'
+        id: 'ticket-list'
     });
 
 
@@ -49,7 +49,7 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
         template: TicketListTemplate,
 
         regions: {
-            tickets: '#todo-list'
+            tickets: '#ticket-list'
         },
 
         events: {

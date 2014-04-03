@@ -1,27 +1,22 @@
-<div id="todo-container" class="enyo-unselectable">
-	<section id="todoapp">
-		<header id="header-todo">
-			<h1>{{headings.all}}</h1>
-			<form id="todo-form">
-				<input id="new-todo" placeholder="{{placeholders.create}}">
-			</form>
-		</header>
-		<section id="main-todo">
-			<input type="checkbox" id="toggle-all">
-			<label for="toggle-all" id="toggle-all-label">{{labels.toggleAll}}</label>
-			<ul id="todo-list"></ul>
-		</section>
-		<footer id="footer">
-			<span id="todo-count">
-				<strong id="count-number">1</strong><span id="count-text"> item left</span>
-			</span>
-			<ul id="filters">
-				<li><a class="selected" href="#/" id="tagAll">{{filters.all}}</a></li>
-				<li><a href="#/active" id="tagActive">{{filters.active}}</a></li>
-				<li><a href="#/completed" id="tagComplete">{{filters.completed}}</a></li>
-			</ul>
-			<button type="button" id="clear-completed">{{buttons.clearCompleted}}</button>
-		</footer>
+<section id="ticket-list-view">
+	<header id="ticket-header">
+		<h1>{{headings.all}}</h1>
+		<input id="new-ticket" placeholder="{{placeholders.create}}">
+	</header>
+	<section id="main-ticket">
+		<input type="checkbox" id="toggle-all">
+		<label for="toggle-all" id="toggle-all-label">{{labels.toggleAll}}</label>
+		<ul id="ticket-list"></ul>
 	</section>
-	<footer id="info"></footer>
-</div>
+	<footer id="footer">
+		<span id="ticket-count">
+			<strong id="count-number">1</strong><span id="count-text"> item left</span>
+		</span>
+		<ul id="filters">
+			<li><a class="selected" href="#tickets" id="tagAll">{{filters.all}}</a></li>
+			<li><a href="#tickets/active" id="tagActive">{{filters.active}}</a></li>
+			<li><a href="#tickets/completed" id="tagComplete">{{filters.completed}}</a></li>
+		</ul>
+		<button type="button" id="clear-completed">{{buttons.clearCompleted}}</button>
+	</footer>
+</section>
