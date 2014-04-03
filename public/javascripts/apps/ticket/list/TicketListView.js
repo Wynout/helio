@@ -53,7 +53,7 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
         },
 
         events: {
-            'keypress #new-todo': 'createTicket'
+            'keypress #new-ticket': 'createTicket'
         },
 
         // Create ticket on enter press
