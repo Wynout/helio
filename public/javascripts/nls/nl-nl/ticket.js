@@ -11,11 +11,13 @@ define({
             active: 'Actieve bonnen',
             completed: 'Voltooide bonnen'
         },
-        labels: {
-            toggleAll: 'Markeer alles als voltooid'
-        },
         placeholders: {
             create: 'Wat moet er gebeuren?'
+        },
+        mark: {
+            'new': 'Markeer als nieuw',
+            active: 'Markeer als actief',
+            completed: 'Markeer als voltooid'
         },
         count: {
             singular: 'bon resterend',

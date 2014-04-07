@@ -12,11 +12,13 @@ define({
                 active: 'Active tickets',
                 completed: 'Completed tickets'
             },
-            labels: {
-                toggleAll: 'Mark all as complete'
-            },
             placeholders: {
                 create: 'What needs to be done?'
+            },
+            mark: {
+                'new': 'Mark as new',
+                active: 'Mark as active',
+                completed: 'Mark as completed'
             },
             count: {
                 singular: 'item left',

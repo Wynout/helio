@@ -19,16 +19,29 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
         template: TicketListItemTemplate,
         tagName: 'li',
         // className: 'completed',
+
         events: {
             'click .view label': function (event) {
 
                 event.preventDefault();
                 MsgBus.events.trigger('ticket:edit', this.model);
             },
-            'click input.toggle': function (event) {
+            'click .change-state a': 'changeState'
+        },
 
-                MsgBus.events.trigger('ticket:toggle', this.model);
-            }
+        serializeData: function () {
+
+            return $.extend(
+                this.model.toJSON(),
+                nlsTicket.list
+            );
+        },
+
+        changeState: function (event) {
+
+            event.preventDefault();
+            // console.log(event);
+            // console.log(this.model);
         }
     });
 

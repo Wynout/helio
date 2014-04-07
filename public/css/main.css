@@ -5963,8 +5963,7 @@ button {
   -o-appearance: none;
   appearance: none;
 }
-button,
-input[type="checkbox"] {
+button {
   outline: none;
 }
 #ticket-list-view {
@@ -6061,30 +6060,24 @@ input[type="checkbox"] {
 #main-ticket {
   position: relative;
   z-index: 2;
-  border-top: 1px dotted #7eb6d6;
+  border-top: 1px solid #7eb6d6;
 }
-label[for='toggle-all'] {
-  display: none;
-}
-#toggle-all {
+#new-icon {
+  color: #999;
+  height: 20px;
   position: absolute;
-  top: -42px;
-  left: -4px;
-  width: 40px;
   text-align: center;
-  outline: none;
-  cursor: pointer;
-  /* Mobile Safari */
-  border: none;
+  top: -40px;
+  width: 40px;
 }
-#toggle-all:before {
-  content: '»';
-  font-size: 28px;
-  color: #d9d9d9;
-  padding: 0 25px 7px;
+.state-new {
+  color: #9e1818;
 }
-#toggle-all:checked:before {
-  color: #737373;
+.state-active {
+  color: #272727;
+}
+.state-completed {
+  color: #38a838;
 }
 #ticket-list {
   margin: 0;
@@ -6125,7 +6118,7 @@ label[for='toggle-all'] {
   cursor: pointer;
   outline: none;
   /* auto, since non-WebKit browsers doesn't support input styling */
-  height: auto;
+  height: 20px;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -6136,20 +6129,6 @@ label[for='toggle-all'] {
   -ms-appearance: none;
   -o-appearance: none;
   appearance: none;
-}
-#ticket-list li .toggle:after {
-  content: '✔';
-  /* 40 + a couple of pixels visual adjustment */
-  line-height: 43px;
-  font-size: 20px;
-  color: #d9d9d9;
-  text-shadow: 0 -1px 0 #bfbfbf;
-}
-#ticket-list li .toggle:checked:after {
-  color: #85ada7;
-  text-shadow: 0 1px 0 #669991;
-  bottom: 1px;
-  position: relative;
 }
 #ticket-list li label {
   white-space: pre;
@@ -6199,6 +6178,26 @@ label[for='toggle-all'] {
 }
 #ticket-list li.editing:last-child {
   margin-bottom: -1px;
+}
+.dropdown-menu {
+  margin: 0;
+  padding: 0;
+  -webkit-box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 4px 21px rgba(0, 0, 0, 0.5);
+}
+#ticket-list .dropdown-menu li {
+  border-bottom: 1px solid #999;
+}
+#ticket-list .dropdown-menu li a:hover {
+  background-color: rgba(66, 139, 202, 0.3);
+}
+#ticket-list .dropdown-menu li a {
+  color: #3c3c3c;
+  font-size: 18px;
+  padding: 5px 10px;
+}
+#ticket-list .dropdown-menu li a:hover {
+  color: #000;
 }
 #footer {
   color: #777;
@@ -6258,33 +6257,6 @@ label[for='toggle-all'] {
 #clear-completed:hover {
   background: rgba(0, 0, 0, 0.15);
   box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.3);
-}
-/**
- * Hack to remove background from Mobile Safari.
- * Can't use it globally since it destroys checkboxes in Firefox and Opera
- */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  #toggle-all,
-  #ticket-list li .toggle {
-    background: none;
-  }
-  #ticket-list li .toggle {
-    height: 40px;
-  }
-  #toggle-all {
-    top: -56px;
-    left: -15px;
-    width: 65px;
-    height: 41px;
-    -webkit-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    transform: rotate(90deg);
-    -webkit-appearance: none;
-    appearance: none;
-  }
-}
-.hidden {
-  display: none;
 }
 /**
  * Narrowscreen breakpoint
