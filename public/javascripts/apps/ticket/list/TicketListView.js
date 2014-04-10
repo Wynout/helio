@@ -21,11 +21,7 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
         // className: 'completed',
 
         events: {
-            'click .view label': function (event) {
-
-                event.preventDefault();
-                MsgBus.events.trigger('ticket:edit', this.model);
-            },
+            'click .view label'    : 'edit',
             'click .change-state a': 'changeState'
         },
 
@@ -35,6 +31,12 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
                 this.model.toJSON(),
                 nlsTicket.list
             );
+        },
+
+        edit: function (event) {
+
+            event.preventDefault();
+            MsgBus.events.trigger('ticket:edit', this.model);
         },
 
         changeState: function (event) {
