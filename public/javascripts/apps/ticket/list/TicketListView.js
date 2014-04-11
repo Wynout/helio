@@ -18,7 +18,6 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
     var TicketListItemView = Marionette.ItemView.extend({
         template: TicketListItemTemplate,
         tagName: 'li',
-        // className: 'completed',
 
         events: {
             'click .view label'    : 'edit',
@@ -33,6 +32,20 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
             );
         },
 
+        onShow: function () {
+
+            // var state = this.model.get('state');
+            var state = 'new';
+            if (state==='completed') {
+
+                this.$el.addClass('completed');
+            } else {
+
+                this.$el.removeClass('completed');
+            }
+            this.changeStateIcon(state);
+        },
+
         edit: function (event) {
 
             event.preventDefault();
@@ -42,8 +55,47 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
         changeState: function (event) {
 
             event.preventDefault();
-            // console.log(event);
-            // console.log(this.model);
+            var $anchor       = $(event.target),
+                markNew       = $anchor.hasClass('mark-new'),
+                markActive    = $anchor.hasClass('mark-active'),
+                markCompleted = $anchor.hasClass('mark-completed'),
+                state;
+
+            if (markNew) {
+
+                state = 'new';
+                this.$el.removeClass('completed');
+
+            } else if (markActive) {
+
+                state = 'active';
+                this.$el.removeClass('completed');
+
+            } else if (markCompleted) {
+
+                state = 'completed';
+                this.$el.addClass('completed');
+            }
+            this.changeStateIcon(state);
+        },
+
+        changeStateIcon: function (state) {
+
+            var $icon   = this.$el.find('.toggle').eq(0).removeClass(),
+                classes = this.getStateIconClasses(state);
+
+            $icon.addClass(classes);
+        },
+
+        getStateIconClasses: function (state) {
+
+            switch (state) {
+
+                case 'new'      : return 'fa fa-asterisk toggle state-new';
+                case 'active'   : return 'fa fa-arrow-right toggle state-active';
+                case 'completed': return 'fa fa-check toggle state-completed';
+                default         : return '';
+            }
         }
     });
 
