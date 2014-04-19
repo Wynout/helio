@@ -1,57 +1,69 @@
 // require('newrelic');
-
-var express     = require('express'),
-    fs          = require('fs'),
-    http        = require('http'),
-    https       = require('https'),
-    path        = require('path'),
-    middleware  = require('./source/middleware'),
+var bodyParser     = require('body-parser'),
+    compression    = require('compression'),
+    environment    = process.env.NODE_ENV || 'development',
+    errorHandler   = require('errorhandler'),
+    express        = require('express'),
+    favicon        = require('static-favicon'),
+    fs             = require('fs'),
+    http           = require('http'),
+    https          = require('https'),
+    logger         = require('morgan'),
+    methodOverride = require('method-override'),
+    middleware     = require('./source/middleware'),
+    mongoose       = require('mongoose'),
+    oneMonth       = 2678400000,
+    path           = require('path'),
 
     sslPrivateKey  = fs.readFileSync('ssl/key.pem', 'utf8'),
     sslCertificate = fs.readFileSync('ssl/key-cert.pem', 'utf8'),
-    credentials    = {key: sslPrivateKey, cert: sslCertificate},
-
-    mongoose = require('mongoose');
+    credentials    = {key: sslPrivateKey, cert: sslCertificate};
 
 var app = express();
 
-var oneMonth = 2678400000;
 
-app.configure(function () {
+/**
+ * App Configuration
+ */
+app.set('token auth sign key', sslPrivateKey);
+app.set('token ttl minutes', 60);
+app.set('http port', process.env.PORT || 3000);
+app.set('https port', process.env.PORT || 3443);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+app.use(middleware.cors());
+app.use(favicon(__dirname + '/public/img/favicon.ico'));
+app.use(logger('dev')); // log every request to the console, 'default', 'short', 'tiny', 'dev'
 
-    app.set('token auth sign key', sslPrivateKey);
-    app.set('token ttl minutes', 60);
-    app.set('http port', process.env.PORT || 3000);
-    app.set('https port', process.env.PORT || 3443);
-    app.set('views', __dirname + '/views');
-    app.set('view engine', 'ejs');
-    app.use(middleware.cors());
-    app.use(express.favicon());
-    app.use(express.logger('dev'));
+// For security sake, it's better to disable file upload if your application doesn't need it
+// app.use(bodyParser()); // is equivalent to: .json(), .urlencode(), .multipart()
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use(methodOverride()); // simulate DELETE and PUT, (should limit request body size in options?)
 
-    // For security sake, it's better to disable file upload if your application doesn't need it
-    // app.use(express.bodyParser()); // is equivalent to: .json(), .urlencode(), .multipart()
-    app.use(express.json());
-    app.use(express.urlencoded());
-    app.use(express.methodOverride());
-    app.use(express.logger('dev'));  /* 'default', 'short', 'tiny', 'dev' */
-});
 
-app.configure('development', function () {
+/**
+ * Configuration based on development environment
+ */
+if (environment==='development') {
 
-    app.use(express.errorHandler());
+    app.use(errorHandler());
     app.use(express.static(path.join(__dirname, 'public')));
     app.use(middleware.renderIndex.development());
-    app.use(middleware.renderApp.development()); // test bootstrap
-});
+    app.use(middleware.renderApp.development());
+}
 
-app.configure('production', function () {
 
-    app.use(express.compress());
+/**
+ * Configuration based on production environment
+ */
+if (environment==='production') {
+
+    app.use(compression());
     app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneMonth }));
     app.use(middleware.renderIndex.production());
-    app.use(middleware.renderApp.production()); // test bootstrap
-});
+    app.use(middleware.renderApp.production());
+}
 
 
 /**
@@ -83,7 +95,7 @@ app.use(middleware.errorHandlers.errorHandler);
  */
 var httpPort = app.get('http port');
 http.createServer(app).listen(httpPort, function () {
-    var environment = process.env.NODE_ENV || 'development';
+
     console.log('http server listening on port ' + httpPort + ' (' + environment + ')');
 })
 .on('error', function (e) {
