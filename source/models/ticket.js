@@ -7,12 +7,12 @@ var mongoose = require('mongoose'),
     Schema   = mongoose.Schema;
 
 var ticketSchema = new Schema({
-    type: {type: String, required: true},
-    title: {type: String, required: true},
-    description: {type: String, required: true},
+    state: {type: String},
     status: {type: String},
     urgency: Number,
-    active: Boolean
+    type: {type: String, required: true},
+    title: {type: String, required: true},
+    description: {type: String, required: true}
     }, {
         // When your application starts up, Mongoose automatically calls ensureIndex for each
         // defined index in your schema. While nice for development, it is recommended this

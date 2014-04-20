@@ -98,12 +98,12 @@ module.exports = function (app) {
             if (ticket) {
 
                 // TODO create mongoose plugin to handle multiple fields
+                ticket.state       = req.body.state;
+                ticket.status      = req.body.status;
+                ticket.urgency     = req.body.urgency;
                 ticket.type        = req.body.type;
                 ticket.title       = req.body.title;
                 ticket.description = req.body.description;
-                ticket.status      = req.body.status;
-                ticket.urgency     = req.body.urgency;
-                ticket.active      = req.body.active;
 
                 ticket.save(function (err) {
 

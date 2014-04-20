@@ -34,8 +34,7 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
 
         onShow: function () {
 
-            // var state = this.model.get('state');
-            var state = 'new';
+            var state = this.model.get('state');
             if (state==='completed') {
 
                 this.$el.addClass('completed');
@@ -55,11 +54,13 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
         changeState: function (event) {
 
             event.preventDefault();
-            var $anchor       = $(event.target),
+
+            var self          = this,
+                $anchor       = $(event.target),
                 markNew       = $anchor.hasClass('mark-new'),
                 markActive    = $anchor.hasClass('mark-active'),
                 markCompleted = $anchor.hasClass('mark-completed'),
-                state;
+                state         = 'new';
 
             if (markNew) {
 
@@ -76,7 +77,19 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
                 state = 'completed';
                 this.$el.addClass('completed');
             }
-            this.changeStateIcon(state);
+
+            // Save state
+            this.model.set('state', state);
+            MsgBus.reqres.request('ticket:entity:save', this.model)
+                .done(function (model, response, jqXHR) {
+
+                    self.changeStateIcon(model.get('state'));
+
+                })
+                .fail(function (error, model, jqXHR, options) {
+
+                    MsgBus.commands.execute('xhr:error:handler', error);
+                });
         },
 
         changeStateIcon: function (state) {

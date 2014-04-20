@@ -18,44 +18,52 @@ mongoose.connect('mongodb://localhost/helio');
 
 var tickets = [
     {
-        type: 'ticket type a',
-        title: 'Title A',
-        description: 'Duis ornare dignissim tortor eu faucibus. Suspendisse non lorem id nulla cursus vulputate a ac magna. Vivamus at laoreet mauris, et fermentum mauris. Suspendisse consectetur dolor aliquam, posuere magna et, sollicitudin tortor. Morbi metus nunc, sollicitudin ut massa eget, ultrices elementum urna.',
+        state: 'new',
+        status: '',
+        urgency: 100,
+        type: 'maintenance',
+        title: 'Flat tire wheelchair',
+        description: 'room 558'
+    },
+    {
+        state: 'active',
         status: 'delayed',
         urgency: 100,
-        active: true
+        type: 'maintenance',
+        title: 'Sewage smell in basement',
+        description: 'There is a sewage smell in basement, close to boiler.'
     },
     {
-        type: 'ticket type b',
-        title: 'Title B',
-        description: 'Nam nec justo et libero iaculis rhoncus. Pellentesque ultrices ut purus in posuere. Ut diam magna, blandit vel enim at, luctus elementum mi.',
+        state: 'completed',
         status: 'resolved',
         urgency: 40,
-        active: false
+        type: 'question',
+        title: 'How to disable alarm',
+        description: 'How to disable the alarm on the second floor.'
     },
     {
-        type: 'ticket type c',
-        title: 'Title C',
-        description: 'quet. Nullam vulputate ornare nisi. Phasellus eu nibh neque. Praesent tincidunt velit nisl, at tincidunt leo eleifend ac. Suspendisse ultrices tortor sit amet sollicitudin pulvinar. Duis blandit elementum quam, in aliquet ipsum aliquet viverra. Aliquam gravida, tellus vel rutrum elemen',
+        state: 'new',
         status: 'resolved',
         urgency: 40,
-        active: false
+        type: 'maintenance',
+        title: 'Shower leaking',
+        description: 'Shower leaking Room 007'
     },
     {
-        type: 'ticket type d',
-        title: 'u eros sed luctus. In nec enim sit amet turpis ornare posuere nec vel felis. Integer quis dolor venenatis, tristique lorem sed, iaculis est. Nullam ut mi orci. Vestibulum placerat pulvinar velit at aliquam. Vivamus vehicula, mauris eget gravida vulputate, eros justo aliquam quam, quis dignissim est justo ac velit. Duis ornare dignissim tortor eu faucibus. Suspendisse non lorem id nulla cursus vulputate a ac magna. Vivamus at laoreet mauris, et fermentum mauris. Suspendisse consectetur dolor aliquam, ',
-        description: 'Title C',
+        state: 'completed',
         status: 'resolved',
         urgency: 80,
-        active: true
+        type: 'maintenance',
+        title: 'Replace light bulb in kitchen',
+        description: 'Replace light bulb in kitchen, room 224'
     },
     {
-        type: 'ticket type e',
-        title: 'Title E',
-        description: 'Duis lobortis suscipit ultricies. Maecenas quis leo fringilla mi scelerisque sodales sed ac orci. Quisque quis nunc turpis. Pellentesque in fringilla nunc, a varius ante. Aliquam ac tincidunt lectus, a porta turpis. Sed ut enim nec orci mattis rutrum in pharetra mi. Praesent placerat leo a vehicula pulvinar. Vestibulum dict',
+        state: 'completed',
         status: 'resolved',
         urgency: 40,
-        active: false
+        type: 'maintenance',
+        title: 'Lege kamers spoelen ivm legionella',
+        description: 'Momenteel zijn de volgende kamers leeg: 1, 8, 20, 21'
     }
 ];
 
