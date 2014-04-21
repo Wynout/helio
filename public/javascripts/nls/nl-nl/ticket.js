@@ -14,7 +14,7 @@ define({
         placeholders: {
             create: 'Wat moet er gebeuren?'
         },
-        mark: {
+        state: {
             'new': 'Markeer als nieuw',
             active: 'Markeer als actief',
             completed: 'Markeer als voltooid'
@@ -35,6 +35,7 @@ define({
     edit: {
         labels: {
             id: 'Id',
+            state: 'Toestand',
             type: 'Type',
             title: 'Titel',
             description: 'Omschrijving'
@@ -44,6 +45,13 @@ define({
             type: 'Ticket type',
             title: 'Title van de ticket',
             description: 'Ticket omschrijving'
+        },
+        selects: {
+            state: {
+                'new': 'Nieuw',
+                active: 'Actief',
+                completed: 'Voltooid'
+            }
         },
         buttons: {
             create: 'Aanmaken',

@@ -15,7 +15,7 @@ define({
             placeholders: {
                 create: 'What needs to be done?'
             },
-            mark: {
+            state: {
                 'new': 'Mark as new',
                 active: 'Mark as active',
                 completed: 'Mark as completed'
@@ -36,6 +36,7 @@ define({
         edit: {
             labels: {
                 id: 'Id',
+                state: 'State',
                 type: 'Type',
                 title: 'Title',
                 description: 'Description'
@@ -45,6 +46,13 @@ define({
                 type: 'Ticket type',
                 title: 'Title of ticket',
                 description: 'Ticket description'
+            },
+            selects: {
+                state: {
+                    'new': 'New',
+                    active: 'Active',
+                    completed: 'Completed'
+                }
             },
             buttons: {
                 create: 'Create',

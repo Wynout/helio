@@ -13,7 +13,8 @@ define([
     'views/SuccessView',
     'i18n!nls/ticket',
     'backbone.stickit',
-    'mixins/backbone.validation'],
+    'mixins/backbone.validation',
+    'bootstrap.select'],
 function (
     $,
     Backbone,
@@ -110,6 +111,9 @@ function (
 
                 this.$el.find('#ticket-description').focus();
             }
+
+            $('#ticket-state').selectpicker(); // enable Bootstrap-Select
+            $('#ticket-state').selectpicker('val', this.model.get('state')); // enable Bootstrap-Select
         },
 
         // Called when the view has been closed.

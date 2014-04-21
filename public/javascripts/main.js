@@ -22,6 +22,7 @@ require.config({
         'backbone.validation' : './bower_components/backbone-validation/dist/backbone-validation-amd',
         'backbone.stickit'    : './bower_components/backbone.stickit/backbone.stickit',
         'backbone.routefilter': './bower_components/backbone.routeFilter/dist/backbone.routefilter',
+        'bootstrap.select'    : './bower_components/bootstrap-select/bootstrap-select',
 
         marionette            : './bower_components/marionette/lib/core/amd/backbone.marionette',
         hbs                   : './bower_components/require-handlebars-plugin/hbs',
@@ -35,6 +36,9 @@ require.config({
             deps: ['jquery', 'raphael'],
             exports: 'Morris'
         },
+        'bootstrap.select': {
+            deps: ['jquery']
+        }
     },
 
     // Disabled because requirejs optimizer cannot be evauluated correctly

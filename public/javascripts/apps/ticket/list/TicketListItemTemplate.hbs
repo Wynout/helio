@@ -1,9 +1,9 @@
 <div class="view">
 	<i class="toggle" data-toggle="dropdown" id="dLabel{{_id}}"></i>
 	<ul class="dropdown-menu change-state" role="menu" aria-labelledby="dLabel{{_id}}">
-		<li><a class="mark-new" href="#"><i class="fa fa-asterisk state-new"></i> {{mark.new}}</a></li>
-		<li><a class="mark-active" href="#"><i class="fa fa-arrow-right state-active"></i> {{mark.active}}</a></li>
-		<li><a class="mark-completed" href="#"><i class="fa fa-check state-completed"></i> {{mark.completed}}</a></li>
+		<li><a class="change-state-new" href="#"><i class="fa fa-asterisk state-new"></i> {{state.new}}</a></li>
+		<li><a class="change-state-active" href="#"><i class="fa fa-arrow-right state-active"></i> {{state.active}}</a></li>
+		<li><a class="change-state-completed" href="#"><i class="fa fa-check state-completed"></i> {{state.completed}}</a></li>
 	</ul>
 	<label>{{title}}</label>
 	<button type="button" class="destroy"></button>

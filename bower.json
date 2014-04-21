@@ -19,7 +19,8 @@
     "requirejs-i18n": "~2.0.4",
     "underscore-amd": "~1.5.2",
     "font-awesome": "~4.0.3",
-    "morris.js": "~0.5.0"
+    "morris.js": "~0.5.0",
+    "bootstrap-select": "~1.5.2"
   },
   "resolutions": {
     "jquery": "~1.11.0"

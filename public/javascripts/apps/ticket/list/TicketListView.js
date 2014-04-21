@@ -55,24 +55,21 @@ function ($, Marionette, MsgBus, TicketListItemTemplate, TicketListTemplate, nls
 
             event.preventDefault();
 
-            var self          = this,
-                $anchor       = $(event.target),
-                markNew       = $anchor.hasClass('mark-new'),
-                markActive    = $anchor.hasClass('mark-active'),
-                markCompleted = $anchor.hasClass('mark-completed'),
-                state         = 'new';
+            var self    = this,
+                $anchor = $(event.target),
+                state   = 'new';
 
-            if (markNew) {
+            if ($anchor.hasClass('change-state-new')) {
 
                 state = 'new';
                 this.$el.removeClass('completed');
 
-            } else if (markActive) {
+            } else if ($anchor.hasClass('change-state-active')) {
 
                 state = 'active';
                 this.$el.removeClass('completed');
 
-            } else if (markCompleted) {
+            } else if ($anchor.hasClass('change-state-completed')) {
 
                 state = 'completed';
                 this.$el.addClass('completed');
