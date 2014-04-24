@@ -223,6 +223,19 @@ button {
 	-ms-appearance: none;
 	-o-appearance: none;
 	appearance: none;
+	/* transistion */
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+/* state icon scales on dropdown open/hover */
+#ticket-list li .view.open .toggle,
+#ticket-list li .toggle:hover {
+	text-shadow: 0 0 1px #000,
+				 0 0 10px rgba(199, 107, 107, 0.8);
+	-webkit-transform: scale(1.3);
+	-ms-transform: scale(1.3);
+	transform: scale(1.3);
 }
 
 #ticket-list li label {
