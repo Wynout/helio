@@ -22,6 +22,7 @@ function ($, _, Backbone, MsgBus, Xhr, nlsTicket) {
 
         defaults: {
             _id: null,
+            state: 'new',
             type: '',
             title: '',
             description: ''
@@ -69,7 +70,7 @@ function ($, _, Backbone, MsgBus, Xhr, nlsTicket) {
 
         return API.getTicketEntity(id);
     });
-    MsgBus.reqres.setHandler('ticket:entity:add', function () {
+    MsgBus.reqres.setHandler('ticket:entity:create', function () {
 
         return new TicketModel();
     });
