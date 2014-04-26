@@ -100,6 +100,18 @@ $ sudo apt-get install nodejs
 $ sudo apt-get install npm
 ```
 
+### Node version management
+```
+$ npm install -g n
+```
+
+Install a few node versions
+```
+$ n stable
+$ n 0.10.26
+```
+
+
 #### Install MongoDB
 [Install MongoDB on linux](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/)
 
