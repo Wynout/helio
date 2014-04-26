@@ -1,12 +1,8 @@
 define({
     items: {
-        close: 'Sluiten',
-        home: 'Home',
+        dashboard: 'Dashboard',
         signin: 'Inloggen',
         signup: 'Inschrijven',
-        about: 'Over',
-        addWine: 'Wijn toevoegen',
-        wineList: 'Wijnlijst',
         tickets: 'Bonnen',
         createTicket: 'Bon maken'
     },

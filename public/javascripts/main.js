@@ -55,7 +55,6 @@ require.config({
     'jquery',
     'app',
     'auth',
-    'apps/wines/WineApp',
     'apps/account/AccountApp',
     'apps/dashboard/DashboardApp',
     'apps/ticket/TicketApp',

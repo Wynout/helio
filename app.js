@@ -78,7 +78,6 @@ mongoose.connect('mongodb://localhost/helio');
  * API endpoinds
  */
 require('./source/api/auth')(app);
-require('./source/api/wines')(app);
 require('./source/api/tickets')(app);
 
 
