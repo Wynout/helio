@@ -1,6 +1,7 @@
 **/*.DS_store
 node_modules
 public/javascripts/bower_components
+public/css/main.css
 public/build/*
 !public/build/jquery-mobile
 *.log
