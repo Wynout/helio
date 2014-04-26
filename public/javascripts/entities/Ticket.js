@@ -85,7 +85,7 @@ function ($, _, Backbone, MsgBus, Xhr, nlsTicket) {
 
 
     /**
-     * Expose Wine API
+     * Expose Ticket API
      * Using jQuery promises to render Backbone views after fetching data
      * @link http://davidsulc.com/blog/2013/04/01/using-jquery-promises-to-render-backbone-views-after-fetching-data/
      */

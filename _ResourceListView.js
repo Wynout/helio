@@ -1,18 +1,18 @@
 /*
 |---------------------------------------------------------------------------------
-| Wine List View                                 app/scripts/views/WineListView.js
+| Resource List View                         app/scripts/views/ResourceListView.js
 |---------------------------------------------------------------------------------
 */
 define([
     'jquery',
     'backbone',
     'views/PaginatorView',
-    'views/WineListItemView',
-], function ($, Backbone, PaginatorView, WineListItemView) {
+    'views/ResourceListItemView',
+], function ($, Backbone, PaginatorView, ResourceListItemView) {
 
     'use strict';
 
-    var WineListView = Backbone.View.extend({
+    var ResourceListView = Backbone.View.extend({
 
         initialize: function (options) {
 
@@ -22,17 +22,17 @@ define([
 
         render: function () {
 
-            var wines    = this.model.models,
-                len      = wines.length,
-                startPos = (this.options.page - 1) * 8,
-                endPos   = Math.min(startPos + 8, len);
+            var resources = this.model.models,
+                len       = resources.length,
+                startPos  = (this.options.page - 1) * 8,
+                endPos    = Math.min(startPos + 8, len);
 
             $(this.el).html('<ul class="thumbnails"></ul>');
 
             for (var i = startPos; i < endPos; i++) {
 
                 $('.thumbnails', this.el)
-                    .append(new WineListItemView({model: wines[i]}).render().el);
+                    .append(new ResourceListItemView({model: resources[i]}).render().el);
             }
 
             $(this.el)
@@ -42,5 +42,5 @@ define([
         }
     });
 
-    return WineListView;
+    return ResourceListView;
 });

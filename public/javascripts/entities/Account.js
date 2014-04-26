@@ -68,7 +68,7 @@ function ($, Backbone, MsgBus, Xhr, nlsAccount) {
     var AccountCollection = Backbone.Collection.extend({
 
         model: AccountModel,
-        url: '/wines'
+        url: '/accounts'
     });
 
 

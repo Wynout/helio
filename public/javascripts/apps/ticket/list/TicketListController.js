@@ -18,7 +18,7 @@ function (MsgBus, TicketListView, NavPanelView) {
             fetchingTickets
                 .done(function (collection) {
 
-                    self._showWines(collection);
+                    self._showTickets(collection);
                 })
                 .fail(function (error, collection, jqXHR, options) {
 
@@ -26,7 +26,7 @@ function (MsgBus, TicketListView, NavPanelView) {
                 });
         },
 
-        _showWines: function (collection) {
+        _showTickets: function (collection) {
 
             var regions = {
                 content: new TicketListView({collection: collection})

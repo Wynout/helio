@@ -1,6 +1,6 @@
 /*
 |------------------------------------------------------------------------------
-| Wine Delete Views                                           WineDeleteView.js
+| Ticket Delete Views                                       TicketDeleteView.js
 |------------------------------------------------------------------------------
 */
 define([
@@ -18,12 +18,12 @@ function (
 
 
     /**
-     * Delete Confirm modal
+     * Delete Ticket Confirm modal
      */
     var DeleteConfirmView = Marionette.ItemView.extend({
         template: ticketDeleteTemplate,
         events: {
-            'click .delete-confirmed' : 'deleteWine'
+            'click .delete-confirmed' : 'deleteTicket'
         },
 
         serializeData: function () {
@@ -34,7 +34,7 @@ function (
             );
         },
 
-        deleteWine: function () {
+        deleteTicket: function () {
 
             MsgBus.commands.execute('modal:hide');
             MsgBus.events.trigger('ticket:delete', this.model);

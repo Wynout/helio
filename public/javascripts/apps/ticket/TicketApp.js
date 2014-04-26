@@ -93,7 +93,7 @@ function (
 
 
     /**
-     * Expose WineApp API through TicketRouter
+     * Expose TicketApp API through TicketRouter
      */
     var API = {
         createTicket: function (options) {
