@@ -9,25 +9,21 @@ var gulp         = require('gulp'),
     watch        = require('gulp-watch'),
     nodemon      = require('gulp-nodemon'),
     bust         = require('gulp-buster'),
-    // sass         = require('gulp-ruby-sass'),
     less         = require('gulp-less'),
     path         = require('path'),
-
     autoprefixer = require('gulp-autoprefixer'),
-    cssimport    = require('gulp-cssimport'),
     minifycss    = require('gulp-minify-css'),
     jshint       = require('gulp-jshint'),
     uglify       = require('gulp-uglify'),
-    // imagemin     = require('gulp-imagemin'),
     rename       = require('gulp-rename'),
     clean        = require('gulp-clean'),
     concat       = require('gulp-concat'),
     notify       = require('gulp-notify'),
     rjs          = require('gulp-requirejs'),
-    // cache        = require('gulp-cache'),
-    livereload   = require('gulp-livereload'), // hooks into nodes tiny-lr package
-    lr           = require('tiny-lr'),
-    server       = lr(); // defines LiveReload server
+    livereload   = require('gulp-livereload'),
+    tlr          = require('tiny-lr'), // Manages a tiny LiveReload server implementation
+    lrserver     = tlr();              // Defines LiveReload server
+
 
 /**
  * Build Less
@@ -58,14 +54,12 @@ gulp.task('styles', function () {
     // By returning the stream it makes it asynchronous, ensuring the task is fully complete before we get a notification to say it’s finished.
     return gulp.src('public/css/main.css')
         .pipe(plumber())
-        .pipe(cssimport())
         .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 7', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(gulp.dest('public/build'))
         .pipe(filesize()) // prints concatenated filesize
         .pipe(minifycss())
         .pipe(gulp.dest('public/build'))
         .pipe(filesize()) // prints minified filesize
-        .pipe(livereload(server))
         .pipe(notify({message: 'Styles task completed'}));
  });
 
@@ -139,13 +133,10 @@ gulp.task('dev', function () {
         ext    : 'html js',
         ignore : ['node_modules/**', 'public/**'],
         env    : {'NODE_ENV': 'development'}
-
     };
 
-    gulp.watch('public/less/*.less', function () {
-
-        gulp.run('less');
-    });
+    lrserver.listen(35729); // livereload
+    gulp.start('watch');
 
     return nodemon(options)
         .on('restart', ['lint']);
@@ -153,9 +144,49 @@ gulp.task('dev', function () {
 
 
 /**
+ * Watch .less files task
+ */
+gulp.task('watch-less', function () {
+
+    gulp.start('less');
+});
+
+
+/**
+ * Watch main.css file task
+ */
+gulp.task('watch-main.css', function () {
+
+    return gulp.src('public/css/main.css')
+        .pipe(plumber())
+        .pipe(livereload(lrserver));
+});
+
+
+/**
+ * Watch .js files task
+ */
+gulp.task('watch-js', function () {
+
+    return gulp.src('public/javascripts/**/*.js')
+        .pipe(plumber())
+        .pipe(livereload(lrserver));
+});
+
+
+/**
+ * Bundled watch task
+ */
+gulp.task('watch', function () {
+
+    gulp.watch('public/less/*.less', ['watch-less']);
+    gulp.watch('public/css/main.css', ['watch-main.css']);
+    gulp.watch('public/javascripts/**/*.js', ['watch-js']);
+});
+
+
+/**
  * The default task is a build task.
  * cachebusting task needs to run separate
  */
-gulp.task('default', ['less', 'styles', 'rjs'], function () {
-
-});
+gulp.task('default', ['less', 'styles', 'rjs']);
