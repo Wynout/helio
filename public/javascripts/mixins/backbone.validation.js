@@ -32,7 +32,7 @@ define(['underscore', 'jquery', 'backbone', 'backbone.validation'], function (_,
     });
 
 
-     /**
+    /**
      * Overriding default validation callbacks
      */
     _.extend(Backbone.Validation.callbacks, {
