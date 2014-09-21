@@ -18,7 +18,6 @@ var gulp         = require('gulp'),
     rename       = require('gulp-rename'),
     clean        = require('gulp-clean'),
     concat       = require('gulp-concat'),
-    notify       = require('gulp-notify'),
     rjs          = require('gulp-requirejs'),
     livereload   = require('gulp-livereload'),
     tlr          = require('tiny-lr'), // Manages a tiny LiveReload server implementation
@@ -59,8 +58,7 @@ gulp.task('styles', function () {
         .pipe(filesize()) // prints concatenated filesize
         .pipe(minifycss())
         .pipe(gulp.dest('public/build'))
-        .pipe(filesize()) // prints minified filesize
-        .pipe(notify({message: 'Styles task completed'}));
+        .pipe(filesize()); // prints minified filesize
  });
 
 
@@ -82,8 +80,7 @@ gulp.task('rjs', function () {
         .pipe(filesize()) // prints combined main.js filesize
         .pipe(uglify({ outSourceMap : true }))
         .pipe(filesize()) // prints uglified main.js filesize
-        .pipe(gulp.dest('.'))
-        .pipe(notify({message: 'Rjs task completed'}));
+        .pipe(gulp.dest('.'));
 });
 
 
@@ -96,8 +93,7 @@ gulp.task('cachebusting', function () {
     return gulp.src(['public/build/main.js', 'public/build/main.css'])
         .pipe(plumber())
         .pipe(bust('assetsVersioning.json'))
-        .pipe(gulp.dest('.'))
-        .pipe(notify({message: 'Cache-busting task completed'}));
+        .pipe(gulp.dest('.'));
 });
 
 
