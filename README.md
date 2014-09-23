@@ -150,6 +150,10 @@ Now, you can use key.pem and key-cert.pem in the options you pass to createServe
 ```
 $ gulp dev
 ```
+Manually start
+```
+$ NODE_ENV=production PORT=8080 node app.js
+```
 
 <a name="start-prod-server"/>
 ### Setup Production Server
