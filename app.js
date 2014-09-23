@@ -38,7 +38,7 @@ app.use(logger('dev')); // log every request to the console, 'default', 'short',
 // For security sake, it's better to disable file upload if your application doesn't need it
 // app.use(bodyParser()); // is equivalent to: .json(), .urlencode(), .multipart()
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride()); // simulate DELETE and PUT, (should limit request body size in options?)
 
 
