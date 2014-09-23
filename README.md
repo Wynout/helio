@@ -1,51 +1,20 @@
-# Nodecellar jQuery-mobile
+# Helio App
 
-/**
- * HTTP methods that are typically used to implement a web API.
- *
- * GET    /resources        List the URIs and perhaps other details of the collection's members.
- * GET    /resources/:id    Retrieve a representation of the addressed member of the collection, expressed in an appropriate Internet media type.
- * POST   /resources        Create a new entry in the collection. The new entry's URI is assigned automatically and is usually returned by the operation.
- * POST   /resources/:id    Not generally used. Treat the addressed member as a collection in its own right and create a new entry in it.
- * PUT    /resources        Replace the entire collection with another collection.
- * PUT    /resources/:id    Replace the addressed member of the collection, or if it doesn't exist, create it.
- * DELETE /resources        Delete the entire collection.
- * DELETE /resources/:id    Delete the addesses member of the collection
- */
-
-/**
- * HTTP Status Code Summary for Restful API
- *
- * 200 OK              - Everything worked as expected.
- * 201 Created         - The request has been fulfilled and resulted in a new resource being created.
- * 204 No Content      - The server has fulfilled the request but does not need to return an entity-body, and might want to return updated metainformation.
- * 400 Bad Request     - The request cannot be fulfilled due to bad syntax (often missing a required parameter).
- * 401 Unauthorized    - No valid API key provided.
- * 403 Forbidden       - The credentials still do not grant the client permission to access the resource
- * 404 Not Found       - The requested item doesn't exist.
- * 500 Internal Server Error - A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.
- * 501 Not Implemented       - The server either does not recognize the request method, or it lacks the ability to fulfill the request.[2] Usually this implies future availability (e.g., a new feature of a web-service API).
- * 503 Service Unavailable   - The server is currently unavailable (because it is overloaded or down for maintenance).[2] Generally, this is a temporary state. Sometimes, this can be permanent as well on test servers.
- */
-
-[develop-a-restful-api-using-node-js-with-express-and-mongoose](http://pixelhandler.com/blog/2012/02/09/develop-a-restful-api-using-node-js-with-express-and-mongoose/)
-
-[error msg i18n](http://stackoverflow.com/questions/15012250/handling-mongoose-validation-errors-where-and-how)
-
-### MsgBus
-They bascially all use messaging, and their difference is mainly semantic:
-* event aggregator: send a message when something happens. Code somewhere else might be listening for that message, but maybe not
-* request/response: have code send a request, and it will expect a response (e.g. send me refreshed data)
-* commands: code in one place commands code somewhere else to carry out an action. There usually isn't a return value.
+## Todo
+> * [develop-a-restful-api-using-node-js-with-express-and-mongoose](http://pixelhandler.com/blog/2012/02/09/develop-a-restful-api-using-node-js-with-express-and-mongoose/)
+> * [error msg i18n](http://stackoverflow.com/questions/15012250/handling-mongoose-validation-errors-where-and-how)
 
 ## Contents
 * [Description](#description)
 * [Application example](#example)
 * [Installation](#installation)
-* [Start Server](#start-server)
+* [Start Development Server](#start-dev-server)
+* [Setup Production Server](#setup-prod-server)
 * [Backend](#backend)
     * [Express.js](#expressjs)
     * [Serving master page](#serving-master-page)
+	* [HTTP methods that are typically used to implement a web API](#http-methods-web-api)
+    * [HTTP Status Code Summary for a Restful API](#http-status-code-rest)
     * [API end-points](#api-endpoints)
     * [Authorization and CORS](#authorization-cors)
 * [Frontend](#frontend)
@@ -85,22 +54,12 @@ content here
 $ sudo apt-get install nodejs
 ```
 
-Obtaining a recent version of Node or installing on older Ubuntu and other apt-based distributions may require a few extra steps. Example install:
-
-```sh
-$ sudo apt-get update
-$ sudo apt-get install -y python-software-properties python g++ make
-$ sudo add-apt-repository ppa:chris-lea/node.js
-$ sudo apt-get update
-$ sudo apt-get install nodejs
-```
-
 #### Install Node Packaged Modules
 ```
 $ sudo apt-get install npm
 ```
 
-### Node version management
+#### Node version management
 ```
 $ npm install -g n
 ```
@@ -108,46 +67,61 @@ $ npm install -g n
 Install a few node versions
 ```
 $ n stable
-$ n 0.10.26
+$ n 0.10.32
 ```
 
 
 #### Install MongoDB
-[Install MongoDB on linux](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-linux/)
-
-
-#### Install forever
-A simple CLI tool for ensuring that a given script runs continuously (i.e. forever).
 ```
-$ [sudo] npm install forever -g
-```
-```
-$ forever start app.js
+$ sudo apt-get install mongodb
 ```
 
-
-#### Clone github repository,
+#### Create App directory
+```
+$ sudo mkdir /var/www/helio
+```
+Set user and group ownership
 
 ```
-$ git clone git clone [repo]
+$ sudo chown $USER:$USER /var/www/helio
 ```
 
-Install npm dependencies,
+#### Clone repository
 
 ```
+$ cd /var/www
+$ git clone git@bitbucket.org:Wynout/helio.git helio/
+```
+
+#### Install NPM dependencies
+```
+$ cd /var/www/helio
 $ npm install
 ```
 
-Install Bower package manager
+
+#### Install Bower package manager
 ```
 $ npm install -g bower
 ```
 
-Install bower dependencies,
+#### Install bower dependencies,
 
 ```
 $ bower install
 ```
+
+#### Install gulp.js
+```
+$ npm install -g gulp
+```
+
+#### Install forever
+A simple CLI tool for ensuring that a given script runs continuously (i.e. forever).
+```
+$ npm install forever -g
+```
+
 
 <a name="create-self-certified certificate"/>
 #### Create self-certified certificate
@@ -170,21 +144,60 @@ $ openssl req -x509 -new -key key.pem > key-cert.pem
 Now, you can use key.pem and key-cert.pem in the options you pass to createServer.
 
 
-### Install Grunt ??
+
+<a name="start-dev-server"/>
+### Start Development Server
 ```
-$ npm install -g grunt-cli
+$ gulp dev
 ```
 
-<a name="start-server"/>
-### Start Server
-Development mode
+<a name="start-prod-server"/>
+### Setup Production Server
+#### Install Upstart script `/etc/init/helio.conf`
 ```
-$ grunt development
+description "Helio Upstart Script"
+#
+start on filesystem and started networking
+#
+stop on shutdown
+#
+expect fork
+#
+# Let's make sure we always have the right directory
+chdir /var/www/helio
+#
+env MYAPP_PATH="/var/www/helio"
+env NODE_ENV=production
+env PORT=80
+env APP_PATH=$MYAPP_PATH
+#
+script
+	# Create Log path if not exist
+	# Shell trick to re-direct this script's STDOUT/STDERR
+	exec 2>> forever.log 1>> forever.log
+	exec forever start -a -l forever.log -o output.log -e error.log app.js
+end script
+#
+pre-stop script
+	# Shell trick to re-direct this script's STDOUT/STDERR
+	exec 2>> forever.log 1>> forever.log
+	exec forever stop app.js
+end script
 ```
-Production mode
+#### Setup logrotate `/etc/logrotate.d/helio`
 ```
-$ grunt production
+/var/www/helio/*.log {
+			 size 50M
+			 rotate 10
+			 copytruncate
+			 delaycompress
+			 compress
+			 notifempty
+			 missingok
+}
 ```
+
+
 <a name="#backend"/>
 ## Backend
 
@@ -208,6 +221,36 @@ After master page is served back to client the rest of UI and logic is build by 
 ### Serving master page
 
 To serve master pages application includes middleware component [serveMaster.js](source/middleware/serveMaster.js). It would respond with master page html for any request, except the requests for `/api`, `/components`, `/css/` or `/js`.
+
+
+<a name="http-methods-web-api"/>
+### HTTP methods that are typically used to implement a web API
+| HTTP method | Description |
+| :---------- | :---------- |
+| GET /resources | List the URIs and perhaps other details of the collection's members. |
+| GET /resources/:id | Retrieve a representation of the addressed member of the collection, expressed in an appropriate Internet media type. |
+| POST /resources | Create a new entry in the collection. The new entry's URI is assigned automatically and is usually returned by the operation. |
+| POST /resources/:id | Not generally used. Treat the addressed member as a collection in its own right and create a new entry in it. |
+| PUT /resources | Replace the entire collection with another collection. |
+| PUT /resources/:id | Replace the addressed member of the collection, or if it doesn't exist, create it. |
+| DELETE /resources | Delete the entire collection. |
+| DELETE /resources/:id | Delete the addesses member of the collection |
+
+
+<a name="http-status-code-rest"/>
+### HTTP Status Code Summary for a Restful API
+| Status Code | Description |
+| :---------- | :---------- |
+| 200 OK | Everything worked as expected. |
+| 201 Created | The request has been fulfilled and resulted in a new resource being created. |
+| 204 No Content | The server has fulfilled the request but does not need to return an entity-body, and might want to return updated metainformation. |
+| 400 Bad Request | The request cannot be fulfilled due to bad syntax (often missing a required parameter). |
+| 401 Unauthorized | No valid API key provided. |
+| 403 Forbidden | The credentials still do not grant the client permission to access the resource |
+| 404 Not Found | The requested item doesn't exist. |
+| 500 Internal Server Error | A generic error message, given when an unexpected condition was encountered and no more specific message is suitable. |
+| 501 Not Implemented | The server either does not recognize the request method, or it lacks the ability to fulfill the request.[2] Usually this implies future availability (e.g., a new feature of a web-service API). |
+| 503 Service Unavailable | The server is currently unavailable (because it is overloaded or down for maintenance).[2] Generally, this is a temporary state. Sometimes, this can be permanent as well on test servers. |
 
 <a name="api-endpoints"/>
 ### API end-points
@@ -399,7 +442,12 @@ Recommended reading:
 * [Backbonerails screencasts](http://www.backbonerails.com/series)
 * [Amy Palamountain on unsucking your Backbone](http://www.youtube.com/watch?v=0o2whtCJw8I)
 
-> add info about entities module with msgbus
+#### MsgBus
+> They bascially all use messaging, and their difference is mainly semantic:
+> * event aggregator: send a message when something happens. Code somewhere else might be listening for that message, but maybe not
+> * request/response: have code send a request, and it will expect a response (e.g. send me refreshed data)
+> * commands: code in one place commands code somewhere else to carry out an action. There usually isn't a return value.
+
 
 <a name="requirejs"/>
 ### RequireJS
