@@ -8,3 +8,4 @@ public/build/*
 ssl/key-cert.pem
 ssl/key.pem
 assetsVersioning.json
+.idea
