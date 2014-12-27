@@ -22,48 +22,48 @@ var tickets = [
         status: '',
         urgency: 100,
         type: 'maintenance',
-        title: 'Flat tire wheelchair',
-        description: 'room 558'
+        title: 'Maintenance Issue #1',
+        description: 'Location 43'
     },
     {
         state: 'active',
         status: 'delayed',
         urgency: 100,
         type: 'maintenance',
-        title: 'Sewage smell in basement',
-        description: 'There is a sewage smell in basement, close to boiler.'
+        title: 'Maintenance Issue #2',
+        description: 'Location 345.'
     },
     {
         state: 'completed',
         status: 'resolved',
         urgency: 40,
         type: 'question',
-        title: 'How to disable alarm',
-        description: 'How to disable the alarm on the second floor.'
+        title: 'Question #1',
+        description: 'Location 755.'
     },
     {
         state: 'new',
         status: 'resolved',
         urgency: 40,
         type: 'maintenance',
-        title: 'Shower leaking',
-        description: 'Shower leaking Room 007'
+        title: 'Maintenance Issue #3',
+        description: 'Location 4234'
     },
     {
         state: 'completed',
         status: 'resolved',
         urgency: 80,
         type: 'maintenance',
-        title: 'Replace light bulb in kitchen',
-        description: 'Replace light bulb in kitchen, room 224'
+        title: 'Maintenance Issue #4',
+        description: 'Location 445'
     },
     {
         state: 'completed',
         status: 'resolved',
         urgency: 40,
         type: 'maintenance',
-        title: 'Lege kamers spoelen ivm legionella',
-        description: 'Momenteel zijn de volgende kamers leeg: 1, 8, 20, 21'
+        title: 'Maintenance Issue #5',
+        description: 'Location 4524'
     }
 ];
 
